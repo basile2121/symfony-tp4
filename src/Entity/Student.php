@@ -28,6 +28,14 @@ class Student
     #[ORM\ManyToMany(targetEntity: Workshop::class, mappedBy: 'students')]
     private Collection $workshops;
 
+    #[ORM\ManyToOne(inversedBy: 'students')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Section $section = null;
+
+    #[ORM\ManyToOne(inversedBy: 'students')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?HighSchool $highSchool = null;
+
     public function __construct()
     {
         $this->workshops = new ArrayCollection();
@@ -97,6 +105,30 @@ class Student
         if ($this->workshops->removeElement($workshop)) {
             $workshop->removeStudent($this);
         }
+
+        return $this;
+    }
+
+    public function getSection(): ?Section
+    {
+        return $this->section;
+    }
+
+    public function setSection(?Section $section): self
+    {
+        $this->section = $section;
+
+        return $this;
+    }
+
+    public function getHighSchool(): ?HighSchool
+    {
+        return $this->highSchool;
+    }
+
+    public function setHighSchool(?HighSchool $highSchool): self
+    {
+        $this->highSchool = $highSchool;
 
         return $this;
     }
