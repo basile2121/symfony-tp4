@@ -42,6 +42,10 @@ class Workshop
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
+    #[ORM\ManyToOne(inversedBy: 'workshops')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Timeslot $timeSlot = null;
+
     public function __construct()
     {
         $this->jobs = new ArrayCollection();
@@ -175,6 +179,18 @@ class Workshop
     public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getTimeSlot(): ?Timeslot
+    {
+        return $this->timeSlot;
+    }
+
+    public function setTimeSlot(?Timeslot $timeSlot): self
+    {
+        $this->timeSlot = $timeSlot;
 
         return $this;
     }
