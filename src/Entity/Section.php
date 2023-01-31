@@ -30,6 +30,7 @@ class Section
     public function __construct()
     {
         $this->students = new ArrayCollection();
+        $this->createdAt = new \DateTimeImmutable();
     }
 
     public function getId(): ?int

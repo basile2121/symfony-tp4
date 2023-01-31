@@ -15,9 +15,6 @@ class UniversityRoomType extends AbstractType
             ->add('name')
             ->add('stage')
             ->add('capacity')
-            ->add('createdAt')
-            ->add('updatedAt')
-            ->add('workshop')
         ;
     }
 

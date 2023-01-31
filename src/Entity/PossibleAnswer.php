@@ -33,6 +33,7 @@ class PossibleAnswer
     public function __construct()
     {
         $this->questions = new ArrayCollection();
+        $this->createdAt = new \DateTimeImmutable();
     }
 
     public function getId(): ?int

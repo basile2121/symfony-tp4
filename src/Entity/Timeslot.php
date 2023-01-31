@@ -30,6 +30,7 @@ class Timeslot
     public function __construct()
     {
         $this->workshops = new ArrayCollection();
+        $this->createdAt = new \DateTimeImmutable();
     }
 
     public function getId(): ?int

@@ -50,6 +50,7 @@ class Workshop
     {
         $this->jobs = new ArrayCollection();
         $this->students = new ArrayCollection();
+        $this->createdAt = new \DateTimeImmutable();
     }
 
     public function getId(): ?int

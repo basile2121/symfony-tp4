@@ -38,6 +38,7 @@ class Questionary
     {
         $this->students = new ArrayCollection();
         $this->questions = new ArrayCollection();
+        $this->createdAt = new \DateTimeImmutable();
     }
 
     public function getId(): ?int

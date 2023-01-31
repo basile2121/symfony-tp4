@@ -38,6 +38,7 @@ class Edition
         $this->speakers = new ArrayCollection();
         $this->questionaries = new ArrayCollection();
         $this->workshops = new ArrayCollection();
+        $this->createdAt = new \DateTimeImmutable();
     }
 
     public function getId(): ?int

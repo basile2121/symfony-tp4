@@ -17,8 +17,6 @@ class SpeakerType extends AbstractType
             ->add('mail')
             ->add('phone')
             ->add('compagny')
-            ->add('createdAt')
-            ->add('updatedAt')
             ->add('editions')
         ;
     }

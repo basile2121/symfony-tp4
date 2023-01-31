@@ -14,10 +14,6 @@ class StudentType extends AbstractType
         $builder
             ->add('mail')
             ->add('phone')
-            ->add('createdAt')
-            ->add('updatedAt')
-            ->add('questionary')
-            ->add('workshops')
             ->add('section')
             ->add('highSchool')
         ;

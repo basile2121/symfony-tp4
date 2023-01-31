@@ -14,8 +14,6 @@ class RessourceType extends AbstractType
         $builder
             ->add('name')
             ->add('url')
-            ->add('createdAt')
-            ->add('updatedAt')
         ;
     }
 

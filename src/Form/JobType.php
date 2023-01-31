@@ -13,9 +13,6 @@ class JobType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('createdAt')
-            ->add('updatedAt')
-            ->add('workshop')
             ->add('skills')
             ->add('activities')
         ;

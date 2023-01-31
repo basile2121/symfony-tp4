@@ -14,8 +14,6 @@ class PossibleAnswerType extends AbstractType
         $builder
             ->add('type')
             ->add('answer')
-            ->add('createdAt')
-            ->add('updatedAt')
             ->add('questions')
         ;
     }

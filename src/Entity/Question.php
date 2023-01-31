@@ -38,6 +38,7 @@ class Question
     {
         $this->possibleAnswer = new ArrayCollection();
         $this->answers = new ArrayCollection();
+        $this->createdAt = new \DateTimeImmutable();
     }
 
     public function getId(): ?int

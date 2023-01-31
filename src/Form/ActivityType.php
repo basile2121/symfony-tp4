@@ -13,9 +13,6 @@ class ActivityType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('createdAt')
-            ->add('updatedAt')
-            ->add('job')
         ;
     }
 

@@ -13,8 +13,6 @@ class HighSchoolType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('createdAt')
-            ->add('updatedAt')
         ;
     }
 

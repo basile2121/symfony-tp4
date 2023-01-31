@@ -13,8 +13,6 @@ class TimeslotType extends AbstractType
     {
         $builder
             ->add('label')
-            ->add('createdAt')
-            ->add('updatedAt')
         ;
     }
 

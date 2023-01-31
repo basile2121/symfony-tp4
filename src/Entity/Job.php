@@ -38,6 +38,7 @@ class Job
     {
         $this->skills = new ArrayCollection();
         $this->activities = new ArrayCollection();
+        $this->createdAt = new \DateTimeImmutable();
     }
 
     public function getId(): ?int

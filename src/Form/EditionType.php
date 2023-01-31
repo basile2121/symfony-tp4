@@ -13,9 +13,6 @@ class EditionType extends AbstractType
     {
         $builder
             ->add('year')
-            ->add('createdAt')
-            ->add('updatedAt')
-            ->add('speakers')
         ;
     }
 

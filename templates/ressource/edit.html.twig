@@ -1,13 +1,16 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
 {% block title %}Edit Ressource{% endblock %}
 
 {% block body %}
-    <h1>Edit Ressource</h1>
+    <section class="container-fluid">
+        <h1>Edit Ressource</h1>
 
-    {{ include('ressource/_form.html.twig', {'button_label': 'Update'}) }}
+        <div class="content">
+            {{ include('ressource/_form.html.twig', {'button_label': 'Update'}) }}
+            <a class="btn btn-primary" href="{{ path('app_ressource_index') }}">Retour</a>
+        </div>
+    </section>
 
-    <a class="btn btn-primary" href="{{ path('app_ressource_index') }}">Retour</a>
 
-    {{ include('ressource/_delete_form.html.twig') }}
 {% endblock %}

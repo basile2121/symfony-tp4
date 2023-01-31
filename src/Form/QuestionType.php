@@ -13,8 +13,6 @@ class QuestionType extends AbstractType
     {
         $builder
             ->add('label')
-            ->add('createdAt')
-            ->add('updatedAt')
             ->add('possibleAnswer')
             ->add('questionary')
         ;

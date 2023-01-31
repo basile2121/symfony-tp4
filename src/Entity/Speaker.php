@@ -42,6 +42,7 @@ class Speaker
     public function __construct()
     {
         $this->editions = new ArrayCollection();
+        $this->createdAt = new \DateTimeImmutable();
     }
 
     public function getId(): ?int
