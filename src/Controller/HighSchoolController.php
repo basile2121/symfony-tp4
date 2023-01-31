@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/high/school')]
+#[Route('admin/high/school')]
 class HighSchoolController extends AbstractController
 {
     #[Route('/', name: 'app_high_school_index', methods: ['GET'])]

@@ -1,18 +1,25 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
-{% block title %}Questionary index{% endblock %}
+{% block title %}Questionary{% endblock %}
 
 {% block body %}
-    <h1>Questionary index</h1>
+<section class="container-fluid">
+    <h1>Questionary</h1>
 
-    <table class="table">
+    <div class="content">
+        <div class="actions">
+            <a class="btn btn-success" href="{{ path('app_questionary_new') }}">Ajouter + </a>
+            <a class="btn btn-primary" href="{{ path('app_admin') }}">Retour</a>
+        </div>
+
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Name</th>
                 <th>CreatedAt</th>
                 <th>UpdatedAt</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -23,17 +30,18 @@
                 <td>{{ questionary.createdAt ? questionary.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ questionary.updatedAt ? questionary.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_questionary_show', {'id': questionary.id}) }}">show</a>
-                    <a href="{{ path('app_questionary_edit', {'id': questionary.id}) }}">edit</a>
+                    <a class="btn btn-primary" href="{{ path('app_questionary_show', {'id': questionary.id}) }}">show</a>
+                    <a class="btn btn-warning" href="{{ path('app_questionary_edit', {'id': questionary.id}) }}">edit</a>
+                    {{ include('questionary/_delete_form.html.twig') }}
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">Pas de données trouvées</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_questionary_new') }}">Create new</a>
+    </div>
+</section>
 {% endblock %}

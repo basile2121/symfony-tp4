@@ -1,0 +1,22 @@
+section {
+    margin: 30px auto;
+}
+
+section > h2 {
+    text-align: center;
+    font-size: 30px;
+}
+
+h1 {
+    text-align: center;
+    margin: 30px auto;
+}
+
+.content {
+    width: 90% !important;
+    margin: auto;
+}
+
+.actions {
+    margin: 10px auto;
+}

@@ -1,18 +1,25 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
-{% block title %}HighSchool index{% endblock %}
+{% block title %}HighSchool{% endblock %}
 
 {% block body %}
-    <h1>HighSchool index</h1>
+<section class="container-fluid">
+    <h1>HighSchool</h1>
 
-    <table class="table">
+    <div class="content">
+        <div class="actions">
+            <a class="btn btn-success" href="{{ path('app_high_school_new') }}">Ajouter + </a>
+            <a class="btn btn-primary" href="{{ path('app_admin') }}">Retour</a>
+        </div>
+
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Name</th>
                 <th>CreatedAt</th>
                 <th>UpdatedAt</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -23,17 +30,18 @@
                 <td>{{ high_school.createdAt ? high_school.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ high_school.updatedAt ? high_school.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_high_school_show', {'id': high_school.id}) }}">show</a>
-                    <a href="{{ path('app_high_school_edit', {'id': high_school.id}) }}">edit</a>
+                    <a class="btn btn-primary" href="{{ path('app_high_school_show', {'id': high_school.id}) }}">show</a>
+                    <a class="btn btn-warning" href="{{ path('app_high_school_edit', {'id': high_school.id}) }}">edit</a>
+                    {{ include('high_school/_delete_form.html.twig') }}
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">Pas de données trouvées</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_high_school_new') }}">Create new</a>
+    </div>
+</section>
 {% endblock %}

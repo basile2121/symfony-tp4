@@ -3,9 +3,14 @@
 {% block title %}New Speaker{% endblock %}
 
 {% block body %}
-    <h1>Create new Speaker</h1>
+    <section class="container-fluid">
+        <h1>Create Speaker</h1>
 
-    {{ include('speaker/_form.html.twig') }}
+        <div class="content">
+            {{ include('speaker/_form.html.twig') }}
+            <a class="btn btn-primary" href="{{ path('app_speaker_index') }}">Retour</a>
+        </div>
+    </section>
 
-    <a href="{{ path('app_speaker_index') }}">back to list</a>
+
 {% endblock %}

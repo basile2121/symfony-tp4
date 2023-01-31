@@ -1,0 +1,178 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Menu d'administration!{% endblock %}
+
+{% block body %}
+
+    <h1>Administration</h1>
+
+    <section>
+        <h2>Atelier</h2>
+        <div class="row">
+            <div class="col-sm-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Ateliers</h5>
+                        <p class="card-text">Consulter, créer, modifier et supprimer des ateliers</p>
+                        <a href="{{ path('app_workshop_index') }}" class="btn btn-primary">Accéder</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Secteur</h5>
+                        <p class="card-text">Consulter, créer, modifier et supprimer des secteurs</p>
+                        <a href="{{ path('app_sector_index') }}" class="btn btn-primary">Accéder</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Activitées</h5>
+                        <p class="card-text">Consulter, créer, modifier et supprimer des activitées</p>
+                        <a href="{{ path('app_activity_index') }}" class="btn btn-primary">Accéder</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Edition</h5>
+                        <p class="card-text">Consulter, créer, modifier et supprimer des ateliers</p>
+                        <a href="{{ path('app_edition_index') }}" class="btn btn-primary">Accéder</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Crénaux horaires</h5>
+                        <p class="card-text">Consulter, créer, modifier et supprimer des crénaux horaires</p>
+                        <a href="{{ path('app_timeslot_index') }}" class="btn btn-primary">Accéder</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section>
+        <h2>Questionnaire</h2>
+        <div class="row">
+            <div class="col-sm-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Questionnaire</h5>
+                        <p class="card-text">Consulter, créer, modifier et supprimer des questionnaires</p>
+                        <a href="{{ path('app_questionary_index') }}" class="btn btn-primary">Accéder</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Question</h5>
+                        <p class="card-text">Consulter, créer, modifier et supprimer des questions</p>
+                        <a href="{{ path('app_question_index') }}"class="btn btn-primary">Accéder</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Réponses</h5>
+                        <p class="card-text">Consulter, créer, modifier et supprimer des réponses</p>
+                        <a href="{{ path('app_answer_index') }}" class="btn btn-primary">Accéder</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Réponses possibles</h5>
+                        <p class="card-text">Consulter, créer, modifier et supprimer des réponses possibles</p>
+                        <a href="{{ path('app_possible_answer_index') }}" class="btn btn-primary">Accéder</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Ressource</h5>
+                        <p class="card-text">Consulter, créer, modifier et supprimer des ressources</p>
+                        <a href="{{ path('app_ressource_index') }}" class="btn btn-primary">Accéder</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Intervenant</h2>
+        <div class="row">
+            <div class="col-sm-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Intervenant</h5>
+                        <p class="card-text">Consulter, créer, modifier et supprimer des intervants</p>
+                        <a href="{{ path('app_speaker_index') }}" class="btn btn-primary">Accéder</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Metier</h5>
+                        <p class="card-text">Consulter, créer, modifier et supprimer des métiers</p>
+                        <a href="{{ path('app_job_index') }}" class="btn btn-primary">Accéder</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Compétences</h5>
+                        <p class="card-text">Consulter, créer, modifier et supprimer des compétences</p>
+                        <a href="{{ path('app_skill_index') }}" class="btn btn-primary">Accéder</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section>
+        <h2>Etudiant</h2>
+        <div class="row">
+            <div class="col-sm-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Etudiants</h5>
+                        <p class="card-text">Consulter, créer, modifier et supprimer des étudiants</p>
+                        <a href="{{ path('app_student_index') }}" class="btn btn-primary">Accéder</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Salle d'université</h5>
+                        <p class="card-text">Consulter, créer, modifier et supprimer des salles d'universités</p>
+                        <a href="{{ path('app_university_room_index') }}" class="btn btn-primary">Accéder</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Lycée</h5>
+                        <p class="card-text">Consulter, créer, modifier et supprimer des lycée</p>
+                        <a href="{{ path('app_high_school_index') }}" class="btn btn-primary">Accéder</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

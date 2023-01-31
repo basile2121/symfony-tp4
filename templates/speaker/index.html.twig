@@ -1,11 +1,18 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
-{% block title %}Speaker index{% endblock %}
+{% block title %}Speaker{% endblock %}
 
 {% block body %}
-    <h1>Speaker index</h1>
+<section class="container-fluid">
+    <h1>Speaker</h1>
 
-    <table class="table">
+    <div class="content">
+        <div class="actions">
+            <a class="btn btn-success" href="{{ path('app_speaker_new') }}">Ajouter + </a>
+            <a class="btn btn-primary" href="{{ path('app_admin') }}">Retour</a>
+        </div>
+
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>Id</th>
@@ -16,7 +23,7 @@
                 <th>Compagny</th>
                 <th>CreatedAt</th>
                 <th>UpdatedAt</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -31,17 +38,18 @@
                 <td>{{ speaker.createdAt ? speaker.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ speaker.updatedAt ? speaker.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_speaker_show', {'id': speaker.id}) }}">show</a>
-                    <a href="{{ path('app_speaker_edit', {'id': speaker.id}) }}">edit</a>
+                    <a class="btn btn-primary" href="{{ path('app_speaker_show', {'id': speaker.id}) }}">show</a>
+                    <a class="btn btn-warning" href="{{ path('app_speaker_edit', {'id': speaker.id}) }}">edit</a>
+                    {{ include('speaker/_delete_form.html.twig') }}
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="9">no records found</td>
+                <td colspan="9">Pas de données trouvées</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_speaker_new') }}">Create new</a>
+    </div>
+</section>
 {% endblock %}

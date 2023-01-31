@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/university/room')]
+#[Route('admin/university/room')]
 class UniversityRoomController extends AbstractController
 {
     #[Route('/', name: 'app_university_room_index', methods: ['GET'])]
