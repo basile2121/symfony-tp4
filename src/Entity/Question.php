@@ -21,10 +21,6 @@ class Question
     #[ORM\ManyToMany(targetEntity: PossibleAnswer::class, inversedBy: 'questions')]
     private Collection $possibleAnswer;
 
-    #[ORM\ManyToOne(inversedBy: 'questions')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Questionary $questionary = null;
-
     #[ORM\OneToMany(mappedBy: 'question', targetEntity: Answer::class, orphanRemoval: true)]
     private Collection $answers;
 
@@ -34,10 +30,14 @@ class Question
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
+    #[ORM\ManyToMany(targetEntity: Questionary::class, mappedBy: 'questions')]
+    private Collection $questionaries;
+
     public function __construct()
     {
         $this->possibleAnswer = new ArrayCollection();
         $this->answers = new ArrayCollection();
+        $this->questionaries = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -77,18 +77,6 @@ class Question
     public function removePossibleAnswer(PossibleAnswer $possibleAnswer): self
     {
         $this->possibleAnswer->removeElement($possibleAnswer);
-
-        return $this;
-    }
-
-    public function getQuestionary(): ?Questionary
-    {
-        return $this->questionary;
-    }
-
-    public function setQuestionary(?Questionary $questionary): self
-    {
-        $this->questionary = $questionary;
 
         return $this;
     }
@@ -143,6 +131,33 @@ class Question
     public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Questionary>
+     */
+    public function getQuestionaries(): Collection
+    {
+        return $this->questionaries;
+    }
+
+    public function addQuestionary(Questionary $questionary): self
+    {
+        if (!$this->questionaries->contains($questionary)) {
+            $this->questionaries->add($questionary);
+            $questionary->addQuestion($this);
+        }
+
+        return $this;
+    }
+
+    public function removeQuestionary(Questionary $questionary): self
+    {
+        if ($this->questionaries->removeElement($questionary)) {
+            $questionary->removeQuestion($this);
+        }
 
         return $this;
     }

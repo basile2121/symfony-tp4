@@ -17,7 +17,6 @@ class StudentType extends AbstractType
             ->add('createdAt')
             ->add('updatedAt')
             ->add('questionary')
-            ->add('workshops')
             ->add('section')
             ->add('highSchool')
         ;

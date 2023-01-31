@@ -25,9 +25,6 @@ class Student
     #[ORM\JoinColumn(nullable: false)]
     private ?Questionary $questionary = null;
 
-    #[ORM\ManyToMany(targetEntity: Workshop::class, mappedBy: 'students')]
-    private Collection $workshops;
-
     #[ORM\ManyToOne(inversedBy: 'students')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Section $section = null;
@@ -42,9 +39,12 @@ class Student
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
+    #[ORM\OneToMany(mappedBy: 'student', targetEntity: Registration::class, orphanRemoval: true)]
+    private Collection $registrations;
+
     public function __construct()
     {
-        $this->workshops = new ArrayCollection();
+        $this->registrations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -84,33 +84,6 @@ class Student
     public function setQuestionary(?Questionary $questionary): self
     {
         $this->questionary = $questionary;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Workshop>
-     */
-    public function getWorkshops(): Collection
-    {
-        return $this->workshops;
-    }
-
-    public function addWorkshop(Workshop $workshop): self
-    {
-        if (!$this->workshops->contains($workshop)) {
-            $this->workshops->add($workshop);
-            $workshop->addStudent($this);
-        }
-
-        return $this;
-    }
-
-    public function removeWorkshop(Workshop $workshop): self
-    {
-        if ($this->workshops->removeElement($workshop)) {
-            $workshop->removeStudent($this);
-        }
 
         return $this;
     }
@@ -159,6 +132,36 @@ class Student
     public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Registration>
+     */
+    public function getRegistrations(): Collection
+    {
+        return $this->registrations;
+    }
+
+    public function addRegistration(Registration $registration): self
+    {
+        if (!$this->registrations->contains($registration)) {
+            $this->registrations->add($registration);
+            $registration->setStudent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRegistration(Registration $registration): self
+    {
+        if ($this->registrations->removeElement($registration)) {
+            // set the owning side to null (unless already changed)
+            if ($registration->getStudent() === $this) {
+                $registration->setStudent(null);
+            }
+        }
 
         return $this;
     }

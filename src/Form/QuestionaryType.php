@@ -16,6 +16,7 @@ class QuestionaryType extends AbstractType
             ->add('createdAt')
             ->add('updatedAt')
             ->add('edition')
+            ->add('questions')
         ;
     }
 

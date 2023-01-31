@@ -16,7 +16,7 @@ class QuestionType extends AbstractType
             ->add('createdAt')
             ->add('updatedAt')
             ->add('possibleAnswer')
-            ->add('questionary')
+            ->add('questionaries')
         ;
     }
 

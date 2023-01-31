@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+
+<title>New Registration</title>
+
+{% block body %}
+    <h1>Create new Registration</h1>
+
+    {{ include('registration_workshop/_form.html.twig') }}
+
+    <a href="{{ path('app_registration_workshop_index') }}">back to list</a>
+{% endblock %}

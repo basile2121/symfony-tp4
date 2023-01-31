@@ -24,12 +24,13 @@ class Timeslot
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
-    #[ORM\OneToMany(mappedBy: 'timeSlot', targetEntity: Workshop::class, orphanRemoval: true)]
-    private Collection $workshops;
+    #[ORM\OneToMany(mappedBy: 'timeslot', targetEntity: Registration::class, orphanRemoval: true)]
+    private Collection $registrations;
+
 
     public function __construct()
     {
-        $this->workshops = new ArrayCollection();
+        $this->registrations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -74,29 +75,29 @@ class Timeslot
     }
 
     /**
-     * @return Collection<int, Workshop>
+     * @return Collection<int, Registration>
      */
-    public function getWorkshops(): Collection
+    public function getRegistrations(): Collection
     {
-        return $this->workshops;
+        return $this->registrations;
     }
 
-    public function addWorkshop(Workshop $workshop): self
+    public function addRegistration(Registration $registration): self
     {
-        if (!$this->workshops->contains($workshop)) {
-            $this->workshops->add($workshop);
-            $workshop->setTimeSlot($this);
+        if (!$this->registrations->contains($registration)) {
+            $this->registrations->add($registration);
+            $registration->setTimeslot($this);
         }
 
         return $this;
     }
 
-    public function removeWorkshop(Workshop $workshop): self
+    public function removeRegistration(Registration $registration): self
     {
-        if ($this->workshops->removeElement($workshop)) {
+        if ($this->registrations->removeElement($registration)) {
             // set the owning side to null (unless already changed)
-            if ($workshop->getTimeSlot() === $this) {
-                $workshop->setTimeSlot(null);
+            if ($registration->getTimeslot() === $this) {
+                $registration->setTimeslot(null);
             }
         }
 

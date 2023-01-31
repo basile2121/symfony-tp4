@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+
+<title>Edit Registration</title>
+
+{% block body %}
+    <h1>Edit Registration</h1>
+
+    {{ include('registration_workshop/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_registration_workshop_index') }}">back to list</a>
+
+    {{ include('registration_workshop/_delete_form.html.twig') }}
+{% endblock %}

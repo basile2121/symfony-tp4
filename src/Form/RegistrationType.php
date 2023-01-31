@@ -2,29 +2,26 @@
 
 namespace App\Form;
 
-use App\Entity\Workshop;
+use App\Entity\Registration;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class WorkshopType extends AbstractType
+class RegistrationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name')
-            ->add('createdAt')
-            ->add('updatedAt')
-            ->add('sector')
-            ->add('universityRoom')
-            ->add('edition')
+            ->add('workshop')
+            ->add('student')
+            ->add('timeslot')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Workshop::class,
+            'data_class' => Registration::class,
         ]);
     }
 }
