@@ -26,7 +26,7 @@ Atelier
                     </button>
                     <p>L'évènement est complet</p>
                 {% else %}
-                    <a href="{{ path('app_workshop_registration_public_show', {'id': workshop.id}) }}" class="btn btn-warning participer">Participer
+                    <a href="{{ path('app_workshop_registration_public_new', {'id': workshop.id}) }}" class="btn btn-warning participer">Participer
                     </a>
                 {% endif %}
 

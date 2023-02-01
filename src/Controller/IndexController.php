@@ -2,25 +2,35 @@
 
 namespace App\Controller;
 
-use App\Entity\Registration;
-use App\Entity\Workshop;
-use App\Repository\RegistrationRepository;
-use App\Repository\WorkshopRepository;
-use App\Form\RegistrationType; 
-use DateTimeImmutable;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Registration;
+use App\Repository\SpeakerRepository;
+use App\Repository\JobRepository;
+use App\Repository\WorkshopRepository;
+use App\Entity\Workshop;
+use App\Form\RegistrationType;
+use App\Repository\RegistrationRepository;
+use DateTimeImmutable;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\Length;
 
 class IndexController extends AbstractController
 {
     #[Route('/', name: 'app_index')]
-    public function index(): Response
+    public function index(WorkshopRepository $workshopRepository, JobRepository $jobRepository, SpeakerRepository $speakerRepository): Response
     {
+        $workshops = $workshopRepository->findAll();
+        $jobs = $jobRepository->findAll();
+        $speakers = $speakerRepository->findAll();
         // dd($this->getUser());
         return $this->render('index/index.html.twig', [
             'controller_name' => 'IndexController',
+            'workshops' => $workshops,
+            'jobs' => $jobs,
+            'speakers' => $speakers,
+            'user' => $this->getUser(),
         ]);
     }
     #[Route('/workshops', name: 'app_workshop_public_index')]
@@ -41,7 +51,7 @@ class IndexController extends AbstractController
             'nbParticipant'=> $nbParticipant[0][1]
         ]);
     }
-    #[Route('/workshop/registration/{id}', name: 'app_workshop_registration_public_new', methods: ['GET'])]
+    #[Route('/workshop/registration/{id}', name: 'app_workshop_registration_public_new', methods: ['GET', 'POST'])]
     public function getRegistration(Workshop $workshop, Request $request, RegistrationRepository $registrationRepository): Response
     {
         $registration = new Registration();
@@ -50,7 +60,7 @@ class IndexController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $registration->setStudent($this->getUser());
-            dd($this->getUser());
+            $registration->setWorkshop($workshop);
             $registration->setRegisterAt(new DateTimeImmutable());
             $registrationRepository->save($registration, true);
 

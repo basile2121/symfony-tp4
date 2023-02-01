@@ -43,7 +43,7 @@ class StudentController extends AbstractController
     #[Route('/{id}', name: 'app_student_show', methods: ['GET'])]
     public function show(Student $student): Response
     {
-        return $this->render('student/show.html.twig', [
+        return $this->render('public_student/show.html.twig', [
             'student' => $student,
         ]);
     }
@@ -69,7 +69,7 @@ class StudentController extends AbstractController
     #[Route('/{id}', name: 'app_student_delete', methods: ['POST'])]
     public function delete(Request $request, Student $student, StudentRepository $studentRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$student->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $student->getId(), $request->request->get('_token'))) {
             $studentRepository->remove($student, true);
         }
 

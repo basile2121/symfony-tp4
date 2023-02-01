@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil de
+	{{app.user.firstName}}
+{% endblock %}
+
+{% block body %}
+	<h3 style="text-align:center">Bienvenue sur votre profil
+		{{app.user.firstName}}</h3>
+	<div class="card mx-auto" style="width: 18rem;">
+		<div class="card-body">
+			<table class="table">
+				<tbody>
+					<tr>
+						<th>Email</th>
+						<td>{{ student.email }}</td>
+					</tr>
+					<tr>
+						<th>Phone</th>
+						<td>{{ student.phone }}</td>
+					</tr>
+					<tr>
+						<th>FirstName</th>
+						<td>{{ student.firstName }}</td>
+					</tr>
+					<tr>
+						<th>LastName</th>
+						<td>{{ student.lastName }}</td>
+					</tr>
+					<tr>
+						<th>Section</th>
+						<td>{{ student.section.label }}</td>
+					</tr>
+					<tr>
+						<th>HighSchool</th>
+						<td>{{ student.highSchool.name }}</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<a href="{{ path('app_student_index') }}" class="btn btn-danger">Retour</a>
+
+			<a href="{{ path('app_student_edit', {'id': app.user.idP}) }}" class="btn btn-primary">Mettre à jour</a>
+
+
+		</div>
+	</div>
+
+
+{% endblock %}

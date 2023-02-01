@@ -6,18 +6,20 @@
 		</button>
 		<div class="collapse navbar-collapse " id="navbarNavAltMarkup">
 			<div class="navbar-nav">
-				<a class="nav-link text-white" aria-current="page" href="#">Accueil</a>
-				<a class="nav-link text-white" href="#">Atelier</a>
-				<a class="nav-link text-white" href="#">Contact</a>
+				<a class="nav-link text-white" aria-current="page" href="{{path('app_index')}}">Accueil</a>
+				<a class="nav-link text-white" href="{{path('app_login')}}">Atelier</a>
+				<a class="nav-link text-white" href="{{path('app_login')}}">Contact</a>
 			</div>
 		</div>
 	</div>
 	<div id="granted">
 		{% if is_granted('IS_AUTHENTICATED') %}
-			<a class=" btn btn-outline-secondary text-white" href="#">Nom</a>
-			<a class=" btn btn-outline-secondary text-white" href="/register">Déconnexion</a>
+
+			<a class=" btn btn-outline-secondary text-white" href="{{ path('app_student_show', {'id': app.user.idP}) }}">{{app.user.firstName}}</a>
+			<a class=" btn btn-outline-secondary text-white" href="{{path('app_logout')}}">Déconnexion</a>
 		{% else %}
-			<a class=" btn btn-outline-secondary text-white" href="/register">S'inscrire</a>
+			<a class=" btn btn-outline-secondary text-white" href="{{path('app_login')}}">Connexion</a>
+			<a class=" btn btn-outline-secondary text-white" href="{{path('app_register')}}">S'inscrire</a>
 		{% endif %}
 	</div>
 

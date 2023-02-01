@@ -58,6 +58,11 @@ class Student extends User
         return $this->id;
     }
 
+    public function getIdP()
+    {
+        return parent::getId();
+    }
+
     public function getPhone(): ?string
     {
         return $this->phone;
