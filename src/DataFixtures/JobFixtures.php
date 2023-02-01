@@ -20,9 +20,9 @@ class JobFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
-            $workShops = $manager->getRepository(Workshop::class)->findAll();
+        $workShops = $manager->getRepository(Workshop::class)->findAll();
 
-        for ($i = 1; $i <= 50; $i++) {
+        for ($i = 1; $i <= 150; $i++) {
             $job = new Job();
             $job->setName('Job numéro ' . $i);
             $job->setWorkshop($workShops[array_rand($workShops)]);

@@ -5,77 +5,79 @@
 
 {% endblock %} #}
 {% block title %}
-    Atelier
-    {{ workshop.name }}
+	Atelier
+	{{ workshop.name }}
 {% endblock %}
 
 
 {% block body %}
 
-    <main class="mt-5">
-        <section class="d-flex justify-content-center flex-column align-items-center">
-            <h1>{{ workshop.name }}</h1>
-            <h4>
+	<main class="mt-5">
+		<section class="d-flex justify-content-center flex-column align-items-center">
+			<h1>{{ workshop.name }}</h1>
+			<h4>
 
-                édition: {{ workshop.edition.year }}
-            </h4>
+				édition:
+				{{ workshop.edition.year }}
+			</h4>
 
-            {% if workshop.universityRoom.capacity is same as(nbParticipant) %}
-                <button type="button" class="btn btn-warning participer" data-toggle="modal"
-                        data-target="#Modal{{ workshop.id }}" disabled>Participer
-                </button>
-                <p>L'évènement est complet</p>
-            {% else %}
-                {% if is_granted('IS_AUTHENTICATED') %}
-                    <a href="{{ path('app_workshop_registration_public_new', {'id': workshop.id}) }}"
-                       class="btn btn-warning participer">Participer
-                    </a>
-                {% else %}
-                    <button class="btn btn-warning participer" disabled>Participer
-                    </button>
-                {% endif %}
-            {% endif %}
+			{% if workshop.universityRoom.capacity is same as(nbParticipant) %}
+				<button type="button" class="btn btn-warning participer" data-toggle="modal" data-target="#Modal{{ workshop.id }}" disabled>Participer
+				</button>
+				<p>L'évènement est complet</p>
+			{% else %}
+				{% if is_granted('IS_AUTHENTICATED') %}
+					<a href="{{ path('app_workshop_registration_public_new', {'id': workshop.id}) }}" class="btn btn-warning participer">Participer
+					</a>
+				{% else %}
+					<button class="btn btn-warning participer" disabled>Participer
+					</button>
+				{% endif %}
+			{% endif %}
 
 
-        </section>
-        <section id="" class="d-flex justify-content-center">
-            <div class="tags d-flex align-items-center justify-content-center py-4 mr-2">
-                <span class="tags-items px-3 py-1 mx-2">Places disponibles :
+		</section>
+		<section id="" class="d-flex justify-content-center">
+			<div class="tags d-flex align-items-center justify-content-center py-4 mr-2">
+				<span class="tags-items px-3 py-1 mx-2">Places disponibles :
 					{{ nbParticipant }}/{{ workshop.universityRoom.capacity }}
 				</span>
-                <span class="tags-items px-3 py-1 mx-2">
-					salle : {{ workshop.universityRoom.name }}
+				<span class="tags-items px-3 py-1 mx-2">
+					salle :
+					{{ workshop.universityRoom.name }}
 				</span>
-                <span class="tags-items px-3 py-1 mx-2">
-					secteur : {{ workshop.sector.name }}
+				<span class="tags-items px-3 py-1 mx-2">
+					secteur :
+					{{ workshop.sector.name }}
 				</span>
-            </div>
-        </section>
-        <section class="card-text">
-            {% for job in workshop.jobs %}
-                <p>{{ job.name }}</p>
-                <h3>Les activités</h3>
-                <ul>
-                    {% for activity in job.activities %}
-                        <li>{{ activity.name }}</li>
-                    {% endfor %}
-                </ul>
-                <h3>Les compétences</h3>
-                <ul>
-                    {% for skill in job.skills %}
-                        <li>{{ skill.name }}</li>
-                    {% endfor %}
-                </ul>
+			</div>
+		</section>
+		<section class="d-flex justify-content-center">
+			{% for job in workshop.jobs %}
 
-            {% endfor %}
-        </section>
-        <section>
-            {% for activite in workshop.jobs %}
-                <p>{{ activite.name }}</p>
-            {% endfor %}
-        </section>
-        {# {% include 'utils/pop-up/participer_evenement_model.html.twig' %}
-        {% include 'utils/pop-up/ne_plus_participer_evenement_model.html.twig' %}
-        {% include 'maps/maps_show.html.twig' %} #}
-    </main>
+				<div class="card m-3" style="width: 18rem;">
+					<div class="card-body">
+						<h5 class="card-title">{{ job.name }}</h5>
+						<h6 class="card-subtitle mb-2 text-muted">Les activités</h6>
+						<ul class="card-text">
+							{% for activity in job.activities %}
+								<li>{{ activity.name }}</li>
+							{% endfor %}
+						</ul>
+						<h6 class="card-subtitle mb-2 text-muted">Les compétences</h6>
+
+						<ul class="card-text">
+							{% for skill in job.skills %}
+								<li>{{ skill.name }}</li>
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+			{% endfor %}
+		</section>
+
+		{# {% include 'utils/pop-up/participer_evenement_model.html.twig' %}
+																										        {% include 'utils/pop-up/ne_plus_participer_evenement_model.html.twig' %}
+																										        {% include 'maps/maps_show.html.twig' %} #}
+	</main>
 {% endblock %}

@@ -18,7 +18,7 @@ class ActivityFixtures extends Fixture implements DependentFixtureInterface
 
         $faker = Factory::create('fr_FR');
 
-        for ($i = 1; $i <= 10; $i++) {
+        for ($i = 1; $i <= 100; $i++) {
             $activity = new Activity();
             $activity->setName($faker->word(1, true));
             $activity->addJob($jobs[array_rand($jobs)]);

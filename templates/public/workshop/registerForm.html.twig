@@ -1,18 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Registration{% endblock %}
+{% block title %}Inscription à l'Atelier
+{% endblock %}
 
 {% block body %}
-    <div class="d-flex justify-content-center align-items-center vh-100 flex-column">
-        {% if totalRegistrations > 2 %}
-            <h2>Vous ne pouvez pas participer à plus de 3 ateliers par édition.</h2>
+	<div class="d-flex justify-content-center align-items-center flex-column">
+		{% if totalRegistrations > 2 %}
+			<h2>Vous ne pouvez pas participer à plus de 3 ateliers par édition.</h2>
 
-        {% else %}
-            <h1>Create new Registration</h1>
-            {{ include('registration_workshop/_form.html.twig') }}
-        {% endif %}
+		{% else %}
+			<h1>Inscription à l'Atelier :
+				<i>
+					<u>
+						{{workshop.name}}</u>
+				</i>
+			</h1>
+			{{ include('public/workshop/_form.html.twig') }}
+		{% endif %}
 
 
-        <a href="{{ path('app_registration_workshop_index') }}">back to list</a>
-    </div>
+		<a class='btn btn-secondary mx-auto' href="{{ path('app_registration_workshop_index') }}">back to list</a>
+	</div>
 {% endblock %}

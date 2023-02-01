@@ -1,0 +1,33 @@
+{% extends 'public/monitoring/base.html.twig' %}
+
+{% block title %}
+	Monitoring - Ateliers
+{% endblock %}
+
+
+{% block body %}
+	<h3 style="text-align:center; margin-top:25px">Voici le tableau des données sur les ateliers:</h3>
+
+	<div class="col-5 mx-auto">
+		<table class="table table-hover table-striped table-dark table-bordered ">
+			<thead>
+				<tr>
+					<th scope="col">Atelier</th>
+					<th scope="col">Inscrit</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				{% for workshop in workshops %}
+					<tr>
+						<td>{{workshop.name}}</td>
+						<td>{{workshop.registrations|length}}</td>
+
+					</tr>
+				{% endfor %}
+
+			</tbody>
+		</table>
+	</div>
+
+{% endblock %}

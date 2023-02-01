@@ -21,22 +21,23 @@ use Symfony\Component\Validator\Constraints\Length;
 class IndexController extends AbstractController
 {
     #[Route('/', name: 'app_index')]
-    public function index(WorkshopRepository $workshopRepository, JobRepository $jobRepository, SpeakerRepository $speakerRepository): Response
+    public function index(RegistrationRepository $registrationRepository, WorkshopRepository $workshopRepository, JobRepository $jobRepository, SpeakerRepository $speakerRepository): Response
     {
         $workshops = $workshopRepository->findAll();
         $jobs = $jobRepository->findAll();
         $speakers = $speakerRepository->findAll();
-
+        $registrations = $registrationRepository->findAll();
         return $this->render('index/index.html.twig', [
             'controller_name' => 'IndexController',
             'workshops' => $workshops,
             'jobs' => $jobs,
             'speakers' => $speakers,
+            'registrations' => $registrations,
             'user' => $this->getUser(),
         ]);
     }
     #[Route('/workshops', name: 'app_workshop_public_index')]
-    public function workshops(WorkshopRepository $workshopRepository):Response
+    public function workshops(WorkshopRepository $workshopRepository): Response
     {
         return $this->render('public/workshop/index.html.twig', [
             'workshops' => $workshopRepository->findAll(),
@@ -50,7 +51,7 @@ class IndexController extends AbstractController
         $nbParticipant = $registrationRepository->nbParticipant($id);
         return $this->render('public/workshop/show.html.twig', [
             'workshop' => $workshop,
-            'nbParticipant'=> $nbParticipant[0][1]
+            'nbParticipant' => $nbParticipant[0][1]
         ]);
     }
     #[Route('/workshop/registration/{id}', name: 'app_workshop_registration_public_new', methods: ['GET', 'POST'])]
@@ -62,7 +63,7 @@ class IndexController extends AbstractController
         $registration = new Registration();
         $form = $this->createForm(RegistrationType::class, $registration);
         $form->handleRequest($request);
-        
+
         if ($form->isSubmitted() && $form->isValid() && count($totalRegistrations) < 3) {
             $registration->setStudent($this->getUser());
             $registration->setWorkshop($workshop);
@@ -75,9 +76,17 @@ class IndexController extends AbstractController
         return $this->renderForm('public/workshop/registerForm.html.twig', [
             'registration' => $registration,
             'form' => $form,
+            'workshop' => $workshop,
             'totalRegistrations' => count($totalRegistrations)
-            
+
         ]);
     }
 
+    #[Route('/student/{id}', name: 'app_student_show_profile', methods: ['GET'])]
+    public function showProfile(Student $student): Response
+    {
+        return $this->render('public/student/show.html.twig', [
+            'student' => $student,
+        ]);
+    }
 }

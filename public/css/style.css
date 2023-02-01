@@ -4,7 +4,7 @@ body {
 }
 hr {
     width: 80%!important;
-    margin: auto;
+    margin: auto!important;
 }
 nav{
     opacity: 0.8;
@@ -76,4 +76,26 @@ padding: 25px 5px;
 
 section#rotary h3 {
     text-align: center;
+}
+section {
+    margin: 30px auto;
+}
+
+section > h2 {
+    text-align: center;
+    font-size: 30px;
+}
+
+h1 {
+    text-align: center;
+    margin: 30px auto;
+}
+
+.content {
+    width: 90% !important;
+    margin: auto;
+}
+
+.actions {
+    margin: 10px auto;
 }

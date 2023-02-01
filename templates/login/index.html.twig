@@ -23,10 +23,11 @@
 
 				<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-				<button type="submit" class="btn btn-primary">Login</button>
+				<button type="submit" class="btn btn-primary mt-2">Login</button>
+				<a style="margin-top: 30px" class="btn btn-success" href="{{path('app_register')}}">S'inscrire</a>
 			</form>
 
-			<a style="margin-top: 30px" class="btn btn-success" href="{{path('app_register')}}">S'inscrire</a>
+
 		</div>
 	</div>
 {% endblock %}

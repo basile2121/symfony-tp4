@@ -17,7 +17,7 @@ class SkillFixtures extends Fixture implements DependentFixtureInterface
 
         $faker = Factory::create('fr_FR');
 
-        for ($i = 1; $i <= 50; $i++) {
+        for ($i = 1; $i <= 100; $i++) {
             $skill = new Skill();
             $skill->setName($faker->word(1, true));
             $skill->addJob($jobs[array_rand($jobs)]);
