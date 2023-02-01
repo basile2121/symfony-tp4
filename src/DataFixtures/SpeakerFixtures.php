@@ -28,7 +28,6 @@ class SpeakerFixtures extends Fixture implements DependentFixtureInterface
             $speaker->setMail($faker->email);
             $speaker->setPhone('0675842651');
             $speaker->setCompagny($faker_us->company());
-            $speaker->setCreatedAt(new \DateTimeImmutable());
             $speaker->addEdition($editions[array_rand($editions)]);
             $manager->persist($speaker);
         }

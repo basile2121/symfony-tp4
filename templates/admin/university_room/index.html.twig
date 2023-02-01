@@ -1,43 +1,53 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/base_admin.html.twig' %}
 
-{% block title %}UniversityRoom index{% endblock %}
+{% block title %}UniversityRoom{% endblock %}
 
 {% block body %}
-    <h1>UniversityRoom index</h1>
+    <section class="container-fluid">
+        <h1>UniversityRoom</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Stage</th>
-                <th>Capacity</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for university_room in university_rooms %}
-            <tr>
-                <td>{{ university_room.id }}</td>
-                <td>{{ university_room.name }}</td>
-                <td>{{ university_room.stage }}</td>
-                <td>{{ university_room.capacity }}</td>
-                <td>{{ university_room.createdAt ? university_room.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ university_room.updatedAt ? university_room.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('app_university_room_show', {'id': university_room.id}) }}">show</a>
-                    <a href="{{ path('app_university_room_edit', {'id': university_room.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <div class="content">
+            <div class="actions">
+                <a class="btn btn-success" href="{{ path('app_university_room_new') }}">Ajouter + </a>
+                <a class="btn btn-primary" href="{{ path('app_admin') }}">Retour</a>
+            </div>
 
-    <a href="{{ path('app_university_room_new') }}">Create new</a>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Stage</th>
+                    <th>Capacity</th>
+                    <th>CreatedAt</th>
+                    <th>UpdatedAt</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for university_room in university_rooms %}
+                    <tr>
+                        <td>{{ university_room.id }}</td>
+                        <td>{{ university_room.name }}</td>
+                        <td>{{ university_room.stage }}</td>
+                        <td>{{ university_room.capacity }}</td>
+                        <td>{{ university_room.createdAt ? university_room.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                        <td>{{ university_room.updatedAt ? university_room.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                        <td>
+                            <a class="btn btn-primary"
+                               href="{{ path('app_university_room_show', {'id': university_room.id}) }}">show</a>
+                            <a class="btn btn-warning"
+                               href="{{ path('app_university_room_edit', {'id': university_room.id}) }}">edit</a>
+                            {{ include('admin/university_room/_delete_form.html.twig') }}
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="7">Pas de données trouvées</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
 {% endblock %}

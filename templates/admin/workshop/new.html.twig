@@ -1,11 +1,15 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/base_admin.html.twig' %}
 
 {% block title %}New Workshop{% endblock %}
 
 {% block body %}
-    <h1>Create new Workshop</h1>
+    <section class="container-fluid">
+        <h1>Create Workshop</h1>
 
-    {{ include('workshop/_form.html.twig') }}
+        <div class="content">
+            {{ include('admin/workshop/_form.html.twig') }}
+            <a class="btn btn-primary" href="{{ path('app_workshop_index') }}">Retour</a>
+        </div>
 
-    <a href="{{ path('app_workshop_index') }}">back to list</a>
+    </section>
 {% endblock %}

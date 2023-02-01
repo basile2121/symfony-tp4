@@ -23,7 +23,6 @@ class TimeSlotFixtures extends Fixture
         foreach ($slots as $slot) {
             $timeSlot = new Timeslot();
             $timeSlot->setLabel($slot);
-            $timeSlot->setCreatedAt(new \DateTimeImmutable());
             $manager->persist($timeSlot);
         }
         $manager->flush();

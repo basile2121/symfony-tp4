@@ -40,6 +40,7 @@ class Edition
         $this->speakers = new ArrayCollection();
         $this->questionaries = new ArrayCollection();
         $this->workshops = new ArrayCollection();
+        $this->createdAt = new \DateTimeImmutable();
     }
 
     public function getId(): ?int
@@ -166,4 +167,11 @@ class Edition
 
         return $this;
     }
+
+    public function __toString(): string
+    {
+        return $this->year;
+    }
+
+
 }

@@ -1,11 +1,15 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/base_admin.html.twig' %}
 
 {% block title %}New Registration{% endblock %}
 
 {% block body %}
-    <h1>Create new Registration</h1>
+    <section class="container-fluid">
+        <h1>Create Registration</h1>
 
-    {{ include('registration_workshop/_form.html.twig') }}
+        <div class="content">
+            {{ include('admin/registration_workshop/_form.html.twig') }}
+            <a class="btn btn-primary" href="{{ path('app_questionary_index') }}">Retour</a>
+        </div>
+    </section>
 
-    <a href="{{ path('app_registration_workshop_index') }}">back to list</a>
 {% endblock %}

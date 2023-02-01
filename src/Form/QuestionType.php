@@ -2,8 +2,13 @@
 
 namespace App\Form;
 
+use App\Entity\Edition;
+use App\Entity\Job;
+use App\Entity\PossibleAnswer;
 use App\Entity\Question;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -12,11 +17,12 @@ class QuestionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('label')
-            ->add('createdAt')
-            ->add('updatedAt')
-            ->add('possibleAnswer')
-            ->add('questionaries')
+            ->add('label', TextType::class)
+            ->add('possibleAnswer', EntityType::class, [
+                'class' => PossibleAnswer::class,
+                'multiple' => true,
+                'expanded' => false
+            ])
         ;
     }
 

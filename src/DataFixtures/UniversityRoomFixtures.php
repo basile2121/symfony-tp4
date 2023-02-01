@@ -20,7 +20,6 @@ class UniversityRoomFixtures extends Fixture
             $universityRoom->setName($faker->word(1, true));
             $universityRoom->setStage($faker->randomDigit);
             $universityRoom->setCapacity($faker->numberBetween(25, 33));
-            $universityRoom->setCreatedAt(new \DateTimeImmutable());
             $manager->persist($universityRoom);
         }
         $manager->flush();

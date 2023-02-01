@@ -1,11 +1,16 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/base_admin.html.twig' %}
 
 {% block title %}New Skill{% endblock %}
 
 {% block body %}
-    <h1>Create new Skill</h1>
+    <section class="container-fluid">
+        <h1>Create Skill</h1>
 
-    {{ include('skill/_form.html.twig') }}
+        <div class="content">
+            {{ include('admin/skill/_form.html.twig') }}
+            <a class="btn btn-primary" href="{{ path('app_skill_index') }}">Retour</a>
+        </div>
+    </section>
 
-    <a href="{{ path('app_skill_index') }}">back to list</a>
+
 {% endblock %}

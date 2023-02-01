@@ -16,8 +16,6 @@ class StudentType extends AbstractType
             ->add('roles')
             ->add('password')
             ->add('phone')
-            ->add('createdAt')
-            ->add('updatedAt')
             ->add('firstName')
             ->add('lastName')
             ->add('student')

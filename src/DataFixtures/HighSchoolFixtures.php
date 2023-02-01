@@ -21,7 +21,6 @@ class HighSchoolFixtures extends Fixture
         foreach ($highSchoolNames as $name) {
             $highSchool = new HighSchool();
             $highSchool->setName($name);
-            $highSchool->setCreatedAt(new \DateTimeImmutable());
             $manager->persist($highSchool);
         }
         $manager->flush();

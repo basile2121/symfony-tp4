@@ -24,7 +24,6 @@ class QuestionaryFixtures extends Fixture implements DependentFixtureInterface
         $questionary = new Questionary();
         $questionary->setName('Satisfaction');
         $questionary->setEdition($edition);
-        $questionary->setCreatedAt(new DateTimeImmutable());
         $questionary->addQuestion($question1);
         $questionary->addQuestion($question2);
         $questionary->addQuestion($question3);

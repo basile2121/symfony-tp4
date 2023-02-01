@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/skill')]
+#[Route('/admin/skill')]
 class SkillController extends AbstractController
 {
     #[Route('/', name: 'app_skill_index', methods: ['GET'])]

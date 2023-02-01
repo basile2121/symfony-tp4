@@ -1,11 +1,16 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/base_admin.html.twig' %}
 
 {% block title %}New Job{% endblock %}
 
 {% block body %}
-    <h1>Create new Job</h1>
+    <section class="container-fluid">
+        <h1>Create Job</h1>
 
-    {{ include('job/_form.html.twig') }}
+        <div class="content">
+            {{ include('admin/job/_form.html.twig') }}
+            <a class="btn btn-primary" href="{{ path('app_job_index') }}">Retour</a>
+        </div>
+    </section>
 
-    <a href="{{ path('app_job_index') }}">back to list</a>
+
 {% endblock %}

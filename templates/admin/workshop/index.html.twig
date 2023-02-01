@@ -1,39 +1,49 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/base_admin.html.twig' %}
 
-{% block title %}Workshop index{% endblock %}
+{% block title %}Workshop{% endblock %}
 
 {% block body %}
-    <h1>Workshop index</h1>
+    <section class="container-fluid">
+        <h1>Workshop</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for workshop in workshops %}
-            <tr>
-                <td>{{ workshop.id }}</td>
-                <td>{{ workshop.name }}</td>
-                <td>{{ workshop.createdAt ? workshop.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ workshop.updatedAt ? workshop.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('app_workshop_show', {'id': workshop.id}) }}">show</a>
-                    <a href="{{ path('app_workshop_edit', {'id': workshop.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <div class="content">
+            <div class="actions">
+                <a class="btn btn-success" href="{{ path('app_workshop_new') }}">Ajouter + </a>
+                <a class="btn btn-primary" href="{{ path('app_admin') }}">Retour</a>
+            </div>
 
-    <a href="{{ path('app_workshop_new') }}">Create new</a>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>CreatedAt</th>
+                    <th>UpdatedAt</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for workshop in workshops %}
+                    <tr>
+                        <td>{{ workshop.id }}</td>
+                        <td>{{ workshop.name }}</td>
+                        <td>{{ workshop.createdAt ? workshop.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                        <td>{{ workshop.updatedAt ? workshop.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                        <td>
+                            <a class="btn btn-primary"
+                               href="{{ path('app_workshop_show', {'id': workshop.id}) }}">show</a>
+                            <a class="btn btn-warning"
+                               href="{{ path('app_workshop_edit', {'id': workshop.id}) }}">edit</a>
+                            {{ include('admin/workshop/_delete_form.html.twig') }}
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="5">Pas de données trouvées</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
 {% endblock %}

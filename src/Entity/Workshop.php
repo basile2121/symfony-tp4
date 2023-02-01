@@ -23,7 +23,7 @@ class Workshop
     private ?Sector $sector = null;
 
     #[ORM\OneToOne(inversedBy: 'workshop', cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?UniversityRoom $universityRoom = null;
 
     #[ORM\OneToMany(mappedBy: 'workshop', targetEntity: Job::class, orphanRemoval: true)]
@@ -46,6 +46,7 @@ class Workshop
     {
         $this->jobs = new ArrayCollection();
         $this->registrations = new ArrayCollection();
+        $this->createdAt = new \DateTimeImmutable();
     }
 
     public function getId(): ?int
@@ -82,7 +83,7 @@ class Workshop
         return $this->universityRoom;
     }
 
-    public function setUniversityRoom(UniversityRoom $universityRoom): self
+    public function setUniversityRoom(?UniversityRoom $universityRoom): self
     {
         $this->universityRoom = $universityRoom;
 

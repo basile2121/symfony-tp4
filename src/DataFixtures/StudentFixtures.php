@@ -31,7 +31,6 @@ class StudentFixtures extends Fixture implements DependentFixtureInterface
             $student->setPhone('0675842651');
             $student->setSection($sections[array_rand($sections)]);
             $student->setHighSchool($highSchools[array_rand($highSchools)]);
-            $student->setCreatedAt(new \DateTimeImmutable());
             $student->setEmail($faker->email);
             $student->setType('student');
             $student->setPassword('test');

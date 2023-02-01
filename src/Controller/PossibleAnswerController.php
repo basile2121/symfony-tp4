@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/possible/answer')]
+#[Route('/admin/possible/answer')]
 class PossibleAnswerController extends AbstractController
 {
     #[Route('/', name: 'app_possible_answer_index', methods: ['GET'])]

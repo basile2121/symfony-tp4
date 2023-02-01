@@ -34,6 +34,7 @@ class Sector
     public function __construct()
     {
         $this->workshops = new ArrayCollection();
+        $this->createdAt = new \DateTimeImmutable();
     }
 
     public function getId(): ?int
@@ -117,5 +118,10 @@ class Sector
         $this->updatedAt = $updatedAt;
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->name;
     }
 }

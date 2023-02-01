@@ -26,7 +26,6 @@ class JobFixtures extends Fixture implements DependentFixtureInterface
             $job = new Job();
             $job->setName('Job numéro ' . $i);
             $job->setWorkshop($workShops[array_rand($workShops)]);
-            $job->setCreatedAt(new DateTimeImmutable());
             $manager->persist($job);
         }
 

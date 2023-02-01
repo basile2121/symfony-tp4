@@ -30,7 +30,6 @@ class WorkShopFixtures extends Fixture implements DependentFixtureInterface
             $workShop->setSector($secteurs[array_rand($secteurs)]);
             $workShop->setEdition($edition);
             $workShop->setUniversityRoom($universityRoom);
-            $workShop->setCreatedAt(new DateTimeImmutable());
             $manager->persist($workShop);
         }
 

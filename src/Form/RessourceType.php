@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Ressource;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -12,10 +13,8 @@ class RessourceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name')
-            ->add('url')
-            ->add('createdAt')
-            ->add('updatedAt')
+            ->add('name', TextType::class)
+            ->add('url', TextType::class)
         ;
     }
 

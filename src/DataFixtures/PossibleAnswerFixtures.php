@@ -18,13 +18,11 @@ class PossibleAnswerFixtures extends Fixture
             $possibleAnswer->setBalise('input');
             $possibleAnswer->setType('radio');
             $possibleAnswer->setAnswer($answer);
-            $possibleAnswer->setCreatedAt(new DateTimeImmutable());
             $manager->persist($possibleAnswer);
         }
 
         $possibleAnswer = new PossibleAnswer();
         $possibleAnswer->setBalise('textarea');
-        $possibleAnswer->setCreatedAt(new DateTimeImmutable());
         $manager->persist($possibleAnswer);
 
         $manager->flush();

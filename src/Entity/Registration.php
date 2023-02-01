@@ -28,6 +28,11 @@ class Registration
     #[ORM\JoinColumn(nullable: false)]
     private ?Student $student = null;
 
+    public function __construct()
+    {
+        $this->registerAt = new \DateTimeImmutable();
+    }
+
     public function getId(): ?int
     {
         return $this->id;

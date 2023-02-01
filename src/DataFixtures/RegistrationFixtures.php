@@ -30,7 +30,6 @@ class RegistrationFixtures extends Fixture implements DependentFixtureInterface
             $registration->setStudent($students[array_rand($students)]);
             $registration->setTimeslot($slots[array_rand($slots)]);
             $registration->setWorkshop($workshops[array_rand($workshops)]);
-            $registration->setRegisterAt(new \DateTimeImmutable());
             $manager->persist($registration);
         }
         $manager->flush();

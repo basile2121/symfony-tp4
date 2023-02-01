@@ -38,6 +38,7 @@ class Question
         $this->possibleAnswer = new ArrayCollection();
         $this->answers = new ArrayCollection();
         $this->questionaries = new ArrayCollection();
+        $this->createdAt = new \DateTimeImmutable();
     }
 
     public function getId(): ?int
@@ -161,4 +162,11 @@ class Question
 
         return $this;
     }
+
+    public function __toString(): string
+    {
+        return $this->label;
+    }
+
+
 }

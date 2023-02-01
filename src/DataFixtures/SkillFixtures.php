@@ -20,7 +20,6 @@ class SkillFixtures extends Fixture implements DependentFixtureInterface
         for ($i = 1; $i <= 50; $i++) {
             $skill = new Skill();
             $skill->setName($faker->word(1, true));
-            $skill->setCreatedAt(new \DateTimeImmutable());
             $skill->addJob($jobs[array_rand($jobs)]);
             $manager->persist($skill);
         }

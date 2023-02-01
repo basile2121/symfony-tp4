@@ -30,6 +30,7 @@ class Activity
     public function __construct()
     {
         $this->job = new ArrayCollection();
+        $this->createdAt = new \DateTimeImmutable();
     }
 
     public function getId(): ?int

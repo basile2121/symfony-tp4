@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/base_admin.html.twig' %}
 
 {% block title %}Questionary{% endblock %}
 
@@ -26,9 +26,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_questionary_index') }}">back to list</a>
+    <a class="btn btn-primary" href="{{ path('app_questionary_index') }}">back to list</a>
 
-    <a href="{{ path('app_questionary_edit', {'id': questionary.id}) }}">edit</a>
+    <a class="btn btn-warning" href="{{ path('app_questionary_edit', {'id': questionary.id}) }}">edit</a>
 
-    {{ include('questionary/_delete_form.html.twig') }}
+    {{ include('admin/questionary/_delete_form.html.twig') }}
 {% endblock %}

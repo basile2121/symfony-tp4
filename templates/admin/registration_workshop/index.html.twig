@@ -1,16 +1,23 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/base_admin.html.twig' %}
 
 {% block title %}Registration index{% endblock %}
 
 {% block body %}
-    <h1>Registration index</h1>
+<section class="container-fluid">
+    <h1>Registration</h1>
 
-    <table class="table">
+    <div class="content">
+        <div class="actions">
+            <a class="btn btn-success" href="{{ path('app_registration_workshop_new') }}">Ajouter + </a>
+            <a class="btn btn-primary" href="{{ path('app_admin') }}">Retour</a>
+        </div>
+
+        <table class="table table-striped">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>RegisterAt</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -21,15 +28,16 @@
                 <td>
                     <a href="{{ path('app_registration_workshop_show', {'id': registration.id}) }}">show</a>
                     <a href="{{ path('app_registration_workshop_edit', {'id': registration.id}) }}">edit</a>
+                    {{ include('admin/registration_workshop/_delete_form.html.twig') }}
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="5">Pas de données trouvées</td>
             </tr>
         {% endfor %}
         </tbody>
-    </table>
-
-    <a href="{{ path('app_registration_workshop_new') }}">Create new</a>
+        </table>
+    </div>
+</section>
 {% endblock %}

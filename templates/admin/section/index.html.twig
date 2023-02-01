@@ -1,18 +1,25 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/base_admin.html.twig' %}
 
 {% block title %}Section index{% endblock %}
 
 {% block body %}
-    <h1>Section index</h1>
+<section class="container-fluid">
+    <h1>Section</h1>
 
-    <table class="table">
+    <div class="content">
+        <div class="actions">
+            <a class="btn btn-success" href="{{ path('app_section_new') }}">Ajouter + </a>
+            <a class="btn btn-primary" href="{{ path('app_admin') }}">Retour</a>
+        </div>
+
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Label</th>
                 <th>CreatedAt</th>
                 <th>UpdatedAt</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -25,15 +32,16 @@
                 <td>
                     <a href="{{ path('app_section_show', {'id': section.id}) }}">show</a>
                     <a href="{{ path('app_section_edit', {'id': section.id}) }}">edit</a>
+                    {{ include('admin/section/_delete_form.html.twig') }}
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="6">Pas de données trouvées</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_section_new') }}">Create new</a>
+    </div>
+</section>
 {% endblock %}

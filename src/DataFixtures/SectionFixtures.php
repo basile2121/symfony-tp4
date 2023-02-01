@@ -22,7 +22,6 @@ class SectionFixtures extends Fixture
         foreach ($sectionLabels as $label) {
             $highSchool = new Section();
             $highSchool->setLabel($label);
-            $highSchool->setCreatedAt(new \DateTimeImmutable());
             $manager->persist($highSchool);
         }
         $manager->flush();

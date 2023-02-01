@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/workshop')]
+#[Route('/admin/workshop')]
 class WorkshopController extends AbstractController
 {
     #[Route('/', name: 'app_workshop_index', methods: ['GET'])]

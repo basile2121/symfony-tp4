@@ -14,7 +14,6 @@ class EditionFixtures extends Fixture
         for ($i = 2019; $i <= 2024; $i++) {
             $edition = new Edition();
             $edition->setYear($i);
-            $edition->setCreatedAt(new DateTimeImmutable());
             $manager->persist($edition);
         }
         $manager->flush();

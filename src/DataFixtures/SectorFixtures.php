@@ -20,7 +20,6 @@ class SectorFixtures extends Fixture
             $sector = new Sector();
             $sector->setName($faker->word(1, true));
             $sector->setDescription('Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis laborum impedit harum culpa praesentium optio.');
-            $sector->setCreatedAt(new DateTimeImmutable());
             $manager->persist($sector);
         }
         $manager->flush();

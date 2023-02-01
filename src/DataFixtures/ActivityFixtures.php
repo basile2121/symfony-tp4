@@ -21,7 +21,6 @@ class ActivityFixtures extends Fixture implements DependentFixtureInterface
         for ($i = 1; $i <= 10; $i++) {
             $activity = new Activity();
             $activity->setName($faker->word(1, true));
-            $activity->setCreatedAt(new DateTimeImmutable());
             $activity->addJob($jobs[array_rand($jobs)]);
             $manager->persist($activity);
         }

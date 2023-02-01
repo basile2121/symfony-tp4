@@ -22,7 +22,6 @@ class RessourceFixtures extends Fixture
             $ressourceEntity = new Ressource();
             $ressourceEntity->setName($key);
             $ressourceEntity->setUrl($ressource);
-            $ressourceEntity->setCreatedAt(new \DateTimeImmutable());
             $manager->persist($ressourceEntity);
         }
         $manager->flush();

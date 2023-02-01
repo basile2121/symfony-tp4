@@ -3,7 +3,9 @@
 namespace App\Form;
 
 use App\Entity\UniversityRoom;
+use Doctrine\DBAL\Types\IntegerType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -12,12 +14,9 @@ class UniversityRoomType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name')
-            ->add('stage')
-            ->add('capacity')
-            ->add('createdAt')
-            ->add('updatedAt')
-            ->add('workshop')
+            ->add('name', TextType::class)
+            ->add('stage', IntegerType::class)
+            ->add('capacity', IntegerType::class)
         ;
     }
 

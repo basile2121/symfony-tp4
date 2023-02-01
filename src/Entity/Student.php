@@ -51,6 +51,7 @@ class Student extends User
     {
         $this->setType('student');
         $this->registrations = new ArrayCollection();
+        $this->createdAt = new \DateTimeImmutable();
     }
 
     public function getId(): ?int

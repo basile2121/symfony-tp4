@@ -20,7 +20,6 @@ class QuestionFixtures extends Fixture implements DependentFixtureInterface
         $question = new Question();
         $question->setLabel('Comment avez-vous trouvé les ateliers ?');
         $question->addPossibleAnswer($possibleAnswer);
-        $question->setCreatedAt(new DateTimeImmutable());
         $manager->persist($question);
 
         $answers = ['1', '2', '3', '4', '5'];
@@ -30,7 +29,6 @@ class QuestionFixtures extends Fixture implements DependentFixtureInterface
             $possibleAnswer = $manager->getRepository(PossibleAnswer::class)->findOneBy(array('answer' => $answer));
             $question->addPossibleAnswer($possibleAnswer);
         }
-        $question->setCreatedAt(new DateTimeImmutable());
         $manager->persist($question);
 
         $answers = ['oui', 'non'];
@@ -40,7 +38,6 @@ class QuestionFixtures extends Fixture implements DependentFixtureInterface
             $possibleAnswer = $manager->getRepository(PossibleAnswer::class)->findOneBy(array('answer' => $answer));
             $question->addPossibleAnswer($possibleAnswer);
         }
-        $question->setCreatedAt(new DateTimeImmutable());
         $manager->persist($question);
 
         $manager->flush();

@@ -1,11 +1,16 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/base_admin.html.twig' %}
 
 {% block title %}New HighSchool{% endblock %}
 
 {% block body %}
-    <h1>Create new HighSchool</h1>
+    <section class="container-fluid">
+        <h1>Create HighSchool</h1>
 
-    {{ include('high_school/_form.html.twig') }}
+        <div class="content">
+            {{ include('admin/high_school/_form.html.twig') }}
+            <a class="btn btn-primary" href="{{ path('app_high_school_index') }}">Retour</a>
+        </div>
+    </section>
 
-    <a href="{{ path('app_high_school_index') }}">back to list</a>
+
 {% endblock %}
