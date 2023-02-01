@@ -1,17 +1,19 @@
-<!DOCTYPE html>
+{% extends "baseForm.html.twig" %}
 
-<title>Register</title>
+{% block title %}Registration
+{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+	<div class="card mx-auto" style="width: 18rem;">
+		<div class="card-body">
+			<h5 class="card-title">S'enregistrer</h5>
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+			{{ form_start(registrationForm) }}
+			{{form_widget(registrationForm)}}
+			<button type="submit" class="btn btn-success">Register</button>
+			{{ form_end(registrationForm) }}
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+
+		</div>
+	</div>
 {% endblock %}
