@@ -39,6 +39,21 @@ class UniversityRoomRepository extends ServiceEntityRepository
         }
     }
 
+        /**
+     * @return UniversityRoom[] Returns an array of UniversityRoom objects
+     */
+    public function findByExampleField($value): array
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.exampleField = :val')
+            ->setParameter('val', $value)
+            ->orderBy('u.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 //    /**
 //     * @return UniversityRoom[] Returns an array of UniversityRoom objects
 //     */
