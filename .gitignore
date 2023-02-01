@@ -8,6 +8,7 @@
 /public/.htaccess
 /var/
 /vendor/
+/node_modules/
 ###< symfony/framework-bundle ###
 /.idea
 ###> phpunit/phpunit ###
