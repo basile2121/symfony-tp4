@@ -63,7 +63,6 @@ section.title-home h3{
 .event-card {
     border-radius: 15px;
     box-shadow: 5px 0 33px rgba(0, 0, 0, 0.5)  ; 
-    max-width: 400px;
 }
 .tags-items{
     pointer-events: none;

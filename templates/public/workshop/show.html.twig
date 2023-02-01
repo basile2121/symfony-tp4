@@ -12,8 +12,8 @@ Atelier
 
 {% block body %}
 
-    <main>
-        <section id="eventImage">
+    <main class="mt-5">
+        <section class="d-flex justify-content-center flex-column align-items-center">
             <h1>{{ workshop.name }}</h1>
             <h4>
 
@@ -26,51 +26,53 @@ Atelier
                     </button>
                     <p>L'évènement est complet</p>
                 {% else %}
+                {% if is_granted('IS_AUTHENTICATED') %}
                     <a href="{{ path('app_workshop_registration_public_new', {'id': workshop.id}) }}" class="btn btn-warning participer">Participer
                     </a>
+                    {% else %}
+                     <button  class="btn btn-warning participer" disabled>Participer
+                    </button>
+                    {% endif %}
                 {% endif %}
 
         
         </section>
-        <section id="infos">
-            <div class="tags d-flex align-items-center justify-content-center py-4">
+        <section id="" class="d-flex justify-content-center">
+            <div class="tags d-flex align-items-center justify-content-center py-4 mr-2">
                 <span class="tags-items px-3 py-1 mx-2">Places disponibles :
 					{{nbParticipant}}/{{ workshop.universityRoom.capacity }}
 				</span>
                 <span class="tags-items px-3 py-1 mx-2">
 					salle : {{ workshop.universityRoom.name }}
 				</span>
-
-                
+                 <span class="tags-items px-3 py-1 mx-2">
+					secteur : {{ workshop.sector.name }}
+				</span>
             </div>
         </section>
-        {# Message succes participation #}
-        {# {% if successParticiper %}
-            <div class="alert alert-warning m-auto mt-2 col-3">
-                {{ successParticiper }}
-            </div>
-        {% endif %} #}
-
-        {# Message login pour participer #}
-        {# {% if noConnectedMessage %}
-            <div class="alert alert-warning m-auto mb-4 col-4">
-                {{ noConnectedMessage }}
-                <a class="btn btn-secondary m-auto" style="color:white" href="/login">Se connecter</a>
-            </div> #}
-
-        {# {% endif %} #}
-        <section id="description">
-
-            <h2>Description de l'atelier</h2>
-            <hr>
-            <p class="text-center ">
-             {# {{ evenement.description }} #}
-             description
-             </p>
-            <hr>
+        <section>
+        {% for job in workshop.jobs %}
+            <p>{{job.name}}</p>
+                <h2>Les activités</h2>
+            <ul>
+            {% for activity in job.activities %}
+                    <li>{{activity.name}}</li>
+            {% endfor %}
+            </ul>
+                 <h2>Les compétences</h2>
+                 <ul>
+            {% for skill in job.skills %}
+                    <li>{{skill.name}}</li>
+            {% endfor %}
+                 </ul>
+            
+        {% endfor %}
         </section>
-
-
+        <section>
+           {% for activite in workshop.jobs %}
+            <p>{{activite.name}}</p>
+        {% endfor %}
+        </section>
         {# {% include 'utils/pop-up/participer_evenement_model.html.twig' %}
         {% include 'utils/pop-up/ne_plus_participer_evenement_model.html.twig' %}
         {% include 'maps/maps_show.html.twig' %} #}
