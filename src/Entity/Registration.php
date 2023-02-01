@@ -25,6 +25,9 @@ class Registration
     #[ORM\JoinColumn(nullable: false)]
     private ?Timeslot $timeslot = null;
 
+    #[ORM\Column]
+    private ?\DateTimeImmutable $registerAt = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -62,6 +65,18 @@ class Registration
     public function setTimeslot(?Timeslot $timeslot): self
     {
         $this->timeslot = $timeslot;
+
+        return $this;
+    }
+
+    public function getRegisterAt(): ?\DateTimeImmutable
+    {
+        return $this->registerAt;
+    }
+
+    public function setRegisterAt(\DateTimeImmutable $registerAt): self
+    {
+        $this->registerAt = $registerAt;
 
         return $this;
     }

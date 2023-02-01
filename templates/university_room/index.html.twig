@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}UniversityRoom index{% endblock %}
+
+{% block body %}
+    <h1>UniversityRoom index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Stage</th>
+                <th>Capacity</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for university_room in university_rooms %}
+            <tr>
+                <td>{{ university_room.id }}</td>
+                <td>{{ university_room.name }}</td>
+                <td>{{ university_room.stage }}</td>
+                <td>{{ university_room.capacity }}</td>
+                <td>{{ university_room.createdAt ? university_room.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ university_room.updatedAt ? university_room.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_university_room_show', {'id': university_room.id}) }}">show</a>
+                    <a href="{{ path('app_university_room_edit', {'id': university_room.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_university_room_new') }}">Create new</a>
+{% endblock %}
