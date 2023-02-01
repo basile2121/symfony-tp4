@@ -4,9 +4,14 @@
 
 {% block body %}
 <div class="d-flex justify-content-center align-items-center vh-100 flex-column">
-    <h1>Create new Registration</h1>
+    {% if totalRegistrations > 2 %}
+    <h2>Vous ne pouvez pas participer à plus de 3 ateliers par édition.</h2>
 
-    {{ include('registration_workshop/_form.html.twig') }}
+{% else %}
+    <h1>Create new Registration</h1>
+{{ include('registration_workshop/_form.html.twig') }}
+    {% endif %}
+    
 
     <a href="{{ path('app_registration_workshop_index') }}">back to list</a>
 </div>

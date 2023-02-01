@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Entity\Registration;
+use App\Entity\Speaker;
+use App\Entity\Student;
 use App\Repository\SpeakerRepository;
 use App\Repository\JobRepository;
 use App\Repository\WorkshopRepository;
@@ -54,11 +56,14 @@ class IndexController extends AbstractController
     #[Route('/workshop/registration/{id}', name: 'app_workshop_registration_public_new', methods: ['GET', 'POST'])]
     public function getRegistration(Workshop $workshop, Request $request, RegistrationRepository $registrationRepository): Response
     {
+        /** @var Student $user */
+        $user = $this->getUser();
+        $totalRegistrations = $user->getRegistrations();
         $registration = new Registration();
         $form = $this->createForm(RegistrationType::class, $registration);
         $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
+        
+        if ($form->isSubmitted() && $form->isValid() && count($totalRegistrations) < 3) {
             $registration->setStudent($this->getUser());
             $registration->setWorkshop($workshop);
             $registration->setRegisterAt(new DateTimeImmutable());
@@ -70,29 +75,9 @@ class IndexController extends AbstractController
         return $this->renderForm('public/workshop/registerForm.html.twig', [
             'registration' => $registration,
             'form' => $form,
+            'totalRegistrations' => count($totalRegistrations)
+            
         ]);
     }
 
-     
-    #[Route('/new', name: 'app_registration_public_workshop_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, RegistrationRepository $registrationRepository): Response
-    {
-        $registration = new Registration();
-        $form = $this->createForm(RegistrationType::class, $registration);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $registration->setStudent($this->getUser());
-            dd($this->getUser());
-            $registration->setRegisterAt(new DateTimeImmutable());
-            $registrationRepository->save($registration, true);
-
-            return $this->redirectToRoute('app_workshop_public_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('registration_workshop/new.html.twig', [
-            'registration' => $registration,
-            'form' => $form,
-        ]);
-    }
 }
