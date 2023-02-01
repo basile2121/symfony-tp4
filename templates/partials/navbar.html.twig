@@ -1,0 +1,24 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark px-5">
+	<div class="container-fluid">
+		<a class="navbar-brand text-white " href="#">Logo</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse " id="navbarNavAltMarkup">
+			<div class="navbar-nav">
+				<a class="nav-link text-white" aria-current="page" href="#">Accueil</a>
+				<a class="nav-link text-white" href="#">Atelier</a>
+				<a class="nav-link text-white" href="#">Contact</a>
+			</div>
+		</div>
+	</div>
+	<div id="granted">
+		{% if is_granted('IS_AUTHENTICATED') %}
+			<a class=" btn btn-outline-secondary text-white" href="#">Nom</a>
+			<a class=" btn btn-outline-secondary text-white" href="/register">Déconnexion</a>
+		{% else %}
+			<a class=" btn btn-outline-secondary text-white" href="/register">S'inscrire</a>
+		{% endif %}
+	</div>
+
+</nav>

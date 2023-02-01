@@ -46,6 +46,7 @@ class Student extends User
     #[ORM\Column(length: 255)]
     private ?string $lastName = null;
 
+
     public function __construct()
     {
         $this->setType('student');
