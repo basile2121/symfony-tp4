@@ -39,6 +39,23 @@ class RegistrationRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * @return array Returns an array
+     */
+    public function getNbInscritByWorkshopBySlotTime(): array
+    {
+        return $this->createQueryBuilder('r')
+            ->select(['w.name', 'ts.label', 'COUNT(w.id) as nombre'])
+            ->join('r.workshop', 'w')
+            ->join('r.timeslot', 'ts')
+            ->join('r.student', 's')
+            ->groupBy('w.name')
+            ->addGroupBy('ts.label')
+            ->getQuery()
+            ->getArrayResult()
+            ;
+    }
+
 //    /**
 //     * @return Registration[] Returns an array of Registration objects
 //     */
