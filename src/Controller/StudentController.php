@@ -43,7 +43,7 @@ class StudentController extends AbstractController
     #[Route('/{id}', name: 'app_student_show', methods: ['GET'])]
     public function show(Student $student): Response
     {
-        return $this->render('public_student/show.html.twig', [
+        return $this->render('public/public_student/show.html.twig', [
             'student' => $student,
         ]);
     }
