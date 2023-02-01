@@ -26,7 +26,7 @@ class IndexController extends AbstractController
         $workshops = $workshopRepository->findAll();
         $jobs = $jobRepository->findAll();
         $speakers = $speakerRepository->findAll();
-        // dd($this->getUser());
+
         return $this->render('index/index.html.twig', [
             'controller_name' => 'IndexController',
             'workshops' => $workshops,
@@ -36,7 +36,7 @@ class IndexController extends AbstractController
         ]);
     }
     #[Route('/workshops', name: 'app_workshop_public_index')]
-    public function all_workshops(WorkshopRepository $workshopRepository):Response
+    public function workshops(WorkshopRepository $workshopRepository):Response
     {
         return $this->render('public/workshop/index.html.twig', [
             'workshops' => $workshopRepository->findAll(),
