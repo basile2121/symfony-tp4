@@ -42,18 +42,22 @@ class RegistrationRepository extends ServiceEntityRepository
     /**
      * @return array Returns an array
      */
-    public function getNbInscritByWorkshopBySlotTime(): array
+    public function getNbInscritByWorkshopBySlotTime($edition = null): array
     {
-        return $this->createQueryBuilder('r')
-            ->select(['w.name', 'ts.label', 'COUNT(w.id) as nombre'])
-            ->join('r.workshop', 'w')
-            ->join('r.timeslot', 'ts')
-            ->join('r.student', 's')
-            ->groupBy('w.name')
-            ->addGroupBy('ts.label')
-            ->getQuery()
-            ->getArrayResult()
-            ;
+        $builder =  $this->createQueryBuilder('r');
+        $builder->select(['w.name', 'ts.label', 'COUNT(w.id) as nombre']);
+        $builder->join('r.workshop', 'w');
+        $builder->join('r.timeslot', 'ts');
+        $builder->join('r.student', 's');
+        $builder->groupBy('w.name');
+        $builder->addGroupBy('ts.label');
+        if ($edition !== null) {
+            $builder->addSelect(['w.id as id', 'w.name as name']);
+            $builder->join('w.edition', 'e');
+            $builder->where('e.year = :year');
+            $builder->setParameter('year', $edition);
+        }
+        return $builder->getQuery()->getArrayResult();
     }
 
 //    /**
