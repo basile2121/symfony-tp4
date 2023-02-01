@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Workshop index{% endblock %}
+
+{% block body %}
+    <h1>Voici tout les workshop</h1>
+    {% if workshops|length is same as(0) %}
+        <h1>Il n'y a pas encore de workshops</h1>
+    {% endif %}
+  <div class="all-events-inc row">
+        {% for workshop in workshops %}
+            <div class="event-resp col-md-4 col-sm-6 col-xs-12 my-3">
+    <div class="event-card">
+        <div class="head">
+            <div class="img-container">
+                <img src="https://www.zooplus.fr/magazine/wp-content/uploads/2019/06/comprendre-le-langage-des-chats.jpg" alt=""/>
+            </div>
+            <div class="desc">
+                <h2 class="event-title px-3">
+                    {{workshop.name}}
+                    
+                </h2>
+                <span class="event-date px-3">{{workshop.edition.year}}</span>
+            </div>
+        </div>
+        <div class="tags d-flex align-items-center justify-content-around py-4">
+          <span class="tags-items px-3 py-1 mx-2">Capacité : {{workshop.universityRoom.capacity}}</span>
+          <span class="tags-items px-3 py-1 mx-2">Salle : {{workshop.universityRoom.name}}</span>
+          <span class="tags-items px-3 py-1 mx-2 status" style="border:1px solid">
+           
+          </span>
+        </div>
+        <div class="footer px-3">
+            <p class="event-desc">
+                {# {{ }} #}
+                voici la description
+            </p>
+            <span class="category">Secteur : {{workshop.sector.name}}</span>
+        </div>
+        <div class="text-center p-4">
+        <a href="{{ path('app_workshop_public_show', {'id': workshop.id}) }}" class='btn-home text-light mx-auto'>accéder</a>
+        </div>
+    </div>
+</div>
+        {% endfor %}
+    </div>
+   
+{% endblock %}

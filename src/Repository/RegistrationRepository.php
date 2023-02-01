@@ -38,6 +38,15 @@ class RegistrationRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    public function nbParticipant(int $id) {
+        return $this->createQueryBuilder('r')
+         ->leftJoin("r.workshop", "w")
+         ->select("count(w)")
+         ->andWhere('r.workshop =:id')
+         ->setParameter('id', $id)
+         ->getQuery()
+         ->getResult();
+      }
 
 //    /**
 //     * @return Registration[] Returns an array of Registration objects

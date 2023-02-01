@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Registration;
+use App\Entity\Timeslot;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -12,10 +14,10 @@ class RegistrationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('registerAt')
-            ->add('workshop')
-            ->add('timeslot')
-            ->add('student')
+            ->add('timeslot', EntityType::class, [
+                'class' => Timeslot::class
+            ])
+ 
         ;
     }
 
