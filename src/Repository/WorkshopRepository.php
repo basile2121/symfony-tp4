@@ -39,6 +39,17 @@ class WorkshopRepository extends ServiceEntityRepository
         }
     }
 
+    public function nbParticipant(int $id) {
+       return $this->createQueryBuilder('w')
+        ->leftJoin("workshop_student","ws", "WITH", "ws.workshop_id =w.id")
+        ->select("count(ws.workshop_id)")
+        ->andWhere('workshop_student.workshop_id =:id')
+        ->setParameter('id', $id)
+        ->getQuery()
+        ->getResult();
+     }
+    }
+
 //    /**
 //     * @return Workshop[] Returns an array of Workshop objects
 //     */
@@ -63,4 +74,4 @@ class WorkshopRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
-}
+

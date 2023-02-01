@@ -3,37 +3,51 @@
 {% block title %}Workshop index{% endblock %}
 
 {% block body %}
-    <h1>Workshop index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+    <h1>Voici tout les workshop</h1>
+    {% if workshops|length is same as(0) %}
+        <h1>Il n'y a pas encore de workshops</h1>
+    {% endif %}
+  <div class="all-events-inc row">
         {% for workshop in workshops %}
-            <tr>
-                <td>{{ workshop.id }}</td>
-                <td>{{ workshop.name }}</td>
-                <td>{{ workshop.createdAt ? workshop.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ workshop.updatedAt ? workshop.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('app_workshop_show', {'id': workshop.id}) }}">show</a>
-                    <a href="{{ path('app_workshop_edit', {'id': workshop.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
+            <div class="event-resp col-md-4 col-sm-6 col-xs-12 my-3">
+    <div class="event-card ">
+        <div class="head">
+            <div class="img-container">
+                <img src="https://www.zooplus.fr/magazine/wp-content/uploads/2019/06/comprendre-le-langage-des-chats.jpg" alt=""/>
+            </div>
+            <div class="desc">
+                <h2 class="event-title px-3">
+                    {{workshop.name}}
+                    
+                </h2>
+                <span class="event-date px-3">{{workshop.edition.year}}</span>
+            </div>
+        </div>
+        <div class="tags d-flex align-items-center justify-content-around py-4">
+          <span class="tags-items px-3 py-1 mx-2">Capacité : {{workshop.university_room.capacity}}</span>
+          <span class="tags-items px-3 py-1 mx-2">Salle : {{workshop.university_room.name}}</span>
+          <span class="tags-items px-3 py-1 mx-2 status" style="border:1px solid">
+           
+          </span>
+        </div>
+        <div class="footer px-3">
+            <p class="event-desc">
+                {# {{ }} #}
+                voici la description
+            </p>
+            <span class="category">Secteur : {{workshop.sector.name}}</span>
+        </div>
+        <form method="GET" action="/workshop?id={{workshop.id}}" class="p-3 text-center">
+            <button type="submit"
+                    name="id"
+                    class="btn-home text-light"
+                    >
+                Accéder
+            </button>
+        </form>
+    </div>
+</div>
         {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_workshop_new') }}">Create new</a>
+    </div>
+   
 {% endblock %}
