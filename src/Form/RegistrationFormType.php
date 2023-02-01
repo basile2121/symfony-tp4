@@ -30,8 +30,7 @@ class RegistrationFormType extends RegistrationUserFormType
             ])
             ->add('highSchool', EntityType::class, [
                 'class' => HighSchool::class
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
