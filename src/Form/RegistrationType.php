@@ -14,8 +14,8 @@ class RegistrationType extends AbstractType
         $builder
             ->add('registerAt')
             ->add('workshop')
-            ->add('student')
             ->add('timeslot')
+            ->add('student')
         ;
     }
 

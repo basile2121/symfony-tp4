@@ -20,6 +20,7 @@ class StudentType extends AbstractType
             ->add('updatedAt')
             ->add('firstName')
             ->add('lastName')
+            ->add('student')
             ->add('questionary')
             ->add('section')
             ->add('highSchool')

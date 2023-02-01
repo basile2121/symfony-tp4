@@ -19,14 +19,14 @@ class Registration
 
     #[ORM\ManyToOne(inversedBy: 'registrations')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Student $student = null;
-
-    #[ORM\ManyToOne(inversedBy: 'registrations')]
-    #[ORM\JoinColumn(nullable: false)]
     private ?Timeslot $timeslot = null;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $registerAt = null;
+
+    #[ORM\ManyToOne(inversedBy: 'registrations')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Student $student = null;
 
     public function getId(): ?int
     {
@@ -41,18 +41,6 @@ class Registration
     public function setWorkshop(?Workshop $workshop): self
     {
         $this->workshop = $workshop;
-
-        return $this;
-    }
-
-    public function getStudent(): ?Student
-    {
-        return $this->student;
-    }
-
-    public function setStudent(?Student $student): self
-    {
-        $this->student = $student;
 
         return $this;
     }
@@ -77,6 +65,18 @@ class Registration
     public function setRegisterAt(\DateTimeImmutable $registerAt): self
     {
         $this->registerAt = $registerAt;
+
+        return $this;
+    }
+
+    public function getStudent(): ?Student
+    {
+        return $this->student;
+    }
+
+    public function setStudent(?Student $student): self
+    {
+        $this->student = $student;
 
         return $this;
     }
