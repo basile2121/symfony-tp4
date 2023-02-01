@@ -16,7 +16,7 @@ class PossibleAnswerController extends AbstractController
     #[Route('/', name: 'app_possible_answer_index', methods: ['GET'])]
     public function index(PossibleAnswerRepository $possibleAnswerRepository): Response
     {
-        return $this->render('possible_answer/index.html.twig', [
+        return $this->render('admin/possible_answer/index.html.twig', [
             'possible_answers' => $possibleAnswerRepository->findAll(),
         ]);
     }
@@ -34,7 +34,7 @@ class PossibleAnswerController extends AbstractController
             return $this->redirectToRoute('app_possible_answer_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('possible_answer/new.html.twig', [
+        return $this->renderForm('admin/possible_answer/new.html.twig', [
             'possible_answer' => $possibleAnswer,
             'form' => $form,
         ]);
@@ -43,7 +43,7 @@ class PossibleAnswerController extends AbstractController
     #[Route('/{id}', name: 'app_possible_answer_show', methods: ['GET'])]
     public function show(PossibleAnswer $possibleAnswer): Response
     {
-        return $this->render('possible_answer/show.html.twig', [
+        return $this->render('admin/possible_answer/show.html.twig', [
             'possible_answer' => $possibleAnswer,
         ]);
     }
@@ -60,7 +60,7 @@ class PossibleAnswerController extends AbstractController
             return $this->redirectToRoute('app_possible_answer_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('possible_answer/edit.html.twig', [
+        return $this->renderForm('admin/possible_answer/edit.html.twig', [
             'possible_answer' => $possibleAnswer,
             'form' => $form,
         ]);

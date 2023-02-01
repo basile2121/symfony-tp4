@@ -16,7 +16,7 @@ class SpeakerController extends AbstractController
     #[Route('/', name: 'app_speaker_index', methods: ['GET'])]
     public function index(SpeakerRepository $speakerRepository): Response
     {
-        return $this->render('speaker/index.html.twig', [
+        return $this->render('admin/speaker/index.html.twig', [
             'speakers' => $speakerRepository->findAll(),
         ]);
     }
@@ -34,7 +34,7 @@ class SpeakerController extends AbstractController
             return $this->redirectToRoute('app_speaker_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('speaker/new.html.twig', [
+        return $this->renderForm('admin/speaker/new.html.twig', [
             'speaker' => $speaker,
             'form' => $form,
         ]);
@@ -43,7 +43,7 @@ class SpeakerController extends AbstractController
     #[Route('/{id}', name: 'app_speaker_show', methods: ['GET'])]
     public function show(Speaker $speaker): Response
     {
-        return $this->render('speaker/show.html.twig', [
+        return $this->render('admin/speaker/show.html.twig', [
             'speaker' => $speaker,
         ]);
     }
@@ -60,7 +60,7 @@ class SpeakerController extends AbstractController
             return $this->redirectToRoute('app_speaker_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('speaker/edit.html.twig', [
+        return $this->renderForm('admin/speaker/edit.html.twig', [
             'speaker' => $speaker,
             'form' => $form,
         ]);

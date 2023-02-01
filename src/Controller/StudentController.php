@@ -16,7 +16,7 @@ class StudentController extends AbstractController
     #[Route('/', name: 'app_student_index', methods: ['GET'])]
     public function index(StudentRepository $studentRepository): Response
     {
-        return $this->render('student/index.html.twig', [
+        return $this->render('admin/student/index.html.twig', [
             'students' => $studentRepository->findAll(),
         ]);
     }
@@ -34,7 +34,7 @@ class StudentController extends AbstractController
             return $this->redirectToRoute('app_student_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('student/new.html.twig', [
+        return $this->renderForm('admin/student/new.html.twig', [
             'student' => $student,
             'form' => $form,
         ]);
@@ -43,7 +43,7 @@ class StudentController extends AbstractController
     #[Route('/{id}', name: 'app_student_show', methods: ['GET'])]
     public function show(Student $student): Response
     {
-        return $this->render('public_student/show.html.twig', [
+        return $this->render('admin/public_student/show.html.twig', [
             'student' => $student,
         ]);
     }
@@ -60,7 +60,7 @@ class StudentController extends AbstractController
             return $this->redirectToRoute('app_student_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('student/edit.html.twig', [
+        return $this->renderForm('admin/student/edit.html.twig', [
             'student' => $student,
             'form' => $form,
         ]);

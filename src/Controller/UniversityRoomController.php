@@ -16,7 +16,7 @@ class UniversityRoomController extends AbstractController
     #[Route('/', name: 'app_university_room_index', methods: ['GET'])]
     public function index(UniversityRoomRepository $universityRoomRepository): Response
     {
-        return $this->render('university_room/index.html.twig', [
+        return $this->render('admin/university_room/index.html.twig', [
             'university_rooms' => $universityRoomRepository->findAll(),
         ]);
     }
@@ -34,7 +34,7 @@ class UniversityRoomController extends AbstractController
             return $this->redirectToRoute('app_university_room_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('university_room/new.html.twig', [
+        return $this->renderForm('admin/university_room/new.html.twig', [
             'university_room' => $universityRoom,
             'form' => $form,
         ]);
@@ -43,7 +43,7 @@ class UniversityRoomController extends AbstractController
     #[Route('/{id}', name: 'app_university_room_show', methods: ['GET'])]
     public function show(UniversityRoom $universityRoom): Response
     {
-        return $this->render('university_room/show.html.twig', [
+        return $this->render('admin/university_room/show.html.twig', [
             'university_room' => $universityRoom,
         ]);
     }
@@ -60,7 +60,7 @@ class UniversityRoomController extends AbstractController
             return $this->redirectToRoute('app_university_room_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('university_room/edit.html.twig', [
+        return $this->renderForm('admin/university_room/edit.html.twig', [
             'university_room' => $universityRoom,
             'form' => $form,
         ]);

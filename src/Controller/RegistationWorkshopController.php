@@ -16,7 +16,7 @@ class RegistationWorkshopController extends AbstractController
     #[Route('/', name: 'app_registation_workshop_index', methods: ['GET'])]
     public function index(RegistrationRepository $registrationRepository): Response
     {
-        return $this->render('registation_workshop/index.html.twig', [
+        return $this->render('admin/registation_workshop/index.html.twig', [
             'registrations' => $registrationRepository->findAll(),
         ]);
     }
@@ -34,7 +34,7 @@ class RegistationWorkshopController extends AbstractController
             return $this->redirectToRoute('app_registation_workshop_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('registation_workshop/new.html.twig', [
+        return $this->renderForm('admin/registation_workshop/new.html.twig', [
             'registration' => $registration,
             'form' => $form,
         ]);
@@ -43,7 +43,7 @@ class RegistationWorkshopController extends AbstractController
     #[Route('/{id}', name: 'app_registation_workshop_show', methods: ['GET'])]
     public function show(Registration $registration): Response
     {
-        return $this->render('registation_workshop/show.html.twig', [
+        return $this->render('admin/registation_workshop/show.html.twig', [
             'registration' => $registration,
         ]);
     }
@@ -60,7 +60,7 @@ class RegistationWorkshopController extends AbstractController
             return $this->redirectToRoute('app_registation_workshop_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('registation_workshop/edit.html.twig', [
+        return $this->renderForm('admin/registation_workshop/edit.html.twig', [
             'registration' => $registration,
             'form' => $form,
         ]);

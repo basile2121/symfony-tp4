@@ -16,7 +16,7 @@ class EditionController extends AbstractController
     #[Route('/', name: 'app_edition_index', methods: ['GET'])]
     public function index(EditionRepository $editionRepository): Response
     {
-        return $this->render('edition/index.html.twig', [
+        return $this->render('admin/edition/index.html.twig', [
             'editions' => $editionRepository->findAll(),
         ]);
     }
@@ -34,7 +34,7 @@ class EditionController extends AbstractController
             return $this->redirectToRoute('app_edition_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('edition/new.html.twig', [
+        return $this->renderForm('admin/edition/new.html.twig', [
             'edition' => $edition,
             'form' => $form,
         ]);
@@ -43,7 +43,7 @@ class EditionController extends AbstractController
     #[Route('/{id}', name: 'app_edition_show', methods: ['GET'])]
     public function show(Edition $edition): Response
     {
-        return $this->render('edition/show.html.twig', [
+        return $this->render('admin/edition/show.html.twig', [
             'edition' => $edition,
         ]);
     }
@@ -60,7 +60,7 @@ class EditionController extends AbstractController
             return $this->redirectToRoute('app_edition_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('edition/edit.html.twig', [
+        return $this->renderForm('admin/edition/edit.html.twig', [
             'edition' => $edition,
             'form' => $form,
         ]);
@@ -69,7 +69,7 @@ class EditionController extends AbstractController
     #[Route('/{id}', name: 'app_edition_delete', methods: ['POST'])]
     public function delete(Request $request, Edition $edition, EditionRepository $editionRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$edition->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('admin/delete'.$edition->getId(), $request->request->get('_token'))) {
             $editionRepository->remove($edition, true);
         }
 

@@ -16,7 +16,7 @@ class SectionController extends AbstractController
     #[Route('/', name: 'app_section_index', methods: ['GET'])]
     public function index(SectionRepository $sectionRepository): Response
     {
-        return $this->render('section/index.html.twig', [
+        return $this->render('admin/section/index.html.twig', [
             'sections' => $sectionRepository->findAll(),
         ]);
     }
@@ -34,7 +34,7 @@ class SectionController extends AbstractController
             return $this->redirectToRoute('app_section_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('section/new.html.twig', [
+        return $this->renderForm('admin/section/new.html.twig', [
             'section' => $section,
             'form' => $form,
         ]);
@@ -43,7 +43,7 @@ class SectionController extends AbstractController
     #[Route('/{id}', name: 'app_section_show', methods: ['GET'])]
     public function show(Section $section): Response
     {
-        return $this->render('section/show.html.twig', [
+        return $this->render('admin/section/show.html.twig', [
             'section' => $section,
         ]);
     }
@@ -60,7 +60,7 @@ class SectionController extends AbstractController
             return $this->redirectToRoute('app_section_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('section/edit.html.twig', [
+        return $this->renderForm('admin/section/edit.html.twig', [
             'section' => $section,
             'form' => $form,
         ]);

@@ -16,7 +16,7 @@ class ActivityController extends AbstractController
     #[Route('/', name: 'app_activity_index', methods: ['GET'])]
     public function index(ActivityRepository $activityRepository): Response
     {
-        return $this->render('activity/index.html.twig', [
+        return $this->render('admin/activity/index.html.twig', [
             'activities' => $activityRepository->findAll(),
         ]);
     }
@@ -34,7 +34,7 @@ class ActivityController extends AbstractController
             return $this->redirectToRoute('app_activity_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('activity/new.html.twig', [
+        return $this->renderForm('admin/activity/new.html.twig', [
             'activity' => $activity,
             'form' => $form,
         ]);
@@ -43,7 +43,7 @@ class ActivityController extends AbstractController
     #[Route('/{id}', name: 'app_activity_show', methods: ['GET'])]
     public function show(Activity $activity): Response
     {
-        return $this->render('activity/show.html.twig', [
+        return $this->render('admin/activity/show.html.twig', [
             'activity' => $activity,
         ]);
     }
@@ -60,7 +60,7 @@ class ActivityController extends AbstractController
             return $this->redirectToRoute('app_activity_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('activity/edit.html.twig', [
+        return $this->renderForm('admin/activity/edit.html.twig', [
             'activity' => $activity,
             'form' => $form,
         ]);

@@ -1,0 +1,17 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}New Activity{% endblock %}
+
+{% block body %}
+    <section class="container-fluid">
+        <h1>Create Activity</h1>
+
+        <div class="content">
+            {{ include('activity/_form.html.twig') }}
+            <a class="btn btn-primary" href="{{ path('app_activity_index') }}">Retour</a>
+        </div>
+
+    </section>
+
+
+{% endblock %}

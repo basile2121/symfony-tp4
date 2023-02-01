@@ -16,7 +16,7 @@ class HighSchoolController extends AbstractController
     #[Route('/', name: 'app_high_school_index', methods: ['GET'])]
     public function index(HighSchoolRepository $highSchoolRepository): Response
     {
-        return $this->render('high_school/index.html.twig', [
+        return $this->render('admin/high_school/index.html.twig', [
             'high_schools' => $highSchoolRepository->findAll(),
         ]);
     }
@@ -34,7 +34,7 @@ class HighSchoolController extends AbstractController
             return $this->redirectToRoute('app_high_school_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('high_school/new.html.twig', [
+        return $this->renderForm('admin/high_school/new.html.twig', [
             'high_school' => $highSchool,
             'form' => $form,
         ]);
@@ -43,7 +43,7 @@ class HighSchoolController extends AbstractController
     #[Route('/{id}', name: 'app_high_school_show', methods: ['GET'])]
     public function show(HighSchool $highSchool): Response
     {
-        return $this->render('high_school/show.html.twig', [
+        return $this->render('admin/high_school/show.html.twig', [
             'high_school' => $highSchool,
         ]);
     }
@@ -60,7 +60,7 @@ class HighSchoolController extends AbstractController
             return $this->redirectToRoute('app_high_school_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('high_school/edit.html.twig', [
+        return $this->renderForm('admin/high_school/edit.html.twig', [
             'high_school' => $highSchool,
             'form' => $form,
         ]);

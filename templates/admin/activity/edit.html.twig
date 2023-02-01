@@ -1,0 +1,16 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Modifier une activitée{% endblock %}
+
+{% block body %}
+    <section class="container-fluid">
+        <h1>Modifier l'activités</h1>
+
+        <div class="content">
+            {{ include('admin/activity/_form.html.twig', {'button_label': 'Update'}) }}
+            <a class="btn btn-primary" href="{{ path('app_activity_index') }}">Retour</a>
+        </div>
+
+    </section>
+
+{% endblock %}

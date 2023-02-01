@@ -16,7 +16,7 @@ class TimeslotController extends AbstractController
     #[Route('/', name: 'app_timeslot_index', methods: ['GET'])]
     public function index(TimeslotRepository $timeslotRepository): Response
     {
-        return $this->render('timeslot/index.html.twig', [
+        return $this->render('admin/timeslot/index.html.twig', [
             'timeslots' => $timeslotRepository->findAll(),
         ]);
     }
@@ -34,7 +34,7 @@ class TimeslotController extends AbstractController
             return $this->redirectToRoute('app_timeslot_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('timeslot/new.html.twig', [
+        return $this->renderForm('admin/timeslot/new.html.twig', [
             'timeslot' => $timeslot,
             'form' => $form,
         ]);
@@ -43,7 +43,7 @@ class TimeslotController extends AbstractController
     #[Route('/{id}', name: 'app_timeslot_show', methods: ['GET'])]
     public function show(Timeslot $timeslot): Response
     {
-        return $this->render('timeslot/show.html.twig', [
+        return $this->render('admin/timeslot/show.html.twig', [
             'timeslot' => $timeslot,
         ]);
     }
@@ -60,7 +60,7 @@ class TimeslotController extends AbstractController
             return $this->redirectToRoute('app_timeslot_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('timeslot/edit.html.twig', [
+        return $this->renderForm('admin/timeslot/edit.html.twig', [
             'timeslot' => $timeslot,
             'form' => $form,
         ]);

@@ -16,7 +16,7 @@ class JobController extends AbstractController
     #[Route('/', name: 'app_job_index', methods: ['GET'])]
     public function index(JobRepository $jobRepository): Response
     {
-        return $this->render('job/index.html.twig', [
+        return $this->render('admin/job/index.html.twig', [
             'jobs' => $jobRepository->findAll(),
         ]);
     }
@@ -34,7 +34,7 @@ class JobController extends AbstractController
             return $this->redirectToRoute('app_job_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('job/new.html.twig', [
+        return $this->renderForm('admin/job/new.html.twig', [
             'job' => $job,
             'form' => $form,
         ]);
@@ -43,7 +43,7 @@ class JobController extends AbstractController
     #[Route('/{id}', name: 'app_job_show', methods: ['GET'])]
     public function show(Job $job): Response
     {
-        return $this->render('job/show.html.twig', [
+        return $this->render('admin/job/show.html.twig', [
             'job' => $job,
         ]);
     }
@@ -60,7 +60,7 @@ class JobController extends AbstractController
             return $this->redirectToRoute('app_job_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('job/edit.html.twig', [
+        return $this->renderForm('admin/job/edit.html.twig', [
             'job' => $job,
             'form' => $form,
         ]);
