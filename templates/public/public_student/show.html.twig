@@ -1,5 +1,9 @@
 {% extends 'base.html.twig' %}
+{% block stylesheet %}
 
+	<link rel="stylesheet" href="/css/workshop.css"/>
+
+{% endblock %}
 {% block title %}Profil de
 	{{app.user.firstName}}
 {% endblock %}
@@ -45,6 +49,45 @@
 
 		</div>
 	</div>
+	<h4 style="text-align:center; padding:35px;">
+		Mes ateliers à venir :</h4>
+	<div class="all-events-inc row mx-auto">
+		{% for registration in student.registrations %}
+			<div class="event-resp col-md-4 col-sm-6 col-xs-12 my-3">
+				<div class="event-card">
+					<div class="head">
+						<div class="img-container">
+							<img src="https://www.zooplus.fr/magazine/wp-content/uploads/2019/06/comprendre-le-langage-des-chats.jpg" alt=""/>
+						</div>
+						<div class="desc">
+							<h2 class="event-title px-3">
+								{{registration.workshop.name}}
 
+							</h2>
+							<span class="event-date px-3">{{registration.workshop.edition.year}}</span>
+						</div>
+					</div>
+					<div class="tags d-flex align-items-center justify-content-around py-4">
+						<span class="tags-items px-3 py-1 mx-2">Capacité :
+							{{registration.workshop.universityRoom.capacity}}</span>
+						<span class="tags-items px-3 py-1 mx-2">Salle :
+							{{registration.workshop.universityRoom.name}}</span>
+						<span class="tags-items px-3 py-1 mx-2 status" style="border:1px solid">{{registration.timeslot.label}}</span>
+					</div>
+					<div class="footer px-3">
+						<p
+							class="event-desc">
+							{# {{ }} #}
+							voici la description
+						</p>
+						<span class="category">Secteur :
+							{{registration.workshop.sector.name}}</span>
+					</div>
+					<div class="text-center p-4">
+						<a href="{{ path('app_workshop_public_show', {'id': registration.workshop.id}) }}" class='btn-home text-light mx-auto'>accéder</a>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
 
-{% endblock %}
+	{% endblock %}

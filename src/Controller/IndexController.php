@@ -24,7 +24,7 @@ class IndexController extends AbstractController
         $workshops = $workshopRepository->findAll();
         $jobs = $jobRepository->findAll();
         $speakers = $speakerRepository->findAll();
-        // dd($this->getUser());
+
         return $this->render('index/index.html.twig', [
             'controller_name' => 'IndexController',
             'workshops' => $workshops,
@@ -34,7 +34,7 @@ class IndexController extends AbstractController
         ]);
     }
     #[Route('/workshops', name: 'app_workshop_public_index')]
-    public function all_workshops(WorkshopRepository $workshopRepository):Response
+    public function all_workshops(WorkshopRepository $workshopRepository): Response
     {
         return $this->render('public/workshop/index.html.twig', [
             'workshops' => $workshopRepository->findAll(),
@@ -48,7 +48,7 @@ class IndexController extends AbstractController
         $nbParticipant = $registrationRepository->nbParticipant($id);
         return $this->render('public/workshop/show.html.twig', [
             'workshop' => $workshop,
-            'nbParticipant'=> $nbParticipant[0][1]
+            'nbParticipant' => $nbParticipant[0][1]
         ]);
     }
     #[Route('/workshop/registration/{id}', name: 'app_workshop_registration_public_new', methods: ['GET', 'POST'])]
@@ -73,7 +73,7 @@ class IndexController extends AbstractController
         ]);
     }
 
-     
+
     #[Route('/new', name: 'app_registration_public_workshop_new', methods: ['GET', 'POST'])]
     public function new(Request $request, RegistrationRepository $registrationRepository): Response
     {

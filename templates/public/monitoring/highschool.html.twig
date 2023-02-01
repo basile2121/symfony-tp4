@@ -1,1 +1,30 @@
-{% extends 'base.html.twig' %}
+{% extends 'public/monitoring/base.html.twig' %}
+{% block title %}
+	Monitoring - Lycées
+{% endblock %}
+{% block body %}
+	<h3 style="text-align:center; margin-top:25px">Voici le tableau des données sur les lycées:</h3>
+
+	<div class="col-5 mx-auto">
+		<table class="table table-hover table-striped table-dark table-bordered ">
+			<thead>
+				<tr>
+					<th scope="col">Lycée</th>
+					<th scope="col">Inscrits</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				{% for highschool in highschools %}
+					<tr>
+						<td>{{highschool.name}}</td>
+						<td>{{highschool.nombre}}</td>
+
+					</tr>
+				{% endfor %}
+
+			</tbody>
+		</table>
+	</div>
+
+{% endblock %}

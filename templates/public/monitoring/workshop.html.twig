@@ -1,40 +1,31 @@
-{% extends 'base.html.twig' %}
+{% extends 'public/monitoring/base.html.twig' %}
 
 {% block title %}
-	Données Atelier
+	Monitoring - Ateliers
 {% endblock %}
 
 
 {% block body %}
-	<h1>Voici le tableau des données sur les ateliers</h1>
-	<div class="col-8 mx-auto">
-		<table class="table table-hover table-striped table-dark">
+	<h3 style="text-align:center; margin-top:25px">Voici le tableau des données sur les ateliers:</h3>
+
+	<div class="col-5 mx-auto">
+		<table class="table table-hover table-striped table-dark table-bordered ">
 			<thead>
 				<tr>
-					<th scope="col">#</th>
 					<th scope="col">Atelier</th>
 					<th scope="col">Inscrit</th>
-					<th scope="col">Handle</th>
+
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<th scope="row">1</th>
-					<td>Mark</td>
-					<td>Otto</td>
-					<td>@mdo</td>
-				</tr>
-				<tr>
-					<th scope="row">2</th>
-					<td>Jacob</td>
-					<td>Thornton</td>
-					<td>@fat</td>
-				</tr>
-				<tr>
-					<th scope="row">3</th>
-					<td colspan="2">Larry the Bird</td>
-					<td>@twitter</td>
-				</tr>
+				{% for workshop in workshops %}
+					<tr>
+						<td>{{workshop.name}}</td>
+						<td>{{workshop.registrations|length}}</td>
+
+					</tr>
+				{% endfor %}
+
 			</tbody>
 		</table>
 	</div>

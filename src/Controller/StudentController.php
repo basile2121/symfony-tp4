@@ -4,11 +4,14 @@ namespace App\Controller;
 
 use App\Entity\Student;
 use App\Form\StudentType;
+use App\Entity\Registration;
 use App\Repository\StudentRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\RegistrationRepository;
+use App\Repository\WorkshopRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/student')]
 class StudentController extends AbstractController
@@ -43,6 +46,8 @@ class StudentController extends AbstractController
     #[Route('/{id}', name: 'app_student_show', methods: ['GET'])]
     public function show(Student $student): Response
     {
+
+        // dd($registration->getStudent()->getRegistrations());
         return $this->render('public/public_student/show.html.twig', [
             'student' => $student,
         ]);
