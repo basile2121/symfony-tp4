@@ -6,27 +6,22 @@ use App\Repository\StudentRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: StudentRepository::class)]
-class Student
+class Student extends User
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $mail = null;
-
     #[ORM\Column(length: 10)]
     private ?string $phone = null;
 
     #[ORM\ManyToOne(inversedBy: 'students')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Questionary $questionary = null;
-
-    #[ORM\ManyToMany(targetEntity: Workshop::class, mappedBy: 'students')]
-    private Collection $workshops;
 
     #[ORM\ManyToOne(inversedBy: 'students')]
     #[ORM\JoinColumn(nullable: false)]
@@ -42,29 +37,25 @@ class Student
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
-    #[ORM\OneToOne(mappedBy: 'student', cascade: ['persist', 'remove'])]
-    private ?User $user = null;
+    #[ORM\Column(length: 255)]
+    private ?string $firstName = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $lastName = null;
+
+    #[ORM\OneToMany(mappedBy: 'student', targetEntity: Registration::class, orphanRemoval: true)]
+    private Collection $registrations;
+
 
     public function __construct()
     {
-        $this->workshops = new ArrayCollection();
+        $this->setType('student');
+        $this->registrations = new ArrayCollection();
     }
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getMail(): ?string
-    {
-        return $this->mail;
-    }
-
-    public function setMail(string $mail): self
-    {
-        $this->mail = $mail;
-
-        return $this;
     }
 
     public function getPhone(): ?string
@@ -87,33 +78,6 @@ class Student
     public function setQuestionary(?Questionary $questionary): self
     {
         $this->questionary = $questionary;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Workshop>
-     */
-    public function getWorkshops(): Collection
-    {
-        return $this->workshops;
-    }
-
-    public function addWorkshop(Workshop $workshop): self
-    {
-        if (!$this->workshops->contains($workshop)) {
-            $this->workshops->add($workshop);
-            $workshop->addStudent($this);
-        }
-
-        return $this;
-    }
-
-    public function removeWorkshop(Workshop $workshop): self
-    {
-        if ($this->workshops->removeElement($workshop)) {
-            $workshop->removeStudent($this);
-        }
 
         return $this;
     }
@@ -166,24 +130,56 @@ class Student
         return $this;
     }
 
-    public function getUser(): ?User
+    public function getFirstName(): ?string
     {
-        return $this->user;
+        return $this->firstName;
     }
 
-    public function setUser(?User $user): self
+    public function setFirstName(string $firstName): self
     {
-        // unset the owning side of the relation if necessary
-        if ($user === null && $this->user !== null) {
-            $this->user->setStudent(null);
+        $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    public function getLastName(): ?string
+    {
+        return $this->lastName;
+    }
+
+    public function setLastName(string $lastName): self
+    {
+        $this->lastName = $lastName;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Registration>
+     */
+    public function getRegistrations(): Collection
+    {
+        return $this->registrations;
+    }
+
+    public function addRegistration(Registration $registration): self
+    {
+        if (!$this->registrations->contains($registration)) {
+            $this->registrations->add($registration);
+            $registration->setStudent($this);
         }
 
-        // set the owning side of the relation if necessary
-        if ($user !== null && $user->getStudent() !== $this) {
-            $user->setStudent($this);
-        }
+        return $this;
+    }
 
-        $this->user = $user;
+    public function removeRegistration(Registration $registration): self
+    {
+        if ($this->registrations->removeElement($registration)) {
+            // set the owning side to null (unless already changed)
+            if ($registration->getStudent() === $this) {
+                $registration->setStudent(null);
+            }
+        }
 
         return $this;
     }

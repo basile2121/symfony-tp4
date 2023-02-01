@@ -15,10 +15,10 @@ class PossibleAnswer
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $type = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $answer = null;
 
     #[ORM\ManyToMany(targetEntity: Question::class, mappedBy: 'possibleAnswer')]
@@ -29,6 +29,9 @@ class PossibleAnswer
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
+
+    #[ORM\Column(length: 50)]
+    private ?string $balise = null;
 
     public function __construct()
     {
@@ -45,7 +48,7 @@ class PossibleAnswer
         return $this->type;
     }
 
-    public function setType(string $type): self
+    public function setType(?string $type): self
     {
         $this->type = $type;
 
@@ -57,7 +60,7 @@ class PossibleAnswer
         return $this->answer;
     }
 
-    public function setAnswer(string $answer): self
+    public function setAnswer(?string $answer): self
     {
         $this->answer = $answer;
 
@@ -111,6 +114,18 @@ class PossibleAnswer
     public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getBalise(): ?string
+    {
+        return $this->balise;
+    }
+
+    public function setBalise(string $balise): self
+    {
+        $this->balise = $balise;
 
         return $this;
     }

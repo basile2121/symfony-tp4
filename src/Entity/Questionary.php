@@ -25,14 +25,14 @@ class Questionary
     #[ORM\OneToMany(mappedBy: 'questionary', targetEntity: Student::class, orphanRemoval: true)]
     private Collection $students;
 
-    #[ORM\OneToMany(mappedBy: 'questionary', targetEntity: Question::class, orphanRemoval: true)]
-    private Collection $questions;
-
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
+
+    #[ORM\ManyToMany(targetEntity: Question::class, inversedBy: 'questionaries')]
+    private Collection $questions;
 
     public function __construct()
     {
@@ -99,36 +99,6 @@ class Questionary
         return $this;
     }
 
-    /**
-     * @return Collection<int, Question>
-     */
-    public function getQuestions(): Collection
-    {
-        return $this->questions;
-    }
-
-    public function addQuestion(Question $question): self
-    {
-        if (!$this->questions->contains($question)) {
-            $this->questions->add($question);
-            $question->setQuestionary($this);
-        }
-
-        return $this;
-    }
-
-    public function removeQuestion(Question $question): self
-    {
-        if ($this->questions->removeElement($question)) {
-            // set the owning side to null (unless already changed)
-            if ($question->getQuestionary() === $this) {
-                $question->setQuestionary(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
@@ -149,6 +119,30 @@ class Questionary
     public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Question>
+     */
+    public function getQuestions(): Collection
+    {
+        return $this->questions;
+    }
+
+    public function addQuestion(Question $question): self
+    {
+        if (!$this->questions->contains($question)) {
+            $this->questions->add($question);
+        }
+
+        return $this;
+    }
+
+    public function removeQuestion(Question $question): self
+    {
+        $this->questions->removeElement($question);
 
         return $this;
     }

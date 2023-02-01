@@ -5,9 +5,11 @@ namespace App\Entity;
 use App\Repository\EditionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: EditionRepository::class)]
+#[UniqueEntity('year')]
 class Edition
 {
     #[ORM\Id]
@@ -15,7 +17,7 @@ class Edition
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
+    #[ORM\Column(unique: true)]
     private ?int $year = null;
 
     #[ORM\ManyToMany(targetEntity: Speaker::class, inversedBy: 'editions')]

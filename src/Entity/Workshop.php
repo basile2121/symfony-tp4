@@ -33,23 +33,19 @@ class Workshop
     #[ORM\JoinColumn(nullable: false)]
     private ?Edition $edition = null;
 
-    #[ORM\ManyToMany(targetEntity: Student::class, inversedBy: 'workshops')]
-    private Collection $students;
-
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
-    #[ORM\ManyToOne(inversedBy: 'workshops')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Timeslot $timeSlot = null;
+    #[ORM\OneToMany(mappedBy: 'workshop', targetEntity: Registration::class, orphanRemoval: true)]
+    private Collection $registrations;
 
     public function __construct()
     {
         $this->jobs = new ArrayCollection();
-        $this->students = new ArrayCollection();
+        $this->registrations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -135,30 +131,6 @@ class Workshop
         return $this;
     }
 
-    /**
-     * @return Collection<int, Student>
-     */
-    public function getStudents(): Collection
-    {
-        return $this->students;
-    }
-
-    public function addStudent(Student $student): self
-    {
-        if (!$this->students->contains($student)) {
-            $this->students->add($student);
-        }
-
-        return $this;
-    }
-
-    public function removeStudent(Student $student): self
-    {
-        $this->students->removeElement($student);
-
-        return $this;
-    }
-
     public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
@@ -183,14 +155,32 @@ class Workshop
         return $this;
     }
 
-    public function getTimeSlot(): ?Timeslot
+    /**
+     * @return Collection<int, Registration>
+     */
+    public function getRegistrations(): Collection
     {
-        return $this->timeSlot;
+        return $this->registrations;
     }
 
-    public function setTimeSlot(?Timeslot $timeSlot): self
+    public function addRegistration(Registration $registration): self
     {
-        $this->timeSlot = $timeSlot;
+        if (!$this->registrations->contains($registration)) {
+            $this->registrations->add($registration);
+            $registration->setWorkshop($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRegistration(Registration $registration): self
+    {
+        if ($this->registrations->removeElement($registration)) {
+            // set the owning side to null (unless already changed)
+            if ($registration->getWorkshop() === $this) {
+                $registration->setWorkshop(null);
+            }
+        }
 
         return $this;
     }

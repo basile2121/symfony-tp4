@@ -16,6 +16,7 @@ class PossibleAnswerType extends AbstractType
             ->add('answer')
             ->add('createdAt')
             ->add('updatedAt')
+            ->add('balise')
             ->add('questions')
         ;
     }

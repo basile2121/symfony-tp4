@@ -18,8 +18,6 @@ class WorkshopType extends AbstractType
             ->add('sector')
             ->add('universityRoom')
             ->add('edition')
-            ->add('students')
-            ->add('timeSlot')
         ;
     }
 

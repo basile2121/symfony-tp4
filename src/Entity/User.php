@@ -7,8 +7,13 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use App\Entity\Student;
+
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[ORM\InheritanceType("JOINED")]
+#[ORM\DiscriminatorColumn(name: 'type', type: 'string')]
+#[ORM\DiscriminatorMap(["student" => 'Student'])]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -22,6 +27,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column]
     private array $roles = [];
+
+    private $plainPassword;
 
     /**
      * @var string The hashed password
@@ -102,15 +109,31 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    public function getStudent(): ?Student
+    public function getType(): ?string
     {
-        return $this->student;
+        return $this->type;
     }
 
-    public function setStudent(?Student $student): self
+    public function setType(string $type): self
     {
-        $this->student = $student;
+        $this->type = $type;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * @param mixed $plainPassword
+     */
+    public function setPlainPassword($plainPassword): void
+    {
+        $this->plainPassword = $plainPassword;
     }
 }

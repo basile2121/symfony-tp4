@@ -12,8 +12,16 @@
                 <td>{{ student.id }}</td>
             </tr>
             <tr>
-                <th>Mail</th>
-                <td>{{ student.mail }}</td>
+                <th>Email</th>
+                <td>{{ student.email }}</td>
+            </tr>
+            <tr>
+                <th>Roles</th>
+                <td>{{ student.roles ? student.roles|json_encode : '' }}</td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td>{{ student.password }}</td>
             </tr>
             <tr>
                 <th>Phone</th>
@@ -26,6 +34,14 @@
             <tr>
                 <th>UpdatedAt</th>
                 <td>{{ student.updatedAt ? student.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>FirstName</th>
+                <td>{{ student.firstName }}</td>
+            </tr>
+            <tr>
+                <th>LastName</th>
+                <td>{{ student.lastName }}</td>
             </tr>
         </tbody>
     </table>
