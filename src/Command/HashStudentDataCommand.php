@@ -15,8 +15,8 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 #[AsCommand(
-        name: 'app:hash-students-data',
-        description: 'Chiffrer les données personnelles des élèves'
+    name: 'app:hash-students-data',
+    description: 'Chiffrer les données personnelles des élèves'
 )]
 class HashStudentDataCommand extends Command
 {
@@ -32,8 +32,7 @@ class HashStudentDataCommand extends Command
         EntityManagerInterface $entityManager,
         HaschService $haschService,
         string $name = null
-    )
-    {
+    ) {
         $this->studentRepository = $studentRepository;
         $this->entityManager = $entityManager;
         $this->haschService = $haschService;
@@ -42,15 +41,15 @@ class HashStudentDataCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $output->writeln(['['. date('d/m/Y-H:s'). '] Début de la commande']);
+        $output->writeln(['[' . date('d/m/Y-H:s') . '] Début de la commande']);
         // Recuperation des ateliers de l'années
 
-        $output->writeln(['['. date('d/m/Y-H:s'). '] Récupération des étudiants']);
+        $output->writeln(['[' . date('d/m/Y-H:s') . '] Récupération des étudiants']);
         $students = $this->studentRepository->findAll();
         $compteur = 0;
         foreach ($students as $student) {
             if ($student->getQuestionary() !== null) {
-                $output->writeln(['['. date('d/m/Y-H:s'). '] haschage des données pour l etudiant : ' . $student->getFirstName()]);
+                $output->writeln(['[' . date('d/m/Y-H:s') . '] hachage des données pour l\'étudiant : ' . $student->getFirstName()]);
                 $student->setPassword($this->haschService->hashData($student->getPassword()));
                 $student->setEmail($this->haschService->hashData($student->getEmail()));
                 $student->setLastName($this->haschService->hashData($student->getLastName()));
@@ -62,7 +61,7 @@ class HashStudentDataCommand extends Command
             }
         }
 
-        $output->writeln(['['. date('d/m/Y-H:s'). '] Fin commande, Nombre étudiant annonymisé : ' . $compteur]);
+        $output->writeln(['[' . date('d/m/Y-H:s') . '] Fin commande, Nombre étudiants anonymisés : ' . $compteur]);
 
         $this->entityManager->flush();
 

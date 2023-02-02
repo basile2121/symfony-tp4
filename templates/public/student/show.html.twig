@@ -44,7 +44,7 @@
 
 			<a href="/" class="btn btn-danger">Retour</a>
 
-			<a href="{{ path('app_student_edit', {'id': app.user.idP}) }}" class="btn btn-primary">Mettre à jour</a>
+			{# <a href="{{ path('app_student_edit', {'id': app.user.idP}) }}" class="btn btn-primary">Mettre à jour</a> #}
 
 
 		</div>
@@ -69,9 +69,9 @@
 					</div>
 					<div class="tags d-flex align-items-center justify-content-around py-4">
 						<span class="tags-items px-3 py-1 mx-2">Capacité :
-							{{registration.workshop.universityRoom.capacity}}</span>
+							{{registration.workshop.universityRoom.capacity|default('Pas de salle')}}</span>
 						<span class="tags-items px-3 py-1 mx-2">Salle :
-							{{registration.workshop.universityRoom.name}}</span>
+							{{registration.workshop.universityRoom.name|default('Pas de salle')}}</span>
 						<span class="tags-items px-3 py-1 mx-2 status" style="border:1px solid">{{registration.timeslot.label}}</span>
 					</div>
 					<div class="footer px-3">

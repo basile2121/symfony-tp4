@@ -13,8 +13,8 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 #[AsCommand(
-        name: 'app:assign-workshop-to-university-room',
-        description: 'Asigner les ateliers à des salles d\'universitées'
+    name: 'app:assign-workshop-to-university-room',
+    description: 'Asigner les ateliers à des salles d\'universités'
 )]
 class AssignWorkshopToUniversityRoomCommand extends Command
 {
@@ -33,8 +33,7 @@ class AssignWorkshopToUniversityRoomCommand extends Command
         RegistrationRepository $registrationRepository,
         EntityManagerInterface $entityManager,
         string $name = null
-    )
-    {
+    ) {
         $this->workshopRepository = $workshopRepository;
         $this->universityRoomRepository = $universityRoomRepository;
         $this->registrationRepository = $registrationRepository;
@@ -71,9 +70,8 @@ class AssignWorkshopToUniversityRoomCommand extends Command
             }
 
             if ($tempMinDiffId['minTempdiff'] === -1) {
-                $output->writeln(['['. date('d/m/Y-H:s'). '] Aucune salle disponible pour : ' . $workshop['name'] ]);
+                $output->writeln(['[' . date('d/m/Y-H:s') . '] Aucune salle disponible pour : ' . $workshop['name']]);
                 $workshopsWithoutRoomArray[] = $this->workshopRepository->find($workshop['id']);
-                break;
             }
 
             $workshopToUpdate = $this->workshopRepository->find($workshop['id']);

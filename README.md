@@ -8,7 +8,7 @@
 
 **VueJS 3.2**
 
-## Installation des packages : 
+## Installation des packages :
 
 ```shell
 composer install
@@ -18,9 +18,9 @@ composer install
 npm install
 ```
 
-## Commandes à exécuter : 
+## Commandes à exécuter :
 
-Création de la base de donnée : 
+Création de la base de donnée :
 
 ```
 php bin/console doctrine:database:create
@@ -32,43 +32,42 @@ Création des tables dans la BDD
 php bin/console doctrine:migrations:migrate
 ```
 
-Enregistrement de fausses données en BDD: 
+Enregistrement de fausses données en BDD:
 
 ```
 php bin/console doctrine:fixtures:load
 ```
 
-Lancer le serveur vue: 
+Lancer le serveur vue:
 
 ```
 npm run watch
 ```
 
-Lancer le serveur symfony : 
+Lancer le serveur symfony :
 
 ```
 symfony server:start
 ```
 
-## Fonctionnement : 
+## Fonctionnement :
 
-Création d'un compte admin en enregistrant puis en changeant sont rôle en "ROLE_ADMIN" en BDD
+Création d'un compte admin en enregistrant puis en changeant son rôle en "ROLE_ADMIN" en BDD
 
 ## Commande
 
-Attribution des salles aux ateliers : 
+Attribution des salles aux ateliers :
 
 ```
 php bin/console app:assign-workshop-to-university-room
 ```
 
-hachage des données utilisateurs  :
+hachage des données utilisateurs :
 
 ```
 php bin/console app:hash-students-data
 ```
 
-##  Formulaire de contact en VUE : 
+## Formulaire de contact en VUE :
 
-L'enregistrement des données du formulaire de contact ce fais dans la table Contact
-
+L'enregistrement des données du formulaire de contact se fait dans la table Contact
