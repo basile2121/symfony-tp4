@@ -15,7 +15,7 @@ class UniversityRoomFixtures extends Fixture
         $faker_us = Factory::create('en_US');
         // $product = new Product();
         // $manager->persist($product);
-        for ($i = 1; $i <= 50; $i++) {
+        for ($i = 1; $i <= 200; $i++) {
             $universityRoom = new UniversityRoom();
             $universityRoom->setName($faker->word(1, true));
             $universityRoom->setStage($faker->randomDigit);

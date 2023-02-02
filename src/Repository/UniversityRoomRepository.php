@@ -54,6 +54,20 @@ class UniversityRoomRepository extends ServiceEntityRepository
         ;
     }
 
+    /**
+     * @return UniversityRoom[] Retourne les salles pas encore attribué
+     */
+    public function findAvailableRoom(): array
+    {
+        return $this->createQueryBuilder('ur')
+            ->leftJoin('ur.workshop', 'w')
+            ->where('w.universityRoom is NULL')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+
 //    /**
 //     * @return UniversityRoom[] Returns an array of UniversityRoom objects
 //     */

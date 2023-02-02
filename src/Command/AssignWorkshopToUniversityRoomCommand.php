@@ -44,42 +44,70 @@ class AssignWorkshopToUniversityRoomCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $output->writeln(['['. date('d/m/Y-H:s'). '] Début de la commande']);
+        $output->writeln(['['. date('d/m/Y-H:s'). '] Debut de la command']);
         // Recuperation des ateliers de l'années
 
-        $output->writeln(['['. date('d/m/Y-H:s'). '] Récupération des inscriptions et des salles d\'université']);
-        $universityRooms = $this->universityRoomRepository->findAll(['']);
-        $registersWorkshop = $this->registrationRepository->getNbInscritByWorkshopBySlotTime(intval(date('Y')));
+        $output->writeln(['['. date('d/m/Y-H:s'). '] Recuperation des inscriptions et des salles d\'université pas utilisé']);
+        $universityRoomsAvailable = $this->universityRoomRepository->findAvailableRoom();
+        $registersWorkshops = $this->registrationRepository->getNbInscritByWorkshopBySlotTime(intval(date('Y')));
+        $workshopsWithoutRoomArray = [];
 
         // Pour chaque ateliers
-        foreach ($registersWorkshop as $workshop) {
-            $tempDiffArray = [];
+        foreach ($registersWorkshops as $workshop) {
+            $tempMinDiffId = [
+                'id' => 0,
+                'minTempdiff' => -1,
+            ];
 
-            // On créer un tableau pour trouver le nombre de place restante par rapport au nombre d'inscritpiton
+            // On cherche les salle qui est le plus proche en terme de capacité par rapport au nombre d'inscrit à l'atelier
             $output->writeln(['['. date('d/m/Y-H:s'). '] Recherche de salle pour l\`atelier : ' . $workshop['name'] ]);
-            foreach ($universityRooms as $universityRoom) {
+            foreach ($universityRoomsAvailable as $universityRoom) {
                 $nbInscrit = intval($workshop['nombre']);
                 $diff = $universityRoom->getCapacity() - $nbInscrit;
-                if ($diff > 0) {
-                    $tempDiffArray[$universityRoom->getId()] = $diff;
+                if ($diff >= 0 && ($diff < $tempMinDiffId['minTempdiff'] || $tempMinDiffId['minTempdiff'] === -1) ) {
+                    $tempMinDiffId['id'] = $universityRoom->getId();
+                    $tempMinDiffId['minTempdiff'] = $diff;
                 }
             }
 
-            // On trie ce tableau dans l'ordre croissant pour avoir la plus petite diff en
-            asort($tempDiffArray);
-            foreach ($tempDiffArray as $id => $diff) {
-                $universityRoom = $this->universityRoomRepository->find($id);
-                $output->writeln(['['. date('d/m/Y-H:s'). '] Association de la salle : '. $universityRoom->getName() . '  l\`atelier : ' . $workshop['name'] ]);
-                $workshopToUpdate = $this->workshopRepository->find($workshop['id']);
-                $workshopToUpdate->setUniversityRoom($universityRoom);
-                $this->entityManager->persist($workshopToUpdate);
-                unset($tempDiffArray[$id]);
-                // Il faudrait refaire des intérations de boucli jusqu'a ce qu'une salle sois disponible si elle ne l'est pas (Mais pas le temps)
+            if ($tempMinDiffId['minTempdiff'] === -1) {
+                $output->writeln(['['. date('d/m/Y-H:s'). '] Aucune salle disponible pour : ' . $workshop['name'] ]);
+                $workshopsWithoutRoomArray[] = $this->workshopRepository->find($workshop['id']);
                 break;
             }
+
+            $workshopToUpdate = $this->workshopRepository->find($workshop['id']);
+            $output->writeln(['['. date('d/m/Y-H:s'). '] Association de la salle : '. $universityRoom->getName()]);
+
+            $universityRoom = $this->universityRoomRepository->find($tempMinDiffId['id']);
+            $output->writeln(['['. date('d/m/Y-H:s'). '] A l\`atelier : ' . $workshopToUpdate->getName()]);
+
+            $workshopToUpdate->setUniversityRoom($universityRoom);
+            $this->entityManager->persist($workshopToUpdate);
+
+            // On supprime la salle de notre tableau car elle n'est plus disponible
+            $idArrayRoomAssign = $this->_findIndexUniversityRoomsFromId($universityRoom->getId(), $universityRoomsAvailable);
+            unset($universityRoomsAvailable[$idArrayRoomAssign]);
         }
         $this->entityManager->flush();
 
+        if (count($workshopsWithoutRoomArray) > 0) {
+            $output->writeln(['['. date('d/m/Y-H:s'). '] Ateliers sans salle : ']);
+            foreach ($workshopsWithoutRoomArray as $item) {
+                $output->writeln([$item->getName()]);
+            }
+        } else {
+            $output->writeln(['['. date('d/m/Y-H:s'). '] Toutes les ateliers ont eu une salle ']);
+        }
+
         return Command::SUCCESS;
+    }
+
+    private function _findIndexUniversityRoomsFromId(int $index, array $universityRooms) {
+        foreach ($universityRooms as $key => $universityRoom) {
+            if ($universityRoom->getId() === $index) {
+                return $key;
+            }
+        }
     }
 }

@@ -29,7 +29,6 @@ class WorkShopFixtures extends Fixture implements DependentFixtureInterface
             $workShop->setName('Atelier de ' . $universityRoom->getName());
             $workShop->setSector($secteurs[array_rand($secteurs)]);
             $workShop->setEdition($edition);
-            $workShop->setUniversityRoom($universityRoom);
             $manager->persist($workShop);
         }
 
