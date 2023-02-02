@@ -7,7 +7,7 @@
 			<div class="navbar-nav">
 				<a class="nav-link text-white" aria-current="page" href="{{path('app_index')}}">Accueil</a>
 				<a class="nav-link text-white" href="{{path('app_workshop_public_index')}}">Ateliers</a>
-				<a class="nav-link text-white" href="{{path('app_login')}}">Contact</a>
+				<a class="nav-link text-white" href="{{path('contact')}}">Contact</a>
 				{% if is_granted('ROLE_ADMIN') %}
 					<a class="nav-link text-white" href="{{path('app_monitoring')}}">Monitoring</a>
 					<a class="nav-link text-white" href="{{path('app_admin')}}">Administration</a>

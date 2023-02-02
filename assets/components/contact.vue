@@ -48,7 +48,7 @@ export default ({
              message  : this.message
           }   
 
-		 axios.post('http://symfony-tp4.test/contact/store',data).then((repense)=>{
+		 axios.post('/contact/store',data).then((repense)=>{
                 alert('Merci pour votre message!'+ this.name )
             })
         }
