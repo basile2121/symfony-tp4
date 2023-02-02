@@ -13,8 +13,8 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 #[AsCommand(
-        name: 'app:assign-workshop-to-university-room',
-        description: 'Asigner les ateliers à des salles d\'universitées'
+    name: 'app:assign-workshop-to-university-room',
+    description: 'Asigner les ateliers à des salles d\'universités'
 )]
 class AssignWorkshopToUniversityRoomCommand extends Command
 {
@@ -33,8 +33,7 @@ class AssignWorkshopToUniversityRoomCommand extends Command
         RegistrationRepository $registrationRepository,
         EntityManagerInterface $entityManager,
         string $name = null
-    )
-    {
+    ) {
         $this->workshopRepository = $workshopRepository;
         $this->universityRoomRepository = $universityRoomRepository;
         $this->registrationRepository = $registrationRepository;
@@ -44,10 +43,10 @@ class AssignWorkshopToUniversityRoomCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $output->writeln(['['. date('d/m/Y-H:s'). '] Début de la commande']);
+        $output->writeln(['[' . date('d/m/Y-H:s') . '] Début de la commande']);
         // Recuperation des ateliers de l'années
 
-        $output->writeln(['['. date('d/m/Y-H:s'). '] Récupération des inscriptions et des salles d\'université']);
+        $output->writeln(['[' . date('d/m/Y-H:s') . '] Récupération des inscriptions et des salles d\'université']);
         $universityRooms = $this->universityRoomRepository->findAll(['']);
         $registersWorkshop = $this->registrationRepository->getNbInscritByWorkshopBySlotTime(intval(date('Y')));
 
@@ -56,7 +55,7 @@ class AssignWorkshopToUniversityRoomCommand extends Command
             $tempDiffArray = [];
 
             // On créer un tableau pour trouver le nombre de place restante par rapport au nombre d'inscritpiton
-            $output->writeln(['['. date('d/m/Y-H:s'). '] Recherche de salle pour l\`atelier : ' . $workshop['name'] ]);
+            $output->writeln(['[' . date('d/m/Y-H:s') . '] Recherche de salle pour l\`atelier : ' . $workshop['name']]);
             foreach ($universityRooms as $universityRoom) {
                 $nbInscrit = intval($workshop['nombre']);
                 $diff = $universityRoom->getCapacity() - $nbInscrit;
@@ -69,7 +68,7 @@ class AssignWorkshopToUniversityRoomCommand extends Command
             asort($tempDiffArray);
             foreach ($tempDiffArray as $id => $diff) {
                 $universityRoom = $this->universityRoomRepository->find($id);
-                $output->writeln(['['. date('d/m/Y-H:s'). '] Association de la salle : '. $universityRoom->getName() . '  l\`atelier : ' . $workshop['name'] ]);
+                $output->writeln(['[' . date('d/m/Y-H:s') . '] Association de la salle : ' . $universityRoom->getName() . '  l\`atelier : ' . $workshop['name']]);
                 $workshopToUpdate = $this->workshopRepository->find($workshop['id']);
                 $workshopToUpdate->setUniversityRoom($universityRoom);
                 $this->entityManager->persist($workshopToUpdate);
