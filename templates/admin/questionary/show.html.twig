@@ -26,9 +26,33 @@
         </tbody>
     </table>
 
-    <a class="btn btn-primary" href="{{ path('app_questionary_index') }}">back to list</a>
+    <section class="container-fluid">
+        <h1>Questions</h1>
 
-    <a class="btn btn-warning" href="{{ path('app_questionary_edit', {'id': questionary.id}) }}">edit</a>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Label</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for question in questionary.questions %}
+                    <tr>
+                        <td>{{ question.label }}</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="5">Pas de questions trouvées</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <a class="btn btn-primary" href="{{ path('app_questionary_index') }}">Retour</a>
+
+    <a class="btn btn-warning" href="{{ path('app_questionary_edit', {'id': questionary.id}) }}">Modifier</a>
 
     {{ include('admin/questionary/_delete_form.html.twig') }}
 {% endblock %}

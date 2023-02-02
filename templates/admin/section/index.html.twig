@@ -30,8 +30,8 @@
                 <td>{{ section.createdAt ? section.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ section.updatedAt ? section.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_section_show', {'id': section.id}) }}">show</a>
-                    <a href="{{ path('app_section_edit', {'id': section.id}) }}">edit</a>
+                    <a class="btn btn-primary" href="{{ path('app_section_show', {'id': section.id}) }}">show</a>
+                    <a class="btn btn-warning" href="{{ path('app_section_edit', {'id': section.id}) }}">edit</a>
                     {{ include('admin/section/_delete_form.html.twig') }}
                 </td>
             </tr>

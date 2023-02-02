@@ -58,6 +58,7 @@ class StudentController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $student->setUpdatedAt(new \DateTimeImmutable());
             $studentRepository->save($student, true);
 
             return $this->redirectToRoute('app_student_index', [], Response::HTTP_SEE_OTHER);

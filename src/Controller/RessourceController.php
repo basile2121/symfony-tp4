@@ -55,6 +55,7 @@ class RessourceController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $ressource->setUpdatedAt(new \DateTimeImmutable());
             $ressourceRepository->save($ressource, true);
 
             return $this->redirectToRoute('app_ressource_index', [], Response::HTTP_SEE_OTHER);

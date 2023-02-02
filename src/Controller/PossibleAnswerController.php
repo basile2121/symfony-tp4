@@ -55,6 +55,7 @@ class PossibleAnswerController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $possibleAnswer->setUpdatedAt(new \DateTimeImmutable());
             $possibleAnswerRepository->save($possibleAnswer, true);
 
             return $this->redirectToRoute('app_possible_answer_index', [], Response::HTTP_SEE_OTHER);

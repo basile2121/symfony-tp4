@@ -55,6 +55,7 @@ class SkillController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $skill->setUpdatedAt(new \DateTimeImmutable());
             $skillRepository->save($skill, true);
 
             return $this->redirectToRoute('app_skill_index', [], Response::HTTP_SEE_OTHER);

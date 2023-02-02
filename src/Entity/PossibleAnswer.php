@@ -130,4 +130,10 @@ class PossibleAnswer
 
         return $this;
     }
+
+    public function __toString(): string
+    {
+        return $this->answer . ' / ' . $this->type. ' / ' . $this->balise;
+    }
+
 }

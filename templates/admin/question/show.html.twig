@@ -26,9 +26,38 @@
         </tbody>
     </table>
 
-    <a class="btn btn-primary" href="{{ path('app_question_index') }}">back to list</a>
+    <section class="container-fluid">
+        <h1>PossibleAnswer</h1>
 
-    <a class="btn btn-warning" href="{{ path('app_question_edit', {'id': question.id}) }}">edit</a>
+        <div class="content">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Réponse</th>
+                    <th>Type</th>
+                    <th>Balise HTML</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for possible_answer in question.possibleAnswer %}
+                    <tr>
+                        <td>{{ possible_answer.answer }}</td>
+                        <td>{{ possible_answer.type }}</td>
+                        <td>{{ possible_answer.balise }}</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="6">Pas de données trouvées</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <a class="btn btn-primary" href="{{ path('app_question_index') }}">Retour</a>
+
+    <a class="btn btn-warning" href="{{ path('app_question_edit', {'id': question.id}) }}">Modifier</a>
 
     {{ include('admin/question/_delete_form.html.twig') }}
 {% endblock %}

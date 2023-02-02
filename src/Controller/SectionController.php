@@ -55,6 +55,7 @@ class SectionController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $section->setUpdatedAt(new \DateTimeImmutable());
             $sectionRepository->save($section, true);
 
             return $this->redirectToRoute('app_section_index', [], Response::HTTP_SEE_OTHER);

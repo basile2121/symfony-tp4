@@ -26,9 +26,40 @@
         </tbody>
     </table>
 
-    <a class="btn btn-primary" href="{{ path('app_high_school_index') }}">back to list</a>
+    <section class="container-fluid">
+        <h1>Etudiant de l'école</h1>
 
-    <a class="btn btn-warning" href="{{ path('app_high_school_edit', {'id': high_school.id}) }}">edit</a>
+        <div class="content">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>FirstName</th>
+                    <th>LastName</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for student in high_school.students %}
+                    <tr>
+                        <td>{{ student.email }}</td>
+                        <td>{{ student.phone }}</td>
+                        <td>{{ student.firstName }}</td>
+                        <td>{{ student.lastName }}</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="5">Pas de données trouvées</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <a class="btn btn-primary" href="{{ path('app_high_school_index') }}">Retour</a>
+
+    <a class="btn btn-warning" href="{{ path('app_high_school_edit', {'id': high_school.id}) }}">Modifier</a>
 
     {{ include('admin/high_school/_delete_form.html.twig') }}
 {% endblock %}

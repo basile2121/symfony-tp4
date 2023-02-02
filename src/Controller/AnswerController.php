@@ -55,6 +55,7 @@ class AnswerController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $answer->setUpdatedAt(new \DateTimeImmutable());
             $answerRepository->save($answer, true);
 
             return $this->redirectToRoute('app_answer_index', [], Response::HTTP_SEE_OTHER);
