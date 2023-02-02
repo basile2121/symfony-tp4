@@ -17,7 +17,6 @@ class RegistrationType extends AbstractType
             ->add('timeslot', EntityType::class, [
                 'class' => Timeslot::class
             ])
- 
         ;
     }
 

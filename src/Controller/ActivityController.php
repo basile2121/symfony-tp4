@@ -55,6 +55,7 @@ class ActivityController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $activity->setUpdatedAt(new \DateTimeImmutable());
             $activityRepository->save($activity, true);
 
             return $this->redirectToRoute('app_activity_index', [], Response::HTTP_SEE_OTHER);

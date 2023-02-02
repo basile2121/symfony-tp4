@@ -55,6 +55,7 @@ class RegistrationWorkshopController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $registration->setRegisterAt(new \DateTimeImmutable());
             $registrationRepository->save($registration, true);
 
             return $this->redirectToRoute('app_registration_workshop_index', [], Response::HTTP_SEE_OTHER);

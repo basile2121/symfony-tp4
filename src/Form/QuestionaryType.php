@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Edition;
 use App\Entity\Job;
+use App\Entity\Question;
 use App\Entity\Questionary;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -19,6 +20,11 @@ class QuestionaryType extends AbstractType
             ->add('name', TextType::class)
             ->add('edition', EntityType::class, [
                 'class' => Edition::class
+            ])
+            ->add('questions', EntityType::class, [
+                'class' => Question::class,
+                'multiple' => true,
+                'expanded' => false
             ])
         ;
     }

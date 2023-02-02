@@ -55,6 +55,7 @@ class TimeslotController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $timeslot->setUpdatedAt(new \DateTimeImmutable());
             $timeslotRepository->save($timeslot, true);
 
             return $this->redirectToRoute('app_timeslot_index', [], Response::HTTP_SEE_OTHER);

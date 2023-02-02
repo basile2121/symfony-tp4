@@ -55,6 +55,7 @@ class EditionController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $edition->setUpdatedAt(new \DateTimeImmutable());
             $editionRepository->save($edition, true);
 
             return $this->redirectToRoute('app_edition_index', [], Response::HTTP_SEE_OTHER);

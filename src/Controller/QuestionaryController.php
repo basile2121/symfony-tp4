@@ -55,6 +55,7 @@ class QuestionaryController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $questionary->setUpdatedAt(new \DateTimeImmutable());
             $questionaryRepository->save($questionary, true);
 
             return $this->redirectToRoute('app_questionary_index', [], Response::HTTP_SEE_OTHER);

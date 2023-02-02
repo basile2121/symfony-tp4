@@ -26,6 +26,10 @@
         </tbody>
     </table>
 
+    <h1>Workshop</h1>
+    <p>{{ job.workshop.name }}</p>
+    <p>{{ job.workshop.createdAt ? job.workshop.createdAt|date('Y-m-d H:i:s') : ''  }}</p>
+
     <a class="btn btn-primary" href="{{ path('app_job_index') }}">back to list</a>
 
     <a class="btn btn-warning" href="{{ path('app_job_edit', {'id': job.id}) }}">edit</a>

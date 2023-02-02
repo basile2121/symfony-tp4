@@ -18,6 +18,7 @@
                 <th>Id</th>
                 <th>Type</th>
                 <th>Answer</th>
+                <th>Balise HTML</th>
                 <th>CreatedAt</th>
                 <th>UpdatedAt</th>
                 <th>Actions</th>
@@ -29,6 +30,7 @@
                 <td>{{ possible_answer.id }}</td>
                 <td>{{ possible_answer.type }}</td>
                 <td>{{ possible_answer.answer }}</td>
+                <td>{{ possible_answer.balise }}</td>
                 <td>{{ possible_answer.createdAt ? possible_answer.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ possible_answer.updatedAt ? possible_answer.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>

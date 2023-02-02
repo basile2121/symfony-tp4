@@ -26,6 +26,24 @@
         </tbody>
     </table>
 
+    <section class="d-flex justify-content-center">
+        {% for job in activity.job %}
+
+            <div class="card m-3" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ job.name }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Les compétences</h6>
+
+                    <ul class="card-text">
+                        {% for skill in job.skills %}
+                            <li>{{ skill.name }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        {% endfor %}
+    </section>
+
     <a class="btn btn-primary" href="{{ path('app_activity_index') }}">back to list</a>
 
     <a class="btn btn-warning" href="{{ path('app_activity_edit', {'id': activity.id}) }}">edit</a>

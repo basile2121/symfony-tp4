@@ -55,6 +55,7 @@ class UniversityRoomController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $universityRoom->setUpdatedAt(new \DateTimeImmutable());
             $universityRoomRepository->save($universityRoom, true);
 
             return $this->redirectToRoute('app_university_room_index', [], Response::HTTP_SEE_OTHER);

@@ -55,6 +55,7 @@ class HighSchoolController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $highSchool->setUpdatedAt(new \DateTimeImmutable());
             $highSchoolRepository->save($highSchool, true);
 
             return $this->redirectToRoute('app_high_school_index', [], Response::HTTP_SEE_OTHER);

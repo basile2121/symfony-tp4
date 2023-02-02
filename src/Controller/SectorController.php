@@ -55,6 +55,7 @@ class SectorController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $sector->setUpdatedAt(new \DateTimeImmutable());
             $sectorRepository->save($sector, true);
 
             return $this->redirectToRoute('app_sector_index', [], Response::HTTP_SEE_OTHER);

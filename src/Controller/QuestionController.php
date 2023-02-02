@@ -55,6 +55,7 @@ class QuestionController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $question->setUpdatedAt(new \DateTimeImmutable());
             $questionRepository->save($question, true);
 
             return $this->redirectToRoute('app_question_index', [], Response::HTTP_SEE_OTHER);

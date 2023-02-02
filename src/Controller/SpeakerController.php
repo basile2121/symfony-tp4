@@ -55,6 +55,7 @@ class SpeakerController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $speaker->setUpdatedAt(new \DateTimeImmutable());
             $speakerRepository->save($speaker, true);
 
             return $this->redirectToRoute('app_speaker_index', [], Response::HTTP_SEE_OTHER);
