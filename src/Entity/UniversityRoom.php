@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\UniversityRoomRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UniversityRoomRepository::class)]
 class UniversityRoom
@@ -13,21 +14,32 @@ class UniversityRoom
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: 'The name must be {{ limit }} characters long',
+    )]
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
+    #[Assert\NotBlank]
     #[ORM\Column]
     private ?int $stage = null;
 
+    #[Assert\NotBlank]
+    #[Assert\Positive]
     #[ORM\Column]
     private ?int $capacity = null;
 
     #[ORM\OneToOne(mappedBy: 'universityRoom', cascade: ['persist', 'remove'])]
     private ?Workshop $workshop = null;
 
+    #[Assert\NotBlank]
+    #[Assert\DateTime]
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
+    #[Assert\DateTime]
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 

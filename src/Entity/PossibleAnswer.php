@@ -6,6 +6,7 @@ use App\Repository\PossibleAnswerRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: PossibleAnswerRepository::class)]
 class PossibleAnswer
@@ -15,21 +16,37 @@ class PossibleAnswer
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\Length(
+        max: 255,
+        maxMessage: 'Your type cannot be longer than {{ limit }} characters'
+    )]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $type = null;
 
+    #[Assert\Length(
+        max: 255,
+        maxMessage: 'Your answer cannot be longer than {{ limit }} characters'
+    )]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $answer = null;
 
     #[ORM\ManyToMany(targetEntity: Question::class, mappedBy: 'possibleAnswer')]
     private Collection $questions;
 
+    #[Assert\NotBlank]
+    #[Assert\DateTime]
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
+    #[Assert\DateTime]
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        max: 50,
+        maxMessage: 'Your basile cannot be longer than {{ limit }} characters'
+    )]
     #[ORM\Column(length: 50)]
     private ?string $balise = null;
 

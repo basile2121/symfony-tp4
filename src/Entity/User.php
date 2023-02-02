@@ -8,7 +8,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use App\Entity\Student;
-
+use Symfony\Component\Security\Core\Validator\Constraints as SecurityAssert;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\InheritanceType("JOINED")]
@@ -28,6 +29,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private array $roles = [];
 
+    #[Assert\Length(
+        min: 6,
+        minMessage: 'Your password must be at least {{ limit }} characters long',
+    )]
+    #[SecurityAssert\UserPassword(
+        message: 'Wrong value for your current password',
+    )]
     private $plainPassword;
 
     /**
