@@ -1,16 +1,18 @@
 {% extends 'admin/base_admin.html.twig' %}
 
-{% block title %}Edit Answer{% endblock %}
+{% block title %}Edition Réponse
+{% endblock %}
 
 {% block body %}
-    <section class="container-fluid">
-        <h1>Edit Answer</h1>
+	<section class="container-fluid">
+		<h1>Edition de la réponse :
+			{{ answer.label }}</h1>
 
-        <div class="content">
-            {{ include('admin/answer/_form.html.twig', {'button_label': 'Update'}) }}
-            <a class="btn btn-primary" href="{{ path('app_answer_index') }}">Retour</a>
-        </div>
-    </section>
+		<div class="content">
+			{{ include('admin/answer/_form.html.twig', {'button_label': 'Update'}) }}
+			<a class="btn btn-primary" href="{{ path('app_answer_index') }}">Retour</a>
+		</div>
+	</section>
 
 
 {% endblock %}

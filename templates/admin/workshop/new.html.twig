@@ -1,15 +1,16 @@
 {% extends 'admin/base_admin.html.twig' %}
 
-{% block title %}New Workshop{% endblock %}
+{% block title %}New Workshop
+{% endblock %}
 
 {% block body %}
-    <section class="container-fluid">
-        <h1>Create Workshop</h1>
+	<section class="container-fluid">
+		<h1>Création Atelier</h1>
 
-        <div class="content">
-            {{ include('admin/workshop/_form.html.twig') }}
-            <a class="btn btn-primary" href="{{ path('app_workshop_index') }}">Retour</a>
-        </div>
+		<div class="content">
+			{{ include('admin/workshop/_form.html.twig') }}
+			<a class="btn btn-primary" href="{{ path('app_workshop_index') }}">Retour</a>
+		</div>
 
-    </section>
+	</section>
 {% endblock %}

@@ -1,16 +1,17 @@
 {% extends 'admin/base_admin.html.twig' %}
 
-{% block title %}New Sector{% endblock %}
+{% block title %}Ajout - Secteur
+{% endblock %}
 
 {% block body %}
-    <section class="container-fluid">
-        <h1>Create Sector</h1>
+	<section class="container-fluid">
+		<h1>Ajout Secteur</h1>
 
-        <div class="content">
-            {{ include('admin/sector/_form.html.twig') }}
-            <a class="btn btn-primary" href="{{ path('app_sector_index') }}">Retour</a>
-        </div>
-    </section>
+		<div class="content">
+			{{ include('admin/sector/_form.html.twig') }}
+			<a class="btn btn-primary" href="{{ path('app_sector_index') }}">Retour</a>
+		</div>
+	</section>
 
 
 {% endblock %}

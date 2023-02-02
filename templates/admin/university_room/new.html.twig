@@ -1,16 +1,17 @@
 {% extends 'admin/base_admin.html.twig' %}
 
-{% block title %}New UniversityRoom{% endblock %}
+{% block title %}Ajout Salle
+{% endblock %}
 
 {% block body %}
-    <section class="container-fluid">
-        <h1>Create UniversityRoom</h1>
+	<section class="container-fluid">
+		<h1>Ajouter une salle</h1>
 
-        <div class="content">
-            {{ include('admin/university_room/_form.html.twig') }}
-            <a class="btn btn-primary" href="{{ path('app_university_room_index') }}">Retour</a>
-        </div>
-    </section>
+		<div class="content">
+			{{ include('admin/university_room/_form.html.twig') }}
+			<a class="btn btn-primary" href="{{ path('app_university_room_index') }}">Retour</a>
+		</div>
+	</section>
 
 
 {% endblock %}

@@ -1,16 +1,17 @@
 {% extends 'admin/base_admin.html.twig' %}
 
-{% block title %}New Questionary{% endblock %}
+{% block title %}Ajout Questionnaire
+{% endblock %}
 
 {% block body %}
-    <section class="container-fluid">
-        <h1>Create Questionary</h1>
+	<section class="container-fluid">
+		<h1>Ajout Questionnaire</h1>
 
-        <div class="content">
-            {{ include('admin/questionary/_form.html.twig') }}
-            <a class="btn btn-primary" href="{{ path('app_questionary_index') }}">Retour</a>
-        </div>
-    </section>
+		<div class="content">
+			{{ include('admin/questionary/_form.html.twig') }}
+			<a class="btn btn-primary" href="{{ path('app_questionary_index') }}">Retour</a>
+		</div>
+	</section>
 
 
 {% endblock %}

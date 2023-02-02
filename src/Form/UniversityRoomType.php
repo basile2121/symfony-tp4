@@ -15,9 +15,8 @@ class UniversityRoomType extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
-            ->add('stage', IntegerType::class)
-            ->add('capacity', IntegerType::class)
-        ;
+            ->add('stage', TextType::class)
+            ->add('capacity', TextType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

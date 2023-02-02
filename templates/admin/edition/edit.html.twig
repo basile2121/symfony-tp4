@@ -1,16 +1,18 @@
 {% extends 'admin/base_admin.html.twig' %}
 
-{% block title %}Edit Edition{% endblock %}
+{% block title %}Edition année
+{% endblock %}
 
 {% block body %}
-    <section class="container-fluid">
-        <h1>Edit Edition</h1>
+	<section class="container-fluid">
+		<h1>Edition année :
+			{{ edition.year }}</h1>
 
-        <div class="content">
-            {{ include('admin/edition/_form.html.twig', {'button_label': 'Update'}) }}
-            <a class="btn btn-primary" href="{{ path('app_edition_index') }}">Retour</a>
-        </div>
-    </section>
+		<div class="content">
+			{{ include('admin/edition/_form.html.twig', {'button_label': 'Update'}) }}
+			<a class="btn btn-primary" href="{{ path('app_edition_index') }}">Retour</a>
+		</div>
+	</section>
 
 
 {% endblock %}

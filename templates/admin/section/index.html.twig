@@ -1,47 +1,49 @@
 {% extends 'admin/base_admin.html.twig' %}
 
-{% block title %}Section index{% endblock %}
+{% block title %}Liste - Section
+{% endblock %}
 
 {% block body %}
-<section class="container-fluid">
-    <h1>Section</h1>
+	<section class="container-fluid">
+		<h1>Liste des sections</h1>
 
-    <div class="content">
-        <div class="actions">
-            <a class="btn btn-success" href="{{ path('app_section_new') }}">Ajouter + </a>
-            <a class="btn btn-primary" href="{{ path('app_admin') }}">Retour</a>
-        </div>
+		<div class="content">
+			<div class="actions">
+				<a class="btn btn-success" href="{{ path('app_section_new') }}">Ajouter +
+				</a>
+				<a class="btn btn-primary" href="{{ path('app_admin') }}">Retour</a>
+			</div>
 
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Label</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for section in sections %}
-            <tr>
-                <td>{{ section.id }}</td>
-                <td>{{ section.label }}</td>
-                <td>{{ section.createdAt ? section.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ section.updatedAt ? section.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a class="btn btn-primary" href="{{ path('app_section_show', {'id': section.id}) }}">show</a>
-                    <a class="btn btn-warning" href="{{ path('app_section_edit', {'id': section.id}) }}">edit</a>
-                    {{ include('admin/section/_delete_form.html.twig') }}
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">Pas de données trouvées</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    </div>
-</section>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Section</th>
+						<th>CreatedAt</th>
+						<th>UpdatedAt</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for section in sections %}
+						<tr>
+							<td>{{ section.id }}</td>
+							<td>{{ section.label }}</td>
+							<td>{{ section.createdAt ? section.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+							<td>{{ section.updatedAt ? section.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+							<td>
+								<a class="btn btn-primary" href="{{ path('app_section_show', {'id': section.id}) }}">Voir</a>
+								<a class="btn btn-warning" href="{{ path('app_section_edit', {'id': section.id}) }}">Editer</a>
+								{{ include('admin/section/_delete_form.html.twig') }}
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="6">Pas de données trouvées</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</section>
 {% endblock %}

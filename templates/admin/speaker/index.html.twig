@@ -1,55 +1,57 @@
 {% extends 'admin/base_admin.html.twig' %}
 
-{% block title %}Speaker index{% endblock %}
+{% block title %}Speaker index
+{% endblock %}
 
 {% block body %}
-<section class="container-fluid">
-    <h1>Intervenant</h1>
+	<section class="container-fluid">
+		<h1>Intervenant</h1>
 
-    <div class="content">
-        <div class="actions">
-            <a class="btn btn-success" href="{{ path('app_speaker_new') }}">Ajouter + </a>
-            <a class="btn btn-primary" href="{{ path('app_admin') }}">Retour</a>
-        </div>
+		<div class="content">
+			<div class="actions">
+				<a class="btn btn-success" href="{{ path('app_speaker_new') }}">Ajouter
+				</a>
+				<a class="btn btn-primary" href="{{ path('app_admin') }}">Retour</a>
+			</div>
 
-        <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>FirstName</th>
-                <th>LastName</th>
-                <th>Mail</th>
-                <th>Phone</th>
-                <th>Compagny</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for speaker in speakers %}
-            <tr>
-                <td>{{ speaker.id }}</td>
-                <td>{{ speaker.firstName }}</td>
-                <td>{{ speaker.lastName }}</td>
-                <td>{{ speaker.mail }}</td>
-                <td>{{ speaker.phone }}</td>
-                <td>{{ speaker.compagny }}</td>
-                <td>{{ speaker.createdAt ? speaker.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ speaker.updatedAt ? speaker.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a class="btn btn-primary" href="{{ path('app_speaker_show', {'id': speaker.id}) }}">show</a>
-                    <a class="btn btn-warning" href="{{ path('app_speaker_edit', {'id': speaker.id}) }}">edit</a>
-                    {{ include('admin/speaker/_delete_form.html.twig') }}
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">Pas de données trouvées</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-        </table>
-    </div>
-</section>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Prénom</th>
+						<th>Nom</th>
+						<th>Mail</th>
+						<th>Téléphone</th>
+						<th>Entreprise</th>
+						<th>CreatedAt</th>
+						<th>UpdatedAt</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for speaker in speakers %}
+						<tr>
+							<td>{{ speaker.id }}</td>
+							<td>{{ speaker.firstName }}</td>
+							<td>{{ speaker.lastName }}</td>
+							<td>{{ speaker.mail }}</td>
+							<td>{{ speaker.phone }}</td>
+							<td>{{ speaker.compagny }}</td>
+							<td>{{ speaker.createdAt ? speaker.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+							<td>{{ speaker.updatedAt ? speaker.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+							<td>
+								<a class="btn btn-primary" href="{{ path('app_speaker_show', {'id': speaker.id}) }}">Voir</a>
+								<a class="btn btn-warning" href="{{ path('app_speaker_edit', {'id': speaker.id}) }}">Editer</a>
+								{{ include('admin/speaker/_delete_form.html.twig') }}
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="5">Pas de données trouvées</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</section>
 {% endblock %}

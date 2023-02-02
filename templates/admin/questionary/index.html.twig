@@ -1,49 +1,51 @@
 {% extends 'admin/base_admin.html.twig' %}
 
-{% block title %}Questionary{% endblock %}
+{% block title %}Liste - Questionnaire
+{% endblock %}
 
 {% block body %}
-<section class="container-fluid">
-    <h1>Questionary</h1>
+	<section class="container-fluid">
+		<h1>Liste des questionnaires</h1>
 
-    <div class="content">
-        <div class="actions">
-            <a class="btn btn-success" href="{{ path('app_questionary_new') }}">Ajouter + </a>
-            <a class="btn btn-primary" href="{{ path('app_admin') }}">Retour</a>
-        </div>
+		<div class="content">
+			<div class="actions">
+				<a class="btn btn-success" href="{{ path('app_questionary_new') }}">Ajouter
+				</a>
+				<a class="btn btn-primary" href="{{ path('app_admin') }}">Retour</a>
+			</div>
 
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Année</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for questionary in questionaries %}
-            <tr>
-                <td>{{ questionary.id }}</td>
-                <td>{{ questionary.name }}</td>
-                <td>{{ questionary.edition.year }}</td>
-                <td>{{ questionary.createdAt ? questionary.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ questionary.updatedAt ? questionary.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a class="btn btn-primary" href="{{ path('app_questionary_show', {'id': questionary.id}) }}">show</a>
-                    <a class="btn btn-warning" href="{{ path('app_questionary_edit', {'id': questionary.id}) }}">edit</a>
-                    {{ include('admin/questionary/_delete_form.html.twig') }}
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">Pas de données trouvées</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    </div>
-</section>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Nom</th>
+						<th>Année</th>
+						<th>CreatedAt</th>
+						<th>UpdatedAt</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for questionary in questionaries %}
+						<tr>
+							<td>{{ questionary.id }}</td>
+							<td>{{ questionary.name }}</td>
+							<td>{{ questionary.edition.year }}</td>
+							<td>{{ questionary.createdAt ? questionary.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+							<td>{{ questionary.updatedAt ? questionary.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+							<td>
+								<a class="btn btn-primary" href="{{ path('app_questionary_show', {'id': questionary.id}) }}">Voir</a>
+								<a class="btn btn-warning" href="{{ path('app_questionary_edit', {'id': questionary.id}) }}">Editer</a>
+								{{ include('admin/questionary/_delete_form.html.twig') }}
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="5">Pas de données trouvées</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</section>
 {% endblock %}

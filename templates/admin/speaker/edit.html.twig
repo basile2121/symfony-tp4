@@ -1,16 +1,19 @@
 {% extends 'admin/base_admin.html.twig' %}
 
-{% block title %}Edit Speaker{% endblock %}
+{% block title %}Edition - Intervenant
+{% endblock %}
 
 {% block body %}
-    <section class="container-fluid">
-        <h1>Edit Speaker</h1>
+	<section class="container-fluid">
+		<h1>Edition Intervenant :
+			{{speaker.lastName}}
+			{{speaker.firstName}}</h1>
 
-        <div class="content">
-            {{ include('admin/speaker/_form.html.twig', {'button_label': 'Update'}) }}
-            <a class="btn btn-primary" href="{{ path('app_speaker_index') }}">Retour</a>
-        </div>
-    </section>
+		<div class="content">
+			{{ include('admin/speaker/_form.html.twig', {'button_label': 'Update'}) }}
+			<a class="btn btn-primary" href="{{ path('app_speaker_index') }}">Retour</a>
+		</div>
+	</section>
 
 
 {% endblock %}

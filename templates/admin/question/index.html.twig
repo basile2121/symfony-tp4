@@ -1,47 +1,49 @@
 {% extends 'admin/base_admin.html.twig' %}
 
-{% block title %}Question{% endblock %}
+{% block title %}Liste - Questions
+{% endblock %}
 
 {% block body %}
-<section class="container-fluid">
-    <h1>Question</h1>
+	<section class="container-fluid">
+		<h1>Liste des questions</h1>
 
-    <div class="content">
-        <div class="actions">
-            <a class="btn btn-success" href="{{ path('app_question_new') }}">Ajouter + </a>
-            <a class="btn btn-primary" href="{{ path('app_admin') }}">Retour</a>
-        </div>
+		<div class="content">
+			<div class="actions">
+				<a class="btn btn-success" href="{{ path('app_question_new') }}">Ajouter
+				</a>
+				<a class="btn btn-primary" href="{{ path('app_admin') }}">Retour</a>
+			</div>
 
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Label</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for question in questions %}
-            <tr>
-                <td>{{ question.id }}</td>
-                <td>{{ question.label }}</td>
-                <td>{{ question.createdAt ? question.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ question.updatedAt ? question.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a class="btn btn-primary" href="{{ path('app_question_show', {'id': question.id}) }}">show</a>
-                    <a class="btn btn-warning" href="{{ path('app_question_edit', {'id': question.id}) }}">edit</a>
-                    {{ include('admin/question/_delete_form.html.twig') }}
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">Pas de données trouvées</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    </div>
-</section>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Question</th>
+						<th>CreatedAt</th>
+						<th>UpdatedAt</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for question in questions %}
+						<tr>
+							<td>{{ question.id }}</td>
+							<td>{{ question.label }}</td>
+							<td>{{ question.createdAt ? question.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+							<td>{{ question.updatedAt ? question.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+							<td>
+								<a class="btn btn-primary" href="{{ path('app_question_show', {'id': question.id}) }}">Voir</a>
+								<a class="btn btn-warning" href="{{ path('app_question_edit', {'id': question.id}) }}">Editer</a>
+								{{ include('admin/question/_delete_form.html.twig') }}
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="5">Pas de données trouvées</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</section>
 {% endblock %}

@@ -1,47 +1,49 @@
 {% extends 'admin/base_admin.html.twig' %}
 
-{% block title %}HighSchool{% endblock %}
+{% block title %}Liste - Lycée
+{% endblock %}
 
 {% block body %}
-    <section class="container-fluid">
-        <h1>HighSchool</h1>
+	<section class="container-fluid">
+		<h1>Liste des lycées</h1>
 
-        <div class="content">
-            <div class="actions">
-                <a class="btn btn-success" href="{{ path('app_high_school_new') }}">Ajouter + </a>
-                <a class="btn btn-primary" href="{{ path('app_admin') }}">Retour</a>
-            </div>
+		<div class="content">
+			<div class="actions">
+				<a class="btn btn-success" href="{{ path('app_high_school_new') }}">Ajouter +
+				</a>
+				<a class="btn btn-primary" href="{{ path('app_admin') }}">Retour</a>
+			</div>
 
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>CreatedAt</th>
-                    <th>UpdatedAt</th>
-                    <th>Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for high_school in high_schools %}
-                    <tr>
-                        <td>{{ high_school.id }}</td>
-                        <td>{{ high_school.name }}</td>
-                        <td>{{ high_school.createdAt ? high_school.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                        <td>{{ high_school.updatedAt ? high_school.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                        <td>
-                            <a class="btn btn-primary" href="{{ path('app_high_school_show', {'id': high_school.id}) }}">show</a>
-                            <a class="btn btn-warning" href="{{ path('app_high_school_edit', {'id': high_school.id}) }}">edit</a>
-                            {{ include('admin/high_school/_delete_form.html.twig') }}
-                        </td>
-                    </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="5">Pas de données trouvées</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    </section>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Lycée</th>
+						<th>CreatedAt</th>
+						<th>UpdatedAt</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for high_school in high_schools %}
+						<tr>
+							<td>{{ high_school.id }}</td>
+							<td>{{ high_school.name }}</td>
+							<td>{{ high_school.createdAt ? high_school.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+							<td>{{ high_school.updatedAt ? high_school.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+							<td>
+								<a class="btn btn-primary" href="{{ path('app_high_school_show', {'id': high_school.id}) }}">Voir</a>
+								<a class="btn btn-warning" href="{{ path('app_high_school_edit', {'id': high_school.id}) }}">Editer</a>
+								{{ include('admin/high_school/_delete_form.html.twig') }}
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="5">Pas de données trouvées</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</section>
 {% endblock %}

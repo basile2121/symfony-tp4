@@ -1,16 +1,17 @@
 {% extends 'admin/base_admin.html.twig' %}
 
-{% block title %}New PossibleAnswer{% endblock %}
+{% block title %}AJout - Réponse possible
+{% endblock %}
 
 {% block body %}
-    <section class="container-fluid">
-        <h1>Create PossibleAnswer</h1>
+	<section class="container-fluid">
+		<h1>Ajout d'une possible réponse</h1>
 
-        <div class="content">
-            {{ include('admin/possible_answer/_form.html.twig') }}
-            <a class="btn btn-primary" href="{{ path('app_possible_answer_index') }}">Retour</a>
-        </div>
-    </section>
+		<div class="content">
+			{{ include('admin/possible_answer/_form.html.twig') }}
+			<a class="btn btn-primary" href="{{ path('app_possible_answer_index') }}">Retour</a>
+		</div>
+	</section>
 
 
 {% endblock %}

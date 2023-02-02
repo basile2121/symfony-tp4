@@ -1,16 +1,17 @@
 {% extends 'admin/base_admin.html.twig' %}
 
-{% block title %}New Student{% endblock %}
+{% block title %}Ajout - Etudiant
+{% endblock %}
 
 {% block body %}
-    <section class="container-fluid">
-        <h1>Create Student</h1>
+	<section class="container-fluid">
+		<h1>Création étudiant</h1>
 
-        <div class="content">
-            {{ include('admin/student/_form.html.twig') }}
-            <a class="btn btn-primary" href="{{ path('app_student_index') }}">Retour</a>
-        </div>
-    </section>
+		<div class="content">
+			{{ include('admin/student/_form.html.twig') }}
+			<a class="btn btn-primary" href="{{ path('app_student_index') }}">Retour</a>
+		</div>
+	</section>
 
 
 {% endblock %}

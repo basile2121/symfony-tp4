@@ -1,16 +1,18 @@
 {% extends 'admin/base_admin.html.twig' %}
 
-{% block title %}New Ressource{% endblock %}
+{% block title %}Ajout - Ressource
+{% endblock %}
 
 {% block body %}
-    <section class="container-fluid">
-        <h1>Create Ressource</h1>
+	<section class="container-fluid">
+		<h1>
+			Ajout - Ressource</h1>
 
-        <div class="content">
-            {{ include('admin/ressource/_form.html.twig') }}
-            <a class="btn btn-primary" href="{{ path('app_ressource_index') }}">Retour</a>
-        </div>
-    </section>
+		<div class="content">
+			{{ include('admin/ressource/_form.html.twig') }}
+			<a class="btn btn-primary" href="{{ path('app_ressource_index') }}">Retour</a>
+		</div>
+	</section>
 
 
 {% endblock %}

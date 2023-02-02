@@ -1,52 +1,54 @@
 {% extends 'admin/base_admin.html.twig' %}
 
-{% block title %}Activity{% endblock %}
+{% block title %}Activité
+{% endblock %}
 
 {% block body %}
-    <h1>Activity</h1>
+	<h1>Activité :
+		{{ activity.name }}</h1>
 
-    <table class="table">
-        <tbody>
-        <tr>
-            <th>Id</th>
-            <td>{{ activity.id }}</td>
-        </tr>
-        <tr>
-            <th>Name</th>
-            <td>{{ activity.name }}</td>
-        </tr>
-        <tr>
-            <th>CreatedAt</th>
-            <td>{{ activity.createdAt ? activity.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-        </tr>
-        <tr>
-            <th>UpdatedAt</th>
-            <td>{{ activity.updatedAt ? activity.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-        </tr>
-        </tbody>
-    </table>
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ activity.id }}</td>
+			</tr>
+			<tr>
+				<th>Activité</th>
+				<td>{{ activity.name }}</td>
+			</tr>
+			<tr>
+				<th>CreatedAt</th>
+				<td>{{ activity.createdAt ? activity.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+			</tr>
+			<tr>
+				<th>UpdatedAt</th>
+				<td>{{ activity.updatedAt ? activity.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+			</tr>
+		</tbody>
+	</table>
 
-    <section class="d-flex justify-content-center">
-        {% for job in activity.job %}
+	<section class="d-flex justify-content-center">
+		{% for job in activity.job %}
 
-            <div class="card m-3" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">{{ job.name }}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Les compétences</h6>
+			<div class="card m-3" style="width: 18rem;">
+				<div class="card-body">
+					<h5 class="card-title">{{ job.name }}</h5>
+					<h6 class="card-subtitle mb-2 text-muted">Les compétences</h6>
 
-                    <ul class="card-text">
-                        {% for skill in job.skills %}
-                            <li>{{ skill.name }}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            </div>
-        {% endfor %}
-    </section>
+					<ul class="card-text">
+						{% for skill in job.skills %}
+							<li>{{ skill.name }}</li>
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+		{% endfor %}
+	</section>
 
-    <a class="btn btn-primary" href="{{ path('app_activity_index') }}">back to list</a>
+	<a class="btn btn-primary" href="{{ path('app_activity_index') }}">Retour</a>
 
-    <a class="btn btn-warning" href="{{ path('app_activity_edit', {'id': activity.id}) }}">edit</a>
+	<a class="btn btn-warning" href="{{ path('app_activity_edit', {'id': activity.id}) }}">Editer</a>
 
-    {{ include('admin/activity/_delete_form.html.twig') }}
+	{{ include('admin/activity/_delete_form.html.twig') }}
 {% endblock %}

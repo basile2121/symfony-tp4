@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Workshop index
+{% block title %}Liste Ateliers
 {% endblock %}
 
 {% block body %}
 	<h1>Voici tous les ateliers :</h1>
 	{% if workshops|length is same as(0) %}
-		<h1>Il n'y a pas encore de workshops</h1>
+		<h1>Il n'y a pas encore d'ateliers</h1>
 	{% endif %}
 	<div class="all-events-inc row px-4">
 		{% for workshop in workshops %}
@@ -35,7 +35,7 @@
 						<p
 							class="event-desc">
 							{# {{ }} #}
-							voici la description
+							Voici la description
 						</p>
 						<span class="category">Secteur :
 							{{ workshop.sector.name }}</span>

@@ -1,16 +1,17 @@
 {% extends 'admin/base_admin.html.twig' %}
 
-{% block title %}New Answer{% endblock %}
+{% block title %}Ajout réponse
+{% endblock %}
 
 {% block body %}
-    <section class="container-fluid">
-        <h1>Create Answer</h1>
+	<section class="container-fluid">
+		<h1>Ajout réponse</h1>
 
-        <div class="content">
-            {{ include('admin/answer/_form.html.twig') }}
-            <a class="btn btn-primary" href="{{ path('app_answer_index') }}">Retour</a>
-        </div>
-    </section>
+		<div class="content">
+			{{ include('admin/answer/_form.html.twig') }}
+			<a class="btn btn-primary" href="{{ path('app_answer_index') }}">Retour</a>
+		</div>
+	</section>
 
 
 {% endblock %}

@@ -25,7 +25,7 @@ class ApiController extends AbstractController
             if (!isset($results[$data['name']])) {
                 $results[$data['name']] = [];
             }
-            $results[$data['name']][] = ['Crénau Horaire' => $data['label'], 'Nombre d\'inscrit' => $data['nombre']];
+            $results[$data['name']][] = ['Créneau Horaire' => $data['label'], 'Nombre d\'inscrits' => $data['nombre']];
         }
 
         return new JsonResponse([$results]);

@@ -1,16 +1,18 @@
 {% extends 'admin/base_admin.html.twig' %}
 
-{% block title %}Edit Job{% endblock %}
+{% block title %}Edition Métier
+{% endblock %}
 
 {% block body %}
-    <section class="container-fluid">
-        <h1>Edit Job</h1>
+	<section class="container-fluid">
+		<h1>Edition du métier :
+			{{job.name}}</h1>
 
-        <div class="content">
-            {{ include('admin/job/_form.html.twig', {'button_label': 'Update'}) }}
-            <a class="btn btn-primary" href="{{ path('app_job_index') }}">Retour</a>
-        </div>
-    </section>
+		<div class="content">
+			{{ include('admin/job/_form.html.twig', {'button_label': 'Update'}) }}
+			<a class="btn btn-primary" href="{{ path('app_job_index') }}">Retour</a>
+		</div>
+	</section>
 
 
 {% endblock %}

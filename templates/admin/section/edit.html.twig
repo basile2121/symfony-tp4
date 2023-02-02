@@ -1,14 +1,16 @@
 {% extends 'admin/base_admin.html.twig' %}
 
-{% block title %}Edit Section{% endblock %}
+{% block title %}Edition - Section
+{% endblock %}
 
 {% block body %}
-    <section class="container-fluid">
-        <h1>Edit Ressource</h1>
+	<section class="container-fluid">
+		<h1>Edition section :
+			{{ section.label }}</h1>
 
-        <div class="content">
-            {{ include('admin/section/_form.html.twig', {'button_label': 'Update'}) }}
-            <a class="btn btn-primary" href="{{ path('app_ressource_index') }}">Retour</a>
-        </div>
-    </section>
+		<div class="content">
+			{{ include('admin/section/_form.html.twig', {'button_label': 'Update'}) }}
+			<a class="btn btn-primary" href="{{ path('app_ressource_index') }}">Retour</a>
+		</div>
+	</section>
 {% endblock %}

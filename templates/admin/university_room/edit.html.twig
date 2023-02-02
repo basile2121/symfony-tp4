@@ -1,16 +1,19 @@
 {% extends 'admin/base_admin.html.twig' %}
 
-{% block title %}Edit UniversityRoom{% endblock %}
+{% block title %}Edition - Salle
+{% endblock %}
 
 {% block body %}
-    <section class="container-fluid">
-        <h1>Edit UniversityRoom</h1>
+	<section class="container-fluid">
+		<h1>Edition de la salle :
+			{{university_room.name}}
+		</h1>
 
-        <div class="content">
-            {{ include('admin/university_room/_form.html.twig', {'button_label': 'Update'}) }}
-            <a class="btn btn-primary" href="{{ path('app_university_room_index') }}">Retour</a>
-        </div>
-    </section>
+		<div class="content">
+			{{ include('admin/university_room/_form.html.twig', {'button_label': 'Update'}) }}
+			<a class="btn btn-primary" href="{{ path('app_university_room_index') }}">Retour</a>
+		</div>
+	</section>
 
 
 {% endblock %}

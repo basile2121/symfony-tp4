@@ -1,16 +1,18 @@
 {% extends 'admin/base_admin.html.twig' %}
 
-{% block title %}Edit HighSchool{% endblock %}
+{% block title %}Edition Lycée
+{% endblock %}
 
 {% block body %}
-    <section class="container-fluid">
-        <h1>Edit HighSchool</h1>
+	<section class="container-fluid">
+		<h1>Edition Lycée
+			{{high_school.name}}</h1>
 
-        <div class="content">
-            {{ include('admin/high_school/_form.html.twig', {'button_label': 'Update'}) }}
-            <a class="btn btn-primary" href="{{ path('app_high_school_index') }}">Retour</a>
-        </div>
-    </section>
+		<div class="content">
+			{{ include('admin/high_school/_form.html.twig', {'button_label': 'Update'}) }}
+			<a class="btn btn-primary" href="{{ path('app_high_school_index') }}">Retour</a>
+		</div>
+	</section>
 
 
 {% endblock %}

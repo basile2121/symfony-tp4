@@ -1,16 +1,17 @@
 {% extends 'admin/base_admin.html.twig' %}
 
-{% block title %}New Speaker{% endblock %}
+{% block title %}Ajout - Intervenant
+{% endblock %}
 
 {% block body %}
-    <section class="container-fluid">
-        <h1>Create Speaker</h1>
+	<section class="container-fluid">
+		<h1>Ajout intervenant</h1>
 
-        <div class="content">
-            {{ include('admin/speaker/_form.html.twig') }}
-            <a class="btn btn-primary" href="{{ path('app_speaker_index') }}">Retour</a>
-        </div>
-    </section>
+		<div class="content">
+			{{ include('admin/speaker/_form.html.twig') }}
+			<a class="btn btn-primary" href="{{ path('app_speaker_index') }}">Retour</a>
+		</div>
+	</section>
 
 
 {% endblock %}

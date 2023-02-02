@@ -1,47 +1,48 @@
 {% extends 'admin/base_admin.html.twig' %}
 
-{% block title %}Timeslot{% endblock %}
+{% block title %}Timeslot
+{% endblock %}
 
 {% block body %}
-<section class="container-fluid">
-    <h1>Timeslot</h1>
+	<section class="container-fluid">
+		<h1>Timeslot</h1>
 
-    <div class="content">
-        <div class="actions">
-            <a class="btn btn-success" href="{{ path('app_student_new') }}">Ajouter + </a>
-            <a class="btn btn-primary" href="{{ path('app_admin') }}">Retour</a>
-        </div>
+		<div class="content">
+			<div class="actions">
+				<a class="btn btn-success" href="{{ path('app_student_new') }}">Ajouter</a>
+				<a class="btn btn-primary" href="{{ path('app_admin') }}">Retour</a>
+			</div>
 
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Label</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for timeslot in timeslots %}
-            <tr>
-                <td>{{ timeslot.id }}</td>
-                <td>{{ timeslot.label }}</td>
-                <td>{{ timeslot.createdAt ? timeslot.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ timeslot.updatedAt ? timeslot.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a class="btn btn-primary" href="{{ path('app_timeslot_show', {'id': timeslot.id}) }}">show</a>
-                    <a class="btn btn-warning" href="{{ path('app_timeslot_edit', {'id': timeslot.id}) }}">edit</a>
-                    {{ include('admin/timeslot/_delete_form.html.twig') }}
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">Pas de données trouvées</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    </div>
-</section>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Créneaux</th>
+						<th>CreatedAt</th>
+						<th>UpdatedAt</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for timeslot in timeslots %}
+						<tr>
+							<td>{{ timeslot.id }}</td>
+							<td>{{ timeslot.label }}</td>
+							<td>{{ timeslot.createdAt ? timeslot.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+							<td>{{ timeslot.updatedAt ? timeslot.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+							<td>
+								<a class="btn btn-primary" href="{{ path('app_timeslot_show', {'id': timeslot.id}) }}">Voir</a>
+								<a class="btn btn-warning" href="{{ path('app_timeslot_edit', {'id': timeslot.id}) }}">Editer</a>
+								{{ include('admin/timeslot/_delete_form.html.twig') }}
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="5">Pas de données trouvées</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</section>
 {% endblock %}

@@ -1,16 +1,17 @@
 {% extends 'admin/base_admin.html.twig' %}
 
-{% block title %}New Timeslot{% endblock %}
+{% block title %}Ajout - Créneau
+{% endblock %}
 
 {% block body %}
-    <section class="container-fluid">
-        <h1>Create Timeslot</h1>
+	<section class="container-fluid">
+		<h1>Ajout créneau horaire</h1>
 
-        <div class="content">
-            {{ include('admin/timeslot/_form.html.twig') }}
-            <a class="btn btn-primary" href="{{ path('app_timeslot_index') }}">Retour</a>
-        </div>
-    </section>
+		<div class="content">
+			{{ include('admin/timeslot/_form.html.twig') }}
+			<a class="btn btn-primary" href="{{ path('app_timeslot_index') }}">Retour</a>
+		</div>
+	</section>
 
 
 {% endblock %}

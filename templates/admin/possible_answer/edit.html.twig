@@ -1,16 +1,18 @@
 {% extends 'admin/base_admin.html.twig' %}
 
-{% block title %}Edit PossibleAnswer{% endblock %}
+{% block title %}Edition PossibleAnswer
+{% endblock %}
 
 {% block body %}
-    <section class="container-fluid">
-        <h1>Edit PossibleAnswer</h1>
+	<section class="container-fluid">
+		<h1>Edition de la réponse possible :
+			{{ possible_answer.answer }}</h1>
 
-        <div class="content">
-            {{ include('admin/possible_answer/_form.html.twig', {'button_label': 'Update'}) }}
-            <a class="btn btn-primary" href="{{ path('app_possible_answer_index') }}">Retour</a>
-        </div>
-    </section>
+		<div class="content">
+			{{ include('admin/possible_answer/_form.html.twig', {'button_label': 'Update'}) }}
+			<a class="btn btn-primary" href="{{ path('app_possible_answer_index') }}">Retour</a>
+		</div>
+	</section>
 
 
 {% endblock %}
