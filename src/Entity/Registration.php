@@ -24,7 +24,6 @@ class Registration
     private ?Timeslot $timeslot = null;
 
     #[Assert\NotBlank]
-    #[Assert\DateTime]
     #[ORM\Column]
     private ?\DateTimeImmutable $registerAt = null;
 

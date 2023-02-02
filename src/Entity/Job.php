@@ -35,11 +35,10 @@ class Job
     private Collection $activities;
 
     #[Assert\NotBlank]
-    #[Assert\DateTime]
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[Assert\DateTime]
+
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 

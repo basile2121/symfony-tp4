@@ -40,11 +40,11 @@
 		<section id="" class="d-flex justify-content-center">
 			<div class="tags d-flex align-items-center justify-content-center py-4 mr-2">
 				<span class="tags-items px-3 py-1 mx-2">Places disponibles :
-					{{ nbParticipant }}/{{ workshop.universityRoom.capacity }}
+					{{ nbParticipant }}/{{ workshop.universityRoom.capacity|default('Pas de salle')  }}
 				</span>
 				<span class="tags-items px-3 py-1 mx-2">
 					salle :
-					{{ workshop.universityRoom.name }}
+					{{ workshop.universityRoom.name|default('Pas de salle')  }}
 				</span>
 				<span class="tags-items px-3 py-1 mx-2">
 					secteur :
@@ -77,7 +77,7 @@
 		</section>
 
 		{# {% include 'utils/pop-up/participer_evenement_model.html.twig' %}
-																										        {% include 'utils/pop-up/ne_plus_participer_evenement_model.html.twig' %}
-																										        {% include 'maps/maps_show.html.twig' %} #}
+																												        {% include 'utils/pop-up/ne_plus_participer_evenement_model.html.twig' %}
+																												        {% include 'maps/maps_show.html.twig' %} #}
 	</main>
 {% endblock %}

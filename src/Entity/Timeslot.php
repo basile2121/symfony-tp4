@@ -18,7 +18,7 @@ class Timeslot
 
     #[Assert\NotBlank]
     #[Assert\Length(
-        min: 5,
+        min: 3,
         max: 5,
         minMessage: 'Your label must be {{ limit }} characters long',
         maxMessage: 'Your label must be {{ limit }} characters long',
@@ -27,11 +27,10 @@ class Timeslot
     private ?string $label = null;
 
     #[Assert\NotBlank]
-    #[Assert\DateTime]
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[Assert\DateTime]
+
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
