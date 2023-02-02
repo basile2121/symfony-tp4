@@ -10,10 +10,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
+#[Route('/admin/monitoring')]
 class MonitoringController extends AbstractController
 {
 
-    #[Route('/monitoring', name: 'app_monitoring')]
+    #[Route('/', name: 'app_monitoring')]
     public function index(AuthenticationUtils $authenticationUtils, WorkshopRepository $workshopRepository, HighSchoolRepository $highSchoolRepository, RegistrationRepository $registrationRepository): Response
     {
         $workshops = $workshopRepository->findAll();
@@ -29,7 +30,7 @@ class MonitoringController extends AbstractController
 
         ]);
     }
-    #[Route('/monitoring/workshop', name: 'app_monitoring_workshop')]
+    #[Route('/workshop', name: 'app_monitoring_workshop')]
     public function showWorkshop(AuthenticationUtils $authenticationUtils, WorkshopRepository $workshopRepository): Response
     {
         $workshops = $workshopRepository->findAll();
@@ -47,7 +48,7 @@ class MonitoringController extends AbstractController
         ]);
     }
 
-    #[Route('/monitoring/highschool', name: 'app_monitoring_highschool')]
+    #[Route('/highschool', name: 'app_monitoring_highschool')]
     public function showHighSchool(AuthenticationUtils $authenticationUtils, HighSchoolRepository $highSchoolRepository): Response
     {
         $highSchools = $highSchoolRepository->getNbStudentRegisterByHighSchool();

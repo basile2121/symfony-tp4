@@ -12,6 +12,7 @@ use App\Repository\WorkshopRepository;
 use App\Entity\Workshop;
 use App\Form\RegistrationType;
 use App\Repository\RegistrationRepository;
+use App\Repository\StudentRepository;
 use DateTimeImmutable;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -82,9 +83,10 @@ class IndexController extends AbstractController
         ]);
     }
 
-    #[Route('/student/{id}', name: 'app_student_show_profile', methods: ['GET'])]
-    public function showProfile(Student $student): Response
+    #[Route('/student', name: 'app_student_show_profile', methods: ['GET'])]
+    public function showProfile(): Response
     {
+        $student = $this->getUser();
         return $this->render('public/student/show.html.twig', [
             'student' => $student,
         ]);
