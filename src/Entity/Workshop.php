@@ -6,6 +6,7 @@ use App\Repository\WorkshopRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: WorkshopRepository::class)]
 class Workshop
@@ -15,6 +16,11 @@ class Workshop
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: 'The name must be {{ limit }} characters long',
+    )]
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
@@ -33,9 +39,12 @@ class Workshop
     #[ORM\JoinColumn(nullable: false)]
     private ?Edition $edition = null;
 
+    #[Assert\NotBlank]
+    #[Assert\DateTime]
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
+    #[Assert\DateTime]
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 

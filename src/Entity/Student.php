@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: StudentRepository::class)]
 class Student extends User
@@ -16,6 +17,13 @@ class Student extends User
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 10,
+        max: 10,
+        minMessage: 'Your first name must be {{ limit }} characters long',
+        maxMessage: 'Your first name must be {{ limit }} characters long',
+    )]
     #[ORM\Column(length: 10)]
     private ?string $phone = null;
 
@@ -31,15 +39,28 @@ class Student extends User
     #[ORM\JoinColumn(nullable: false)]
     private ?HighSchool $highSchool = null;
 
+    #[Assert\NotBlank]
+    #[Assert\DateTime]
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
+    #[Assert\DateTime]
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: 'The firstname cannot be longer than {{ limit }} characters'
+    )]
     #[ORM\Column(length: 255)]
     private ?string $firstName = null;
 
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: 'The lastname cannot be longer than {{ limit }} characters'
+    )]
     #[ORM\Column(length: 255)]
     private ?string $lastName = null;
 

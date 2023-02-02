@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\RegistrationRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 #[ORM\Entity(repositoryClass: RegistrationRepository::class)]
 class Registration
 {
@@ -21,6 +23,8 @@ class Registration
     #[ORM\JoinColumn(nullable: false)]
     private ?Timeslot $timeslot = null;
 
+    #[Assert\NotBlank]
+    #[Assert\DateTime]
     #[ORM\Column]
     private ?\DateTimeImmutable $registerAt = null;
 

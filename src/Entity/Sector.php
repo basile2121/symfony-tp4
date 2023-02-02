@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: SectorRepository::class)]
 class Sector
@@ -16,18 +17,31 @@ class Sector
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: 'The name cannot be longer than {{ limit }} characters'
+    )]
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
+    #[Assert\NotBlank]
+    #[Assert\Type(
+        type: 'long',
+        message: 'The value {{ value }} is not a valid {{ type }}.',
+    )]
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
     #[ORM\OneToMany(mappedBy: 'sector', targetEntity: Workshop::class, orphanRemoval: true)]
     private Collection $workshops;
 
+    #[Assert\NotBlank]
+    #[Assert\DateTime]
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
+    #[Assert\DateTime]
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 

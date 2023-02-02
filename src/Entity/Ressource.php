@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\RessourceRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: RessourceRepository::class)]
 class Ressource
@@ -13,15 +14,29 @@ class Ressource
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: 'The name cannot be longer than {{ limit }} characters'
+    )]
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
+    #[Assert\NotBlank]
+    #[Assert\Url]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: 'The url cannot be longer than {{ limit }} characters'
+    )]
     #[ORM\Column(length: 255)]
     private ?string $url = null;
 
+    #[Assert\NotBlank]
+    #[Assert\DateTime]
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
+    #[Assert\DateTime]
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 

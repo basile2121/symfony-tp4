@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: EditionRepository::class)]
 #[UniqueEntity('year')]
@@ -17,6 +18,9 @@ class Edition
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\NotBlank]
+    #[Assert\Positive]
+    #[Assert\Unique]
     #[ORM\Column(unique: true)]
     private ?int $year = null;
 
@@ -29,9 +33,12 @@ class Edition
     #[ORM\OneToMany(mappedBy: 'edition', targetEntity: Workshop::class, orphanRemoval: true)]
     private Collection $workshops;
 
+    #[Assert\NotBlank]
+    #[Assert\DateTime]
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
+    #[Assert\DateTime]
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
@@ -172,6 +179,4 @@ class Edition
     {
         return $this->year;
     }
-
-
 }

@@ -6,6 +6,7 @@ use App\Repository\TimeslotRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: TimeslotRepository::class)]
 class Timeslot
@@ -15,12 +16,22 @@ class Timeslot
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 5,
+        max: 5,
+        minMessage: 'Your label must be {{ limit }} characters long',
+        maxMessage: 'Your label must be {{ limit }} characters long',
+    )]
     #[ORM\Column(length: 5)]
     private ?string $label = null;
 
+    #[Assert\NotBlank]
+    #[Assert\DateTime]
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
+    #[Assert\DateTime]
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
@@ -105,7 +116,8 @@ class Timeslot
         return $this;
     }
 
-    public function __toString() {
+    public function __toString()
+    {
         return $this->label;
     }
 }
