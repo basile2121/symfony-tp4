@@ -20,6 +20,12 @@ npm install
 
 ## Commandes à exécuter : 
 
+Création de la base de donnée : 
+
+```
+php bin/console doctrine:database:create
+```
+
 Création des tables dans la BDD
 
 ```
@@ -47,3 +53,22 @@ symfony server:start
 ## Fonctionnement : 
 
 Création d'un compte admin en enregistrant puis en changeant sont rôle en "ROLE_ADMIN" en BDD
+
+## Commande
+
+Attribution des salles aux ateliers : 
+
+```
+php bin/console app:assign-workshop-to-university-room
+```
+
+hachage des données utilisateurs  :
+
+```
+php bin/console app:hash-students-data
+```
+
+##  Formulaire de contact en VUE : 
+
+L'enregistrement des données du formulaire de contact ce fais dans la table Contact
+
