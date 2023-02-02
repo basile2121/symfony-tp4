@@ -34,7 +34,7 @@ class UniversityRoom
     #[ORM\OneToOne(mappedBy: 'universityRoom', cascade: ['persist', 'remove'])]
     private ?Workshop $workshop = null;
 
-    #[Assert\NotBlank]
+
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 

@@ -39,7 +39,7 @@ class Student extends User
     #[ORM\JoinColumn(nullable: false)]
     private ?HighSchool $highSchool = null;
 
-    #[Assert\NotBlank]
+
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 

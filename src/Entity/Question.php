@@ -30,7 +30,7 @@ class Question
     #[ORM\OneToMany(mappedBy: 'question', targetEntity: Answer::class, orphanRemoval: true)]
     private Collection $answers;
 
-    #[Assert\NotBlank]
+
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 

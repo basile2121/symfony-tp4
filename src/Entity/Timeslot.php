@@ -26,7 +26,7 @@ class Timeslot
     #[ORM\Column(length: 5)]
     private ?string $label = null;
 
-    #[Assert\NotBlank]
+
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 

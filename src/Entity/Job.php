@@ -34,7 +34,7 @@ class Job
     #[ORM\ManyToMany(targetEntity: Activity::class, mappedBy: 'job')]
     private Collection $activities;
 
-    #[Assert\NotBlank]
+
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 

@@ -39,7 +39,6 @@ class Workshop
     #[ORM\JoinColumn(nullable: false)]
     private ?Edition $edition = null;
 
-    #[Assert\NotBlank]
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
@@ -198,6 +197,4 @@ class Workshop
     {
         return $this->name;
     }
-
-
 }

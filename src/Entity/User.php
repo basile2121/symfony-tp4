@@ -29,13 +29,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private array $roles = [];
 
-    #[Assert\Length(
-        min: 6,
-        minMessage: 'Your password must be at least {{ limit }} characters long',
-    )]
-    #[SecurityAssert\UserPassword(
-        message: 'Wrong value for your current password',
-    )]
     private $plainPassword;
 
     /**

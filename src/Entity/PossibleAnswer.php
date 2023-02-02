@@ -33,7 +33,7 @@ class PossibleAnswer
     #[ORM\ManyToMany(targetEntity: Question::class, mappedBy: 'possibleAnswer')]
     private Collection $questions;
 
-    #[Assert\NotBlank]
+
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
@@ -149,7 +149,6 @@ class PossibleAnswer
 
     public function __toString(): string
     {
-        return $this->answer . ' / ' . $this->type. ' / ' . $this->balise;
+        return $this->answer . ' / ' . $this->type . ' / ' . $this->balise;
     }
-
 }

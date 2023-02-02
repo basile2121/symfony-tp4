@@ -23,7 +23,7 @@ class Registration
     #[ORM\JoinColumn(nullable: false)]
     private ?Timeslot $timeslot = null;
 
-    #[Assert\NotBlank]
+
     #[ORM\Column]
     private ?\DateTimeImmutable $registerAt = null;
 

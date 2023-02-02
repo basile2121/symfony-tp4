@@ -36,7 +36,7 @@ class Sector
     #[ORM\OneToMany(mappedBy: 'sector', targetEntity: Workshop::class, orphanRemoval: true)]
     private Collection $workshops;
 
-    #[Assert\NotBlank]
+
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 

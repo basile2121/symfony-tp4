@@ -21,7 +21,7 @@
 				{{ workshop.edition.year }}
 			</h4>
 
-			{% if workshop.universityRoom.capacity is same as(nbParticipant) %}
+			{% if (workshop.universityRoom is not null) and (workshop.universityRoom.capacity is same as(nbParticipant)) %}
 				<button type="button" class="btn btn-warning participer" data-toggle="modal" data-target="#Modal{{ workshop.id }}" disabled>Participer
 				</button>
 				<p>L'évènement est complet</p>

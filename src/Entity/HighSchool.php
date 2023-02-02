@@ -27,7 +27,7 @@ class HighSchool
     #[ORM\OneToMany(mappedBy: 'highSchool', targetEntity: Student::class, orphanRemoval: true)]
     private Collection $students;
 
-    #[Assert\NotBlank]
+
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 

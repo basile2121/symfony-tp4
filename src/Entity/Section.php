@@ -27,7 +27,7 @@ class Section
     #[ORM\OneToMany(mappedBy: 'section', targetEntity: Student::class)]
     private Collection $students;
 
-    #[Assert\NotBlank]
+
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 

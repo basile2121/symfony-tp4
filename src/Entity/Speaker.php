@@ -64,7 +64,7 @@ class Speaker
     #[ORM\ManyToMany(targetEntity: Edition::class, mappedBy: 'speakers')]
     private Collection $editions;
 
-    #[Assert\NotBlank]
+
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 

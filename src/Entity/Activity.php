@@ -27,7 +27,7 @@ class Activity
     #[ORM\ManyToMany(targetEntity: Job::class, inversedBy: 'activities')]
     private Collection $job;
 
-    #[Assert\NotBlank]
+
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 

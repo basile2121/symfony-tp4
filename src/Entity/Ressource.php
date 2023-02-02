@@ -31,7 +31,7 @@ class Ressource
     #[ORM\Column(length: 255)]
     private ?string $url = null;
 
-    #[Assert\NotBlank]
+
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
